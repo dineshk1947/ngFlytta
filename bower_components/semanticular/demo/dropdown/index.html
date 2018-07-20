@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dropdown Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="DemoController">
+    <dropdown ng-model="dropdownValue" options="dropdownOptions">
+        <dropdown-item value="denemeItem1">Deneme item 1</dropdown-item>
+        <dropdown-item>Deneme item 2</dropdown-item>
+        <dropdown-item ng-repeat="item in items" title="item.title" value="item.value"></dropdown-item>
+    </dropdown>
+    <button ng-click="dropdownValue = 'Deneme item 2'">Set to item 2</button>
+    <div>Selected Value: {{dropdownValue}}</div>
+
+    <br /><br />
+
+    <dropdown ng-model="dropdownValue2" options="dropdownOptions2">
+        <dropdown-item ng-repeat="item in items" title="item.title" value="item.value"></dropdown-item>
+    </dropdown>
+    <button ng-click="dropdownValue2 = ['item3', 'item5']">Set to item 3 and 5</button>
+    <div>Selected Value: {{dropdownValue2}}</div>
+
+    <br /><br />
+
+    <dropdown ng-model="dropdownValue3" options="dropdownOptions3"></dropdown>
+    <div>Selected Value: {{dropdownValue3}}</div>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/lodash/lodash.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/src/dropdown/index.js"></script>
+    <script src="/src/dropdown/dropdown/controller.js"></script>
+    <script src="/src/dropdown/dropdown/directive.js"></script>
+    <script src="/src/dropdown/dropdown-item/directive.js"></script>
+    <!-- // <script src="/dist/semanticular.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>

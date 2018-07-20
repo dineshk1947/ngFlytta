@@ -1,0 +1,120 @@
+<div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+<h1 style="text-align: center">Unverified Property Lists</h1>
+<div class="main-container" ng-controller="myCtrl">
+    <div class="col-sm-2">
+        <div class="search">
+            <span class="fa fa-search"></span>
+            <input type="search" ng-model="searchUser" class="form-control" placeholder="Search data" autofocus/>
+        </div>
+    </div>
+    <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+        <section class="tables-data">
+            <div class="page-header">
+            </div>
+            <div class="card">
+                <div>
+                    <div class="datatables">
+                        <table class="table table-full table-full-small" cellspacing="0"
+                               width="100%;">
+                            <thead>
+                            <tr>
+                                <th><strong>Serial No.</strong></th>
+                                <th><strong>Date</strong></th>
+                                <th><strong>Property Id</strong></th>
+                                <th><strong>Locations</strong></th>
+                                <th><strong>Property To</strong></th>
+                                <th><strong>Site</strong></th>
+                                <th><strong>Monthly Rent</strong></th>
+                                <th><strong>Entered By</strong></th>
+                                <th><strong>Actions</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in getUnverifiedData | filter:searchUser | startFrom:currentPage*pageSize | limitTo:pageSize track by $index">
+                                <td>{{$index+1}}.</td>
+
+                                <td>{{user.datetime}}</td>
+                                <td>{{user.service_id}}</td>
+
+                                <td>{{user.city}},{{user.area}}</td>
+
+                                <td>{{user.rent_to}}</td>
+
+                                <td>{{user.configuration}}</td>
+
+                                <td>{{user.m_rent}}</td>
+                                <td>{{user.user}}</td>
+                                <td>&nbsp; <button type="button" class="btn btn-lg btn-round btn-default"><span class="md md-edit"></span><div class="ripple-wrapper"></div></button>&nbsp;
+                                    <button type="button" class="btn btn-lg btn-round btn-default"><span class="md-delete"></span><div class="ripple-wrapper"></div></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="p-20">
+                            <ul class="pager ng-cloak">
+                                <li>
+                                    <button type="button" class="btn btn-default pull-left ng-scope"ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">« Previous</button>
+                                    <button type="button"  class="btn btn-default pull-right" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next &raquo;</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<style>
+    .glyphicon-spin-jcs {
+        -webkit-animation: spin 1000ms infinite linear;
+        animation: spin 1000ms infinite linear;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    .table-full tbody > tr > td {
+        border: 0.001px solid gainsboro;
+    }
+
+    /*search icon start*/
+    .search {
+        position: relative;
+    }
+
+    .search input {
+        text-indent: 30px;
+    }
+
+    .search .fa-search {
+        position: absolute;
+        top: 12px;
+        font-size: 15px;
+    }
+
+    @media (min-width: 768px){
+        .col-sm-2 {
+            float: inherit;
+        }
+    }
+    /*search icon end*/
+</style>
+

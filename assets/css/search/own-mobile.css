@@ -1,0 +1,148 @@
+  .modalpad{padding-left: 14px;
+
+  }
+  .modalpad2{
+        padding-left: 0px;
+  }
+  #heightmodalcompleted{
+    height: 82vh;
+  }
+  #dismodal{
+    padding-left: 0px;
+  }
+  #viewitemcompleted{
+       margin-bottom: 8px;
+  }
+   #origin_border{
+       border-right: 0px;
+   }
+   #leftrightline{
+    border-left: 0px;
+    border-right: 0px;
+   }
+   #origin_border{
+       border-right: 0px;
+   }
+   .w1{
+        margin-left: -10px;
+       /*width: 100%;*/
+   }
+   #w1{
+       margin-left: 0px;
+   }
+   .w2{
+          margin-left: 22px;
+   }
+   #w2{
+      margin-left: -20px;
+   }
+   #packmove{
+    margin-bottom: 4vh;
+    margin-top: 2vh;
+   }
+   #oriup{
+   /* margin-top: -5vh;*/
+    margin-bottom: -5vh
+   }
+   #widthsize{
+    width: 100%;
+    margin-left: 0px;
+   }
+  
+  #dismantpad{
+    padding-left: 22px;
+  }
+#bordline{
+    border-right: 0px;
+   }
+@media (max-width: 320px){
+  .padleft{
+    padding-left: 0px;
+  }
+   #w22{
+    margin-left: -47px;
+   }
+  #items_mbl{
+    margin-left: -15px;
+  }
+
+  #dist_mbl{
+    display: inline-block;
+  }
+   #dist_web{
+    display: none;
+  }
+
+  #leftalign_schedulevisit{
+        margin-left: -5px;
+        font-size: 10px;
+  }
+  #fontsizeinlistitems{
+     font-size: 10px;
+  }
+  #mbllookwidth{
+    width: 280px;
+  /*  max-height: 270px;*/
+  }
+  #rowbarmright{
+    margin-right: -10px;
+  }
+  #cancelsubmit_btn{
+   /* margin-top: -10px;*/
+  }
+}
+.imgg{
+ width:100%;
+ height:170px;
+
+}
+@media (max-width: 320px){
+ #removefrmwish{
+   margin-left: -10px;
+ }
+ #pushvisit{
+   margin-right: -10px;
+ }
+#pushvisit1{
+      margin-right: -7px;
+}
+}
+@media (max-width:425px ){
+  #chkwidth1{
+   min-width:14em;
+   margin-left: -10px;
+  }
+  #chkwidth2{
+    min-width:14em;
+    margin-left: -5px;
+  }
+
+}
+
+@media (max-width:375px ){
+  #chkwidth1{
+   min-width:12em;
+   margin-left: -10px;
+  }
+  #chkwidth2{
+    min-width:12em;
+    margin-left: -5px;
+  }
+
+}
+@media (max-width:320px ){
+  #chkwidth1{
+   min-width:10em;
+   margin-left: -10px;
+  }
+  #chkwidth2{
+    min-width:10em;
+    margin-left: -5px;
+  }
+
+}
+@media (max-width: 245px){
+  #imgdwn2{
+    margin-left: 0px;
+  }
+}

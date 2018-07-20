@@ -1,0 +1,512 @@
+<div style="overflow-y:hidden;overflow-x: hidden" ng-controller="SearchProperty">
+    <div class="" style="margin:0; max-height: 100vh; background-color: #ffffff; position:relative;">
+        <nav class="navbar navbar-default">
+            <div ng-include src="'assets/tpl/search_header.html'"></div>
+          <!--  <div ng-include src="'assets/tpl/home/main_sidebar.html'"></div> -->
+        </nav>
+        <div class="container-fluid" style="margin:0; max-height: 100vh; background-color:#3949ab; box-shadow: 0px 7px 10px #d2d2d2; position:relative; z-index:260">
+            <div class="container-fluid" style="padding-left:15px;">
+                <div class="row"> 
+                    <div class="col-md-12 col-sm-12 pull-left"  style="margin-left:0px;">
+                        <div style="padding:0px;" class="col-md-3 col-sm-5 mapfiltres mapfilmar1" >
+                            <div class="form-group mapcainput" style="width:94%;">
+                                <dropdown ng-model="searchCity" class="citydd1024" style="width:80%;" options="onSelectCallback1">
+                                    <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                </dropdown>
+                            </div>
+                        </div>
+                        <div style="padding:0px;" class="col-md-3 col-sm-5 mapfiltres mapfilmar2">
+                            <div class="form-group mapcainput" style="width:94%">
+                                <!-- <dropdown ng-model="multipleDemo.inputareas" style="width:100%" options="onSelectCallback2">
+                                    <dropdown-item ng-repeat="item in city_areas3" title="item.value" value="item.value"></dropdown-item>
+                                </dropdown> -->
+                                <input id="local" class="form-control" ng-model="multipleDemo.inputareas" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; height:39px; padding:0px 13px; box-shadow: 0 0px #d9d9db; background-color:#fff" placeholder="Select Locality (Preference 2)" ng-select="areaalert()" type="text"></input>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="col-md-7 col-sm-12 pull-right filterbhkres" style="padding-left:0px; margin-bottom:10px; border:1px solid #cecece; border-radius:3px;">
+                                <div class="row no-gutters" style="margin-left: 0px;margin-right:10px;height: 39.41px;">
+                                    <div class=" col-md-2 col-sm-2" style="padding-left: 28px; padding-top:7px; background-color: #fff; color:#3949ab ;height: inherit;"><label>Filters</label></div>
+                                    <div style="" class="col-md-2 col-sm-2 filterhover">
+                                        <div class="dropdown" style="padding-left: 15px;padding-top:7px;">
+                                            <span class="dropdown-toggle" data-hover="dropdown" style="vertical-align: middle;">{{k_value}}&nbsp;<span class="caret"></span></span>
+                                            <ul class="dropdown-menu" style="width:270px; top:74px; left:-15px; padding-left: 15px;padding-right: 15px;">
+                                                <li>
+                                                    <div class="form-group">
+                                                        <label class="control-label"></label>
+                                                        <div id="slider" noui-slider min="10000" max="50000" start="{{budstart}}" end="50000" range="{{budend}}" bind=".sliderval11" ng-model="sliderModel"  ng-click="passValueHere('budget')" bind-range=".sliderval22" step="5" indicator="false"></div>
+                                                        <span class="help-block ">Amount: Rs. <span class="sliderval11" id="side1">10000</span> - Rs. <span class="sliderval22" id="side2">50000</span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div style="" class=" col-md-2 col-sm-2 filterhover bhkfillwidth">
+                                        <div class="dropdown" style="padding-bottom:6px; padding-top:7px;">
+                                            <span class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style=" vertical-align: middle;">BHK&nbsp;{{configuration}}<span class="caret"></span></span>
+                                            <ul class="dropdown-menu" style="padding-left: 15px; top:74px; left:-15px;">
+                                                <li ng-repeat= "bhk in bhks">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="bhkselected" ng-model="model_filter['configuration'][bhk.id]" ng-click="filter_bhk($event, bhk.id,'bhk')"> <span style="color:#666">{{bhk.id}}</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div style="" class="col-md-2 col-sm-2 filterhover">
+                                        <div class="dropdown filtdrop" style="">
+                                            <span class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="vertical-align: middle;">Home for&nbsp;{{rent_to}}<span class="caret"></span></span>
+                                            <ul class="dropdown-menu" style="padding-left: 15px; top:74px; left:-15px; padding-right: 15px">
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="model_filter['rent_to']['Family']" ng-click="filter_bhk($event, 'Family', 'rent')"> <span style="color:#666">Family</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" style="color:#666" ng-model="model_filter['rent_to']['Single (Men)']" ng-click="filter_bhk($event, 'Single (Men)','rent')"> <span style="color:#666">Bachelor</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div style="" class="col-md-3 col-sm-3 filterhover funfillwidth">
+                                        <div class="dropdown filtdrop" style="">
+                                            <span class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="vertical-align: middle;">Furnishing&nbsp;{{fur}}<span class="caret"></span></span>
+                                            <ul class="dropdown-menu" style="padding-left: 15px; top:74px; left:-15px; padding-right: 8px">
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="model_filter['fur']['furnished']" ng-click="filter_bhk($event, 'furnished', 'furnishing')"> <span style="color:#666">Furnished</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" style="color:#666" ng-model="model_filter['fur']['s_furnished']" ng-click="filter_bhk($event, 's_furnished','furnishing')"> <span style="color:#666">Semi Furnished</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                 <li>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" style="color:#666" ng-model="model_filter['fur']['n_furnished']" ng-click="filter_bhk($event, 'n_furnished','furnishing')"> <span style="color:#666">Unfurnished</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2">
+                                        <div style="margin-left: 0px;padding-top: 4px;" class="btn-group">
+                                            <button class="btn  btn-xs" style=" background-color:white; margin-top:5px;" ng-click="refresh_page()"><i class="md md-rotate-right"></i> <b>Refresh</b></button>
+                                        </div>
+                                    </div>
+                                    <!-- <div style="padding:10px 0px;display: none;" class="  col-md-2 pull-right">
+                                        <div class="btn-group  col-sm-offset-3">
+                                            <span class="map-view" onclick="location.href='/property/search/map'">Map view</span>
+                                            <span class="list-view" onclick="location.href='/property/search/list'" style="">List View</span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="" style="max-width:100%; max-height:100vh;overflow: hidden;">
+            <div class="card" style="margin-bottom:0px;" id="card-map-basic">
+                <div style="z-index: -1;height:100vh">
+                    <ui-gmap-google-map center="map.center" zoom="map.zoom">
+                        <ui-gmap-window show="map.window.show" coords="map.window.model" options="map.window.options" click="map.window.closeClick();" templateParameter="map.window">
+                        </ui-gmap-window>
+                        <ui-gmap-circle center='map.circle.center'
+                        radius='map.circle.radius'
+                          fill='map.circle.fill'
+                          stroke='map.circle.stroke'
+                          clickable='map.circle.clickable'
+                          draggable='map.circle.draggable'
+                          editable='map.circle.editable'
+                          visible='map.circle.visible'
+                          events='map.circle.events'
+                      >
+                    </ui-gmap-circle>
+                        <ui-gmap-markers ng-repeat="m in map.markers" idkey="m.id._id" coords="'self'" events="map.markersEvents;" models="map.markers" options="'options'" icon="'icon'" fit="">
+                        </ui-gmap-markers>
+                    </ui-gmap-google-map>
+                </div>
+
+                <div class="card card-view radrange1" style="margin-top:8px;">
+                    <div class="card" style="padding:5px 15px; height:62px;">
+                        <div class="form-group" style="padding-top: 20px;">
+                           <div id="range" bind=".radrange" ng-click="passValueHere('radius')" noui-slider min="1" max="10" start="{{rangeModel}}" step="1" ng-model="rangeModel" ></div>                         
+                            <span class="help-block" style="margin-bottom:0px;">
+                                Radius range: <span class="radrange" id="rrange">2</span> Km
+                            </span>
+                        </div>
+                    </div> 
+                    </div> 
+                <div class="card card-view" style="z-index:1">    
+                                    
+                    <div class="card-title" style="margin-top: 2vw; padding-left:15px; padding-right:15px">
+                        <div class="btn-group" style="bottom:10px; width:100%">
+                            <button ng-click="view_all(); select(0)" class="btn btn-sm" ng-class="{vawlbtn: isActive(0)}" style="width:50%">View All <span> ({{ vacount }})</span></button>
+                            <button ng-click="wish_lists(); select(1)" ng-class="{vawlbtn: isActive(1)}" class="btn btn-sm" style="width:50%">Wishlist&nbsp <a class="test" data-toggle="tooltip" id="myTooltip" data-container="body" data-placement="top" title="Your property is added here"><i style="color: #666;" ng-show="favgray" class="md md-favorite"></i> <i ng-show="favyell" class="md md-favorite" style="color: black;"></i> <span ng-class="{vawlbtn1: isActive1(0)}"><span style="color: #666;" ng-show="swnum"> {{ wnum }}</span></span></a>
+                            </button>
+                        </div>
+                        <div class="col-md-12" style="padding-bottom:7px;">
+                            <div class="btn btn-xs pull-right" style="font-size:12px;">
+                                <span class="dropdown-toggle" data-toggle="dropdown" style="padding: 1px 10px;">Sort<span class="caret"></span></span>
+                                <ul class="dropdown-menu" style="top:62px; left:0px;">
+                                    <li ng-click="low_high('m_rent');"><a href style="font-size:12px;">Low - High</a></li>
+                                    <li ng-click="high_low('m_rent')"><a href style="font-size:12px;">High - Low</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="vall" id="vallprop" my-directive ng-mouseover="checkheightdiv()" class="card-content onlyscroll" style="background-color: font-size: 12px ! important; padding-right:10px; padding-left:10px; height:70.5vh; overflow-y: auto; padding-top:3px;width: 100%">
+                        <ul id="vallpropin" class="list-group" style="margin-bottom:5px;">
+                            <li id="{{'list_'+$index}}" scroll-to-top="isAtTop{{$index}}" class="list-group-item proplists {{$index}}}" ng-class="{cardli: $index == selectedli}" ng-repeat="x_data in p_data | orderBy:orderProperty" style="margin-bottom:10px;">
+                                <div class="row disable-text-selection" ng-click="pdetails(x_data['service_id'],$index); selectcardlitest($index)" style="cursor:pointer;" data-title="New {{settings.singular}}">
+                                    <div class="col-xs-6">
+                                        <img style="width:120px; max-height:70px" alt="{{x_data['configuration']}} Rent {{x_data['city']}} {{x_data['area']}}" title="{{x_data['configuration']}} Rent {{x_data['city']}} {{x_data['area']}}" src='assets/img/spinner.gif' lazy-img="{{ x_data['picurl'][0] }}">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <i ng-show="favicon_{{x_data['service_id']}}" id="favicon_{{x_data['service_id']}}" ng-click="addwish1(x_data,$index);" class="md md-favorite favorites pull-right"></i>
+                                        <i ng-show="!favicon_{{x_data['service_id']}}" ng-click="removewish(x_data['service_id'],$index);" class="md md-favorite favorit pull-right"></i>
+                                        <p style="line-height:15px;"><b>Rs. {{ x_data["m_rent"] }}</b>
+                                        <br/>
+                                        <br/>
+                                        <span style="font-size:12px">{{ x_data["configuration"] }}</span>
+                                        <br/>
+                                        <span style="font-size:12px">{{ x_data["totalArea"] }} <span ng-if="x_data['totalArea'].indexOf('Feet')<0">Sq Feet</span></span></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-show="flags" style="bottom: 0;">
+                        <div id="divheightvisit" class="card-content" style="background-color: font-size: 12px ! important; padding-right:10px; padding-left:10px; overflow-y: auto; padding-top:3px;padding-bottom: 20px;width: 100%;">
+                            <ul class="list-group">
+                                <li id="'list_'+$index" class="list-group-item proplists" ng-class="{cardli: $index == selectedli}" ng-repeat="visit_data in wish_list  | orderBy:orderProperty" style="margin-bottom:10px;">
+                                    <div style="text-transform: uppercase;font-size: 14px;"><i ng-show="!favicon_{{visit_data['service_id']}}" ng-click="removewish(visit_data['service_id'],$index);" class="md md-favorite favorit pull-right"></i>{{visit_data['area']}}</div>
+                                    <div class="row" ng-click="pdetails(visit_data['service_id'],$index);selectcardlitest($index)" style="cursor:pointer;" data-title="New {{settings.singular}}">
+                                        <div class="col-xs-6">
+                                            <img style="width:120px; max-height:100px;" alt="{{visit_data['configuration']}} Rent {{visit_data['city']}} {{visit_data['area']}}" title="{{visit_data['configuration']}} Rent {{visit_data['city']}} {{visit_data['area']}}" src='assets/img/spinner.gif' lazy-img="{{ visit_data['picurl'][0] }}">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div style="line-height:15px;"><b>Rs. {{ visit_data["m_rent"] }}</b>
+                                                <br/>
+                                                <span style="font-size:12px">{{ visit_data["configuration"] }}</span>
+                                                <br/>
+                                                <span style="font-size:12px">{{ visit_data["totalArea"] }} <span ng-if="visit_data['totalArea'].indexOf('Feet')<0">Sq Feet</span></span>
+                                            </div>
+                                            <div ng-click="$event.stopPropagation();" class="checkbox" style="font-size:12px;margin-top:0px; margin-bottom:0px;">
+                                                <label>
+                                                    <input name="selected" ng-click="updateSelection($event, visit_data)" ng-model="vcheck['che_'+visit_data['service_id']]" type="checkbox"> VISIT</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btn-group" id="reqhousevisit" style="width:99%;background-color:white; z-index:500;margin-left: -9px">
+                            <button id="butnmrg" class="btn btn-sm" ng-click="rhousevisit()" style="bottom:13px;position:absolute;background-color:#f0bb2f; margin:0px 10px; width:100%;">Request House Visit</button>
+                        </div>
+                    </div>
+                    <div style="position:fixed; left:20%; bottom:25px;">
+                        <a class="test1" data-toggle="tooltip" id="myrhouse" data-container="body" title="Click here to request house visits"></a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="imageModal" class="modal fade" role="dialog" style="overflow: hidden;margin-top: 10vh">
+        <i class="md md-highlight-remove" data-dismiss="modal"></i>
+        <div class="modal-dialog">
+            <button type="button" class="btn btn-lg btn-round btn-default pull-right" style="z-index: 99;margin-right: -10px;margin-top:-10px;" data-dismiss="modal"><i class="md md-clear"></i></button>
+            <div class="modal-content" style="height: initial;">
+                <flex-slider slider-id="slider" flex-slide="s in s_prop['property']['picurl'] track by $index" style="height:459px;width:100%;" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                    <li>
+                        <img ng-src="{{s}}" alt="{{s_prop['property']['configuration']}} {{s_prop['property']['city']}} {{s_prop['property']['area']}}" title="{{s_prop['property']['configuration']}} Rent {{s_prop['property']['city']}} {{s_prop['property']['area']}}" width="100%" height="450px">
+                    </li>
+                </flex-slider>
+            </div>
+        </div>
+    </div>
+    <div id="resfreshModal" class="modal fade" role="dialog" style="overflow: hidden;margin-top: 10vh">
+        <div class="modal-dialog">
+            <button type="button" class="btn btn-lg btn-round btn-default pull-right" style="z-index: 99;margin-right: -10px;margin-top:-10px;" data-dismiss="modal"><i class="md md-clear"></i></button>
+            <div class="modal-content" style="height: 500px;">
+                <h4 style="padding-left: 5%">No property available, please fill the custom form below.</h4>
+                <div class="well white" id="forms-validation-container" style="overflow-y: auto;height:430px;margin-bottom: 0px;">
+                    <form name="register" class="form-floating" novalidate="novalidate" ng-submit="register.$valid && register.submit()">
+                        <fieldset>
+                            <div class="form-group">
+                                <!-- <label for="inputEmail" class="control-label">Name</label> -->
+                                <input type="text" ng-disabled="model.q_name == ''" placeholder="Name" name="myName" class="form-control" ng-model="model.q_name" autocomplete="off" required>
+                                <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+                            </div>
+                            <div class="form-group">
+                             <!--    <label for="inputEmail" class="control-label">Email</label> -->
+                                <input type="email" ng-disabled="model.q_email == ''" placeholder="Email" class="form-control" ng-model="model.q_email" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                               <!--  <label for="inputEmail" class="control-label">Phone Number</label> -->
+                                <input type="number" ng-disabled="model.q_phone == ''" class="form-control" placeholder="Phone Number" ng-model="model.q_phone" ng-pattern="/[0-9]/" required>
+                            </div>
+                         <!--    <div class="form-group"> -->
+                                <!-- <div class="form-group" style="border-bottom: solid #666;border-width: 1px;">
+                                    <ui-select ng-model="model.q_city" theme="select2" on-select="filterareas($select.selected.cvalue);" title="Choose City" search-enabled="true">
+                                        <ui-select-match placeholder="Select city...">{{$select.selected.cname}}</ui-select-match>
+                                        <ui-select-choices style="" repeat="item in cities | limitTo: 100">
+                                            {{item['cname']}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <dropdown ng-model="model.q_city" style="width:100%" options="onSelectCallback_new" >
+                                        <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown>
+                                </div> -->
+                                <div class="form-group">
+                                   <!--  <ui-select ng-model="model.q_area" theme="select2" on-remove="onRemoveCallback($select.selected.value)" on-select="onSelectCallback($select.selected.value)" title="Choose Your Localities" search-enabled="true" style="">
+                                        <ui-select-match placeholder="Select Localities" style="">{{$select.selected.value}}</ui-select-match>
+                                        <ui-select-choices repeat="area in city_areas3 | filter:{value:$select.search} | limitTo: 100" style="">
+                                            {{area.value}}
+                                        </ui-select-choices>
+                                    </ui-select> -->
+                                   <!--  <dropdown ng-model="model.q_area" style="width:100%" options="onSelectCallback2_new">
+                                        <dropdown-item ng-repeat="item in city_areas3" title="item.value" value="item.value"></dropdown-item> -->
+                                        <input type="text" ng-disabled="model.q_area == ''" placeholder="Enter Locality" class="form-control" ng-model="model.q_area" autocomplete="off" required>
+                                  <!--   </dropdown> -->
+                                </div>
+                           <!--  </div> -->
+                            <div class="form-group">
+                                <!-- <label for="inputEmail" class="control-label">Your Requirement</label> -->
+                                <input type="text" ng-disabled="model.m_info == ''" placeholder="Your Requirements" name="myName" class="form-control" ng-model="model.m_info" autocomplete="off" required>
+                                <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">Please provide your requirement.</span>
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align: content">
+                                    <div class="btn" ng-disabled="register.$invalid" type="submit" style="background-color: #f0bb2f" ng-click="query_sub()">Submit</div>
+                                </div>
+                                <span style="color: red" ng-show="errorfields">Please fill all the fields</span>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="flux">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-header" style="background-color:#f0bb2f;margin-left: -15px;margin-right: -15px;">
+                <center><h4 class="modal-title"><b>Alert</b></h4></center>
+            </div>
+            <div ng-show="!request_stat">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                       If you are not satisfied with the above properties click <b>YES</b> to give us your requirements.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f;" class="btn" data-dismiss="modal">Cancel</button>
+                <button type="button" style="background-color:#f0bb2f;" ng-click="notfindprop()" class="btn">Yes</button>
+            </div>
+            </div>
+            <div ng-show="request_stat">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                       Are you satisfied with the above properties?
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f;" class="btn" data-dismiss="modal">Yes</button>
+                <button type="button" style="background-color:#f0bb2f;" class="btn" ng-click="notfindproprp()">No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="req_visit">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-header" style="background-color:#f0bb2f;margin-left: -15px;margin-right: -15px;">
+                <center><h4 class="modal-title"><b>Alert</b></h4></center>
+            </div>
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- {{rvisit}} -->
+                        <p  id="rvisit"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f;" class="btn" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="return_user" align="center">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container" style="">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span id="notification1"></span>
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#fdd206; color:#666" class="btn btn-primary" data-dismiss="modal"  ng-click="sendPreselectData();" >Cancel</button>
+                            <button type="button" data-dismiss="modal" ng-click="previous_Search1()" style="background-color:#fdd206; color:#666" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <style type="text/css">
+    .nav-tabs > li > .active {
+        background-color: #fff;
+    }
+/*    .area-border{
+        position: relative;
+        height: 100px;
+    }
+    .area-border:after{
+        position: absolute;
+        left    : 0;
+        bottom  : 0;        
+        height:90%;
+        border-right:solid #fff;
+        border-width:1px;
+    }*/
+.pac-item{
+    font-family:'Montserrat',serif !important;
+    font-weight: 400 !important;
+    color: rgb(102, 102, 102) !important;
+    line-height: 30px !important;
+}
+
+.pac-item-query{
+    font-family:'Montserrat',serif !important;
+    font-size: 13px;
+}
+.pac-item:hover{
+    background-color: #eeeeee !important;
+    transition: background 0.15s linear;
+}
+.pac-container{
+    color: rgb(102, 102, 102) !important;
+    background-color: #fafafa;
+    border-bottom-right-radius: 5px;  
+    border-bottom-left-radius: 5px;
+}
+/*.gm-style .gm-style-iw {
+   font-size: 13px;
+   left:0;
+   font-family: sans-serif;
+   text-transform: uppercase;
+}*/
+.gm-style-iw + div {display: none;}
+/*.gm-style-iw {
+    margin-left:-10px;
+    margin-top:-5px;
+<<<<<<< HEAD
+    margin-right: -10px;
+}*/
+
+.gm-style-iw {
+      top:10px !important;
+      left:10px !important;
+      border-radius:2px;
+  }
+/*  .gm-style-iw>div:first-child>div:nth-child(2) {
+      display:none;
+  }
+  .gm-style-iw>div:first-child>div:nth-child(3) {
+      display:none;
+  }
+  .gm-style-iw>div:first-child>div:nth-child(4) {
+      display:none;
+  }*/
+  /** the shadow **/
+  .gm-style-iw>div:first-child>div:last-child {
+      left:10 !important;
+      top:0px;
+      box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 6px;
+      z-index:-1 !important;
+  }
+
+  .gm-style-iw, 
+  .gm-style-iw>div, 
+  .gm-style-iw>div>div {
+      width:50% !important;
+      max-width:50% !important;
+      min-width:50% !important;
+  }
+  /** set here the width **/
+  .gm-style-iw, 
+  .gm-style-iw>div:first-child>div:last-child {
+      width:200px !important;
+  }
+
+
+  /** set here the desired background-color **/
+  #div-main-infoWindow, 
+  .gm-style-iw>div:first-child>div:nth-child(n-1)>div>div, 
+  .gm-style-iw>div>div:last-child, 
+  .gm-style-iw, 
+  .gm-style-iw>div, 
+  .gm-style-iw>div>div {
+    max-width:133px !important;
+    min-width:133px !important;
+     /* background-color:orange !important;*/
+  }
+
+  /** close-button(note that there may be a scrollbar) **/
+  .gm-style-iw>div:last-child {
+      top:1px !important;
+      right:0 !important;
+  }
+
+  /** padding of the content **/
+  #div-main-infoWindow {
+      padding:6px;
+  }
+/*=======
+    right: 0px;
+    width:160px !important;
+}*/
+#card-map-basic > div:nth-child(1) > ui-gmap-google-map > div > div.angular-google-map-container > div > div > div:nth-child(1) > div:nth-child(4) > div:nth-child(4) > div:nth-child(2){
+    width:160px;
+}
+</style>

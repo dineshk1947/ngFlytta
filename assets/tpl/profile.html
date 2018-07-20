@@ -1,0 +1,422 @@
+<script>
+jQuery('.navtabsli').click(function() {
+    jQuery('.navtabsli').removeClass('navtab');
+    jQuery(this).addClass('navtab');
+});
+jQuery('.numofitems').click(function() {
+    $(".itemselecting").fadeOut(500);
+    $(".itemselected").css('padding-left', '0px');
+    $(".itemselected").css('border-left', '0px');
+    $(".itemselected").fadeIn(500);
+    $(".numofitems").css('display', 'none');
+    $(".items-text1").css('display', 'none');
+    $(".items-text").css('display', 'block');
+});
+jQuery('.selectmore').click(function() {
+    $(".itemselected").fadeOut(500);
+    $(".itemselecting").fadeIn(500);
+    $(".numofitems").show();
+});
+</script>
+    <div class="container-fluid" style="margin: 0; height: 14vh; overflow: hidden; background-color: #3f51b5;position:relative; z-index:100">
+        <div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+    </div>
+    <div class="container-fluid" ng-controller="profileController" style="min-height:100vh; background-color: #3f51b5; margin-left: 0px; padding-left:8px">
+                        <center class="visible-sm">
+                            <ul class="nav nav-tabs" align="center" style="border-radius:3px;max-width:400px;">
+                                <li id="housetab" style="display:inline-block;" class="active"><a style="cursor: pointer; width:200px" ng-click="changeactive(); index=0">Housing</a></li>
+                                <li id="pmtab" style="display:inline-block"><a style="cursor: pointer; width:200px" ng-click="changeactive1(); index=1">Packers & Movers</a></li>
+                            </ul>
+                        </center>
+                        <center class="visible-xs">
+                            <ul class="nav nav-tabs" align="center" style="border-radius:3px;width:72%;">
+                                <li id="mhousetab" style="display:inline-block;" class="active"><a style="cursor: pointer; width:100%" ng-click="mchangeactive(); index=0">Housing</a></li>
+                                <li id="mpmtab"><a style="cursor: pointer; width:100%" ng-click="mchangeactive1(); index=1">Packers & Movers</a></li>
+                            </ul>
+                        </center>
+
+        <div class="" style="">
+
+            <div class="col-md-9 col-sm-12 col-xs-12" style="padding-left:0px; padding-right:0px">
+                <div class="col-md-3" style="margin-top:27px">
+                    <div class="navtabs" style="">
+                        <div ng-click="index=0" class="navtabsli navtab" style="cursor: pointer; margin-right: 0px;">Housing</div>
+                        <div ng-click="index=1" class="navtabsli" style="cursor: pointer;">Packers & Movers</div>
+                        <!-- <div ng-click="index=2" class="navtabsli" style="cursor: pointer;">Settling in Service</div> -->
+                    </div>
+                </div>
+                <div ng-show="index == 0" class="col-md-9" style="padding-left:0px; margin-top: 0px;">
+                    <center>
+                        <h1 style="color:#fff; font-weight:600; width:100%; font-size:23px; margin-top:0px;"> HOUSING </h1>
+                    </center>
+                    <div align="center" ng-show="status == undefined || status == 0" class="row">                    
+                        <div  class="col-md-12">
+                            <div class="well card procards" style="background-color: white; margin-bottom:15px; ">You have not opted for housing service.
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div ng-show="status <2 && status > 0" style="padding-top: 10vh">                        
+                        <div class="well card procards" style="background-color: white; margin-bottom:15px; ">
+                                <center>You have not shortlisted any properties yet.</center>
+                        </div>
+                    </div>
+                        <div ng-show="status > 5">
+                        <div class="well card procards" style="background-color: white; margin-bottom:15px; ">
+                            <div ng-show="status < 7" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/property/confirm-property'">View page</button>
+                            </div>            
+                            <center> <h3 style="margin-top:0px; font-size:15px; text-transform: uppercase; font-weight:600;"><u>Confirmed Property & Payment Details</u></h3></center>                            
+                            <div class="row" style="margin-bottom:3px; padding:0px 10px">
+                                <div class="col-md-12" style="border:1px solid #e0e0e0; border-radius:5px; margin-bottom:5px;">
+                                    <span style="color:#f0bb2f;"><b>{{confirm["area"]}}, {{confirm["city"]}}</b></span> <i style="cursor:pointer" ng-click="new_prop2(confirm['service_id'])" class="md-launch mdlaunchpro"></i>
+                                    {{confirm["loca"]}}
+                                    <br/> {{confirm["loca"]}}
+                                    <br/> {{confirm["configuration"]}}, {{confirm["totalArea"]}}
+                                </div>
+                                <div class="col-md-12" style="border:1px solid #e0e0e0; border-radius:5px; margin-bottom:5px;">
+                                    <div>Email: {{m_json["user"]}}</div>
+                                    <div>Contact Number: </div>
+                                    <div>Payment Id: </div>
+                                    <div>Ammount: </div>
+                                </div>
+                            </div> 
+                            </div> 
+                        </div>
+                    <div ng-show="status > 4">
+                        <div class="well card procards" style="background-color: white; margin-bottom:15px; ">
+                            <div ng-show="status < 6" class="pull-right" >
+                                <button class="btn btn-sm" onclick="location.href='/property/confirm-property'">View page</button>
+                            </div>            
+                            <center> <h3 style="margin-top:0px; font-size:15px; text-transform: uppercase; font-weight:600;"><u>You have paid relocation assistance charge for below properties</u></h3></center>                            
+                            <div class="row" style="margin-bottom:3px; padding:0px 10px">
+                                <div class="col-md-12" ng-repeat="visit in visit_list" style="border:1px solid #e0e0e0; border-radius:5px; margin-bottom:5px;">
+                                    <span style="color:#f0bb2f;"><b>{{visit["area"]}}, {{visit["city"]}}</b></span> <i style="cursor:pointer" ng-click="new_prop2(visit['service_id'])" class="md-launch mdlaunchpro"></i>
+                                    {{wish["loca"]}}
+                                    <br/> {{visit["loca"]}}
+                                    <br/> {{visit["configuration"]}}, {{visit["totalArea"]}}
+                                    <br /><b>Date:</b> {{dateTime[visit['service_id']]['date']}}
+                                    <br /><b>Time:</b> {{dateTime[visit['service_id']]['time']}}
+                                </div>
+                            </div> 
+                            </div> 
+                        </div>
+                    <div ng-show="status > 3">
+                        <div class="well card procards" style="background-color: white; margin-bottom:15px;">
+                            <div ng-show="status < 5" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/property/schedule-visit'">View page</button>
+                            </div>            
+                            <center> <h3 style="margin-top:0px; font-size:15px; text-transform: uppercase; font-weight:600;"><u>Schedule to Visit Property & Pay</u></h3></center>                            
+                            <div class="row" style="margin-bottom:3px; padding:0px 10px">
+                                <div class="col-md-12" ng-repeat="visit in visit_list" style="border:1px solid #e0e0e0; border-radius:5px; margin-bottom:5px;">
+                                   <!--  <div class="pull-right">
+                                        <button class="btn btn-sm" ng-click="gotoLink(visit)">View</button>
+                                    </div> -->
+                                    <span style="color:#f0bb2f;"><b>{{visit["area"]}}, {{visit["city"]}}</b></span> <i style="cursor:pointer" ng-click="new_prop2(visit['service_id'])" class="md-launch mdlaunchpro"></i>
+                                    {{wish["loca"]}}
+                                    <br/> {{visit["loca"]}}
+                                    <br/> {{visit["configuration"]}}, {{visit["totalArea"]}}
+                                    <br /><b>Date:</b> {{dateTime[visit['service_id']]['date']}}
+                                    <br /><b>Time:</b> {{dateTime[visit['service_id']]['time']}}
+                                </div>
+                            </div> 
+                            </div> 
+                        </div>
+                    <div ng-show="status > 2">
+                        <div class="well card procards" style="background-color: white; margin-bottom:15px;">
+                            <div ng-show="status < 4" class="pull-right">
+                                <button class="btn btn-sm" ng-click="gotovisitlist();">View page</button>
+                            </div>            
+                            <center> <h3 style="margin-top:0px; font-size:15px; text-transform: uppercase; font-weight:600;"><u>Requested Property to Visit</u></h3></center>                            
+                            <div class="row" style="margin-bottom:3px; padding:0px 10px;">
+                                <div class="col-md-12" ng-repeat="visit in visit_list" style="border:1px solid #e0e0e0; border-radius:5px; margin-bottom:5px;">
+                                   <!--  <div class="pull-right">
+                                        <button class="btn btn-sm" ng-click="gotoLink(visit)">View</button>
+                                    </div> -->
+                                    <span style="color:#f0bb2f;"><b>{{visit["area"]}}, {{visit["city"]}}</b></span> <i style="cursor:pointer" ng-click="new_prop2(visit['service_id'])" class="md-launch mdlaunchpro"></i>
+                                    {{wish["loca"]}}
+                                    <br/> {{visit["loca"]}}
+                                    <br/> {{visit["configuration"]}}, {{visit["totalArea"]}}
+                                </div>
+                            </div> 
+                            </div> 
+                        </div>
+                    <div ng-show="status > 1">
+                        <div class="well card procards" style="background-color: white; margin-bottom:15px;">
+                            <div ng-show="status < 3" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/property/search/map'">View page</button>
+                            </div>                            
+                            <center> <h3 style="margin-top:0px; font-size:15px; text-transform: uppercase; font-weight:600"><u>Your wishlist</u></h3></center>
+                                <div class="row" style="margin-bottom:3px; padding:0px 10px;">
+                                <div class="col-md-12" ng-repeat="wish in wish_list" style="border:1px solid #e0e0e0; border-radius:5px; margin-bottom:5px;">
+                                <span style="color:#f0bb2f;"><b>{{wish["area"]}}, {{wish["city"]}}</b></span> <i style="cursor:pointer" ng-click="new_prop2(wish['service_id'])" class="md-launch mdlaunchpro"></i>
+                                <br/> {{wish["loca"]}}
+                                <br/> {{wish["configuration"]}}, {{wish["totalArea"]}}
+                            </div>
+                            </div> 
+                            </div> 
+                    </div>
+                    <!-- <div ng-show="status > 5" class="well query-cards" style="background-color: white">
+                        <h4>confirmed Property</h4>
+                        <div class="pull-right">
+                            <button class="btn btn-sm" ng-click="gotoLink(confirm)">View</button>
+                        </div>
+                        <b>{{confirm["area"]}}, {{confirm["city"]}}</b>
+                        <br/> {{confirm["loca"]}}
+                        <br/> {{confirm["configuration"]}}, {{confirm["totalArea"]}}
+                    </div> -->
+                </div>
+                <div ng-show="index == 1" class="col-md-9" style="margin-top: 0px; padding-left:0px;">         
+                    <center>
+                        <h1 style="color:#fff; font-weight:600; font-size:23px; width:100%; margin-top:0px;"> PACKERS AND MOVERS </h1><!-- </<h3> Packers and Movers </h3> --></center>
+
+                    <div align="center" ng-show="m_status == undefined || m_status == 0" class="row">
+                    <div class="col-md-12">
+                    <div class="well card procards" style="background-color: white; margin-bottom:15px; ">You have not opted for packers and movers service.</div></div>
+                    </div>
+
+                            <div ng-show="m_status > 3">   
+                            <div class="well card procards" style="background-color: white; margin-bottom:15px; padding:10px 15px;">
+                            <div ng-show="m_status < 5" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/mover/add-details'">View page</button>
+                            </div>
+                                    <center>
+                                <h3 style="text-transform: uppercase; font-size:15px; font-weight:600; margin-top:0px;"><u>Payment Details</u></h3></center>
+                            <div style="border:1px solid #e0e0e0; border-radius:5px; padding:0px 10px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>Email: {{m_json["user"]}}</div>
+                                    <div>Contact Number: </div>
+                                    <div>Payment Id: </div>
+                                    <div>Ammount: </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div ng-show="m_status > 2">   
+                            <div class="well card procards" style="background-color: white;  margin-bottom:15px; padding:10px 15px;">
+                            <div ng-show="m_status < 4" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/mover/add-details'">View page</button>
+                            </div>
+                                    <center>
+                                <h3 style="text-transform: uppercase; font-size:15px; font-weight:600; margin-top:0px;"><u>Packers and Movers Charges</u></h3></center>                      
+                            <div style="border:1px solid #e0e0e0; border-radius:5px; padding:0px 10px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div style="">
+                                    <span> Moving Charges: {{m_json['Estimated_charge']['moving']}}</span>
+                                    <br/>
+                                    <span> Packing Charges: {{m_json['Estimated_charge']['packing']}}</span>
+                                    <br/>
+                                    <span> Unpacking Charges: {{m_json['Estimated_charge']['unpacking']}}</span>
+                                    <br/>
+                                    <span> Loading Charges: {{m_json['Estimated_charge']['loading']}}</span>
+                                    <br/>
+                                    <span> Unloading Charges: {{m_json['Estimated_charge']['unloading']}}</span>
+                                    <br/>
+                                    <span><b>sub total: {{m_json['Estimated_charge']['sub_total']}}</b></span>
+                                    <br/>
+                                    <span>Tax: {{m_json['Estimated_charge']['tax']}}</span>
+                                    <br/>
+                                    <span> Insurance: {{m_json['Estimated_charge']['insurance']}}</span>
+                                    <br/>
+                                 <!--    <span style="border-bottom:1px solid #e0e0e0;"> Extra charges for not having lift: {{m_json['Estimated_charge']['lift-o']}}</span>
+                                    <br/> -->
+                                    <span><b>Total Charges: {{m_json['Estimated_charge']['total']}}</b></span>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div ng-show="moveritemdiv">
+                            <div ng-show="m_status > 1">   
+                            <div class="well card procards" style="background-color: white; margin-bottom:15px; padding:10px;">
+                            <div ng-show="m_status < 3" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/mover/add-details'">View page</button> 
+                            </div>
+                                    <center>
+                                <h3 style="text-transform: uppercase; font-size:15px; font-weight:600; margin-top:0px;"><u>Your Item Details</u></h3></center>
+                            <div style="border:1px solid #e0e0e0; border-radius:5px; padding:0px 10px; margin:0px 5px;">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h5 style="margin-top:5px;">Items</h5>
+                                </div>
+                                <div class="visible-lg visible-md visible-sm col-md-3  col-sm-3 col-xs-3">
+                                    <h5 style="margin-top:5px;">Dismantlable</h5>
+                                </div>
+                                <div class="visible-xs col-xs-3">
+                                    <h5 style="margin-top:5px;">Dism.</h5>
+                                </div>
+                                <div class="visible-lg visible-md visible-sm col-md-3  col-sm-3 col-xs-3">
+                                    <h5 style="margin-top:5px;">Quantity</h5>
+                                </div>
+                                <div class="visible-xs col-xs-3">
+                                    <h5 style="margin-top:5px;">Qty</h5>
+                                </div>
+                            </div>
+                            <div class="row" ng-repeat="item in item_list">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <span>{{item["Item"]}}</span>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <span>{{item["Dismantlable"]}}</span>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <span>{{item["Quantity"]}}</span>
+                                </div>
+                            </div>
+                            </div>
+                           <!--  <div class="row">
+                                <div class="col-md-6">
+                                    <b>Current Address:</b><br /> {{m_json["Current_place"]["addr"]}}
+                                </div>
+                                <div class="col-md-6">
+                                    <b>Destination Address:</b><br /> {{m_json["Destination_place"]["addr"]}}
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="padding-left:5px"><b>You are moving on:</b></span> {{m_json["date"]["m_date"]}}
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div ng-show="moverschvend">
+                            <div ng-show="m_status > 1"> 
+                                 <div class="well query-cards" style="background-color: white;  margin-bottom:15px; padding:10px;">
+                            <div ng-show="m_status < 3" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/mover/add-details'">View page</button>
+                            </div>
+                                    <center>
+                                <h3 style="text-transform: uppercase; font-weight:600; font-size:15px; margin-top:0px;"><u>Your schedule details for vender visit</u></h3></center>
+                               <!--  <div class="row">
+                                <div class="col-md-6">
+                                    <b>Current Address:</b><br /> {{m_json["Current_place"]["addr"]}}
+                                </div>
+                                <div class="col-md-6">
+                                    <b>Destination Address:</b><br /> {{m_json["Destination_place"]["addr"]}}
+                                </div>
+                             </div> -->                             
+                            <div style="border:1px solid #e0e0e0; border-radius:5px; padding:0px 10px; margin:0px 5px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Your schedule date for vender visit : {{m_json["date"]["s_date"]}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    You are moving on : {{m_json["date"]["m_date"]}}
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        <div ng-show="m_status > 0">   
+                            <div class="well card procards" style="background-color: white; margin-bottom:15px;">
+                            <div ng-show="m_status < 2" class="pull-right">
+                                <button class="btn btn-sm" onclick="location.href='/mover/add-details'">View page</button>
+                            </div>                            
+                            <center> <h3 style="text-transform: uppercase; font-size:15px; font-weight:600; margin-top:0px;"><u>Basic Details</u></h3></center>
+                            <div class="" style="padding:0px 10px;">
+                                <div class="row" style="border:1px solid #e0e0e0; border-radius:5px; padding:5px;">
+                                <div class="col-md-6">
+                                    <h5>Current Place Details</h5><b> {{m_json["Current_place"]["curr_city"]}}, {{m_json["Current_place"]["curr_area"]}} </b>
+                                    <br/><span ng-show="m_status > 1"> {{m_json["Current_place"]["addr"]}} <br/> </span>
+                                    {{m_json["Current_place"]["BHK"]}}
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Destination Place Details</h5><b>  {{m_json["Destination_place"]["dest_city"]}}, {{m_json["Destination_place"]["dest_area"]}}</b>
+                                    <br/><span ng-show="m_status > 1"> {{m_json["Destination_place"]["addr"]}} <br/></span>
+                                    {{m_json["Destination_place"]["BHK"]}}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <center>
+                                    <h3 style="text-transform: uppercase; font-size:15px; font-weight:600"><u>Estimated Charges</u></h3></center>
+
+                            <div class="" style="padding:0px 10px;">
+                                <div class="col-md-12" style="padding-left: 15px; border:1px solid #e0e0e0; border-radius:5px;">
+                                    <span> Moving Charges: {{m_json['Estimated_charge']['moving']}}</span>
+                                    <br/>
+                                    <span> Packing Charges: {{m_json['Estimated_charge']['packing']}}</span>
+                                    <br/>
+                                    <span> Unpacking Charges: {{m_json['Estimated_charge']['unpacking']}}</span>
+                                    <br/>
+                                    <span> Loading Charges: {{m_json['Estimated_charge']['loading']}}</span>
+                                    <br/>
+                                    <span> Unloading Charges: {{m_json['Estimated_charge']['unloading']}}</span>
+                                    <br/>
+                                    <span><b>sub total: {{m_json['Estimated_charge']['sub_total']}}</b></span>
+                                    <br/>
+                                    <span>Tax: {{m_json['Estimated_charge']['tax']}}</span>
+                                    <br/>
+                                    <span> Insurance: {{m_json['Estimated_charge']['insurance']}}</span>
+                                    <br/>
+                                    <!-- <span style="border-bottom:1px solid #e0e0e0;"> Extra charges for not having lift: {{m_json['Estimated_charge']['lift-o']}}</span> 
+                                    <br/>-->
+                                    <span><b>Total Charges: {{m_json['Estimated_charge']['total']}}</b></span>
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+                               <!--  <div class="col-md-12">You are moving on : {{m_json["date"]["m_date"]}}</div> -->
+                                <!-- <div ng-show="m_status > 3" class="col-md-12">You are moving on : {{m_json["date"]["m_date"]}}</div> -->
+                            </div>
+                </div>
+                <div ng-show="index == 2" class="col-md-9" style="margin-top: 10px;"></div>
+                <!--     <div class="col-md-1"></div> -->
+            </div>
+            <div class="col-md-3 col-xs-12" style="margin-top:35px; padding-top: 0px; padding-left:0px">
+                <div class="">
+                    <div class="well card procards">
+                    <h4 style="font-weight:600; font-size:15px; margin-top:0px"><u>User Profile</u></h4>
+                        <div><strong>Email: </strong> {{uemail}} </div>
+                        <div><strong>Name: </strong> {{uname}} </div>
+                        <div><strong>Phone: </strong> +91 {{uphone}} </div>                    
+                    <h4 style="font-size:15px; font-weight:600;"><u>Request a query</u></h4>
+                        <form name="query" novalidate ng-submit="query.$valid && query.submit()">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-2"><b>Query:</b></div>
+                                <div class="col-xs-9" style="margin-left:5px;">
+                                    <textarea type="text" style="font-size:14px;" ng-model="uquery" class="form-control" placeholder="Enter your query...!" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-2"></div>
+                                <div class="col-xs-9 text-center">
+                                    <button type="submit" style="background-color:#fdd206" ng-disabled="query.$invalid" ng-click="onSubmit()" class="btn btn-default"><b>Submit</b></button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+<div class="modal fade" id="successquery">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        Your query has been submitted successfully
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#fdd206; color:#666" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

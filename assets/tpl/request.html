@@ -1,0 +1,179 @@
+<div style="" ng-controller="requestController" style="overflow-x: hidden;">
+     <div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12" style="">
+        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2" style="">
+        <form class="form-floating" name="req_query" novalidate ng-submit="submit()">
+              <h1 style="font-family:montserrat; color:#666; text-align:center;font-size:24px;">HOUSE RENTAL SERVICE REQUEST FORM</h1>
+              <div class="form-group">
+                <label for="inputName"  class="">Name</label>
+                <input type="text" style="font-size:13px;" placeholder="Your name" ng-model="rr_name"  class="form-control" required> </div>
+                  <div class="form-group">
+                <label for="inputEmail" class="">Email</label>
+                <input type="email" class="form-control" ng-model="rr_mail" style="font-size:13px;" placeholder="Your email" required data-errocol-md-12 col-sm-12 col-xs-12"r="This field is required"> </div>
+                  <div class="form-group">
+                <label for="inputContact" class="">Phone number</label>
+                <input type="number" class="form-control" ng-model="rr_contact" style="font-size:13px;" placeholder="Your phone number" ng-pattern="/[0-9]/" min="0" required data-error="This field is required" ng-minlength="10" ng-maxlength="10"> </div>
+                <label for="inputContact" class="">Family/Bachelors</label>
+                <div class="form-group" style="">
+                    <dropdown ng-model="rrrent" options="reqrent" style="width: 100%" >
+                        <dropdown-item ng-repeat="item in rentto" title="item" value="item"></dropdown-item>
+                    </dropdown>                          
+                </div>
+                <div class="form-group" style="">
+                <label for="inputContact" class="">BHK</label>
+                    <dropdown ng-model="reqbhk" options="addreqbhk" style="width: 100%" >
+                        <dropdown-item ng-repeat="item in bhks" title="item" value="item"></dropdown-item>
+                    </dropdown>
+                </div>
+                <div class="form-group" style="">
+                    <label for="inputContact" class="">House Rental Budget</label>
+               <!--      <dropdown ng-model="reqbud" options="addreqbud" style="width: 100%">
+                        <dropdown-item ng-repeat="item in housebudget" title="item" value="item"></dropdown-item>
+                    </dropdown> -->
+                    <input type="number" class="form-control" ng-model="reqbud" style="font-size:13px;" placeholder="Enter your budget" min="10000" ng-pattern="/[0-9]/" required data-error="This field is required">
+                </div>
+                <div class="form-group" style="">
+                    <label for="inputContact" class="">Furnishing</label>
+                    <dropdown ng-model="fur" options="addfurnishing" style="width: 100%">
+                        <dropdown-item ng-repeat="item in fur_state" title="item" value="item"></dropdown-item>
+                    </dropdown>
+                </div>  
+                <div class="form-group" style="">
+                    <label for="inputContact" class="">Origin City</label>
+                    <dropdown ng-model="rrorgin" options="reqorgin" style="width: 100%">
+                        <dropdown-item ng-repeat="item in cities" title="item.cname" value="item.cname"></dropdown-item>
+                    </dropdown>
+                </div>
+                <div class="form-group" style="">
+                <label for="inputContact" class="">Destination City</label>
+                    <dropdown ng-model="rrdest" options="reqdest" style="width: 100%">
+                        <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cname"></dropdown-item>
+                    </dropdown>
+                </div>
+                <div class="form-group">
+                    <label for="Locality (Preference 1)" class="">Locality (Preference 1)</label>
+                    <input id="local1" class="form-control" ng-modal="loca_1" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; padding:0px 13px; box-shadow: 0 0px #d9d9db" placeholder="Select Locality (Preference 1)" type="text"></input>
+                    <!-- <dropdown ng-model="loc_pre_1" options="onSelectCallback1" style="width: 100%">
+                        <dropdown-item ng-repeat="item in areas" title="item.value" value="item.value"></dropdown-item>
+                    </dropdown> -->
+                 </div>
+
+                <div class="form-group">
+                    <label for="Locality (Preference 2)" class="">Locality (Preference 2)</label>
+                    <!-- <dropdown ng-model="loc_pre_2" options="onSelectCallback2" style="width: 100%">
+                        <dropdown-item ng-repeat="item in areas" title="item.value" value="item.value"></dropdown-item>
+                    </dropdown> -->
+                    <input id="local2" class="form-control" ng-modal="loca_2" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; padding:0px 13px; box-shadow: 0 0px #d9d9db" placeholder="Select Locality (Preference 2)" type="text"></input>
+                </div>
+                <div class="form-group">
+                    <label for="Locality (Preference 3)" class="">Locality (Preference 3)</label>
+                    <!-- <dropdown ng-model="loc_pre_3" options="onSelectCallback3" style="width: 100%">
+                        <dropdown-item ng-repeat="item in areas" title="item.value" value="item.value"></dropdown-item>
+                    </dropdown> -->
+                    <input id="local3" class="form-control" ng-modal="loca_3" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; padding:0px 13px; box-shadow: 0 0px #d9d9db" placeholder="Select Locality (Preference 3)" type="text"></input>
+                </div>
+                <div class="form-group" style="">
+                    <label class="">Relocation Date</label>
+                    <div style="padding-left:5px;">                              
+                    <input  type="text" ng-change="reqdate()" style="font-size:13px;" ng-model="rrdate['req_date']" class="form-control" placeholder="You relocation date" data-min-date="{{tomorrow}}" data-autoclose="1" bs-datepicker required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="textArea" class="">Any Queries</label>
+                    <textarea style="font-size:13px;" class="form-control" placeholder="If you have any queries..." ng-model="request_query"></textarea>
+                </div>
+                <div class="">
+                    <span style="font-size: 20px;"><u>Terms of Service</u></span><br/>
+                    1.) We assist you with houses as per the standard housing assistance policy.<br/>
+                    2.) For the First three house visits, you are required to pay an amount of Rs.200/- and schedule the house visit.<br/>
+                    3.) The information about the houses you will choose will be shared at least one day before the visit.<br/>
+                    4.) Beyond three house visits, If you intend to see three more properties, you might have to book the premium slot of Rs.500 (Subject to the availability of the relocation manager).<br/>
+                    5.) Once you have chosen to rent a particular house, you will have to pay a service charge of 50% of the monthly rental value of the particular house.<br/>
+                    6.) The amount paid for the house visits (Rs.200/-) will be adjusted in the final bill.<br/>
+                </div>
+                <center>
+                <div class="form-group" style="margin-bottom:75px;">                       
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" ng-click="req_relocation();" class="btn btn-primary" style="background-color:#f6ca21;">Submit</button>
+              </div>
+              </center>
+            </form>
+        </div>
+    </div> 
+<div class="modal fade" id="req_rel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        Confirm Request ?
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" style="background-color:#f6ca21;" ng-click="req_start()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+<div class="modal fade" id="successreqquery">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        You have successfully submitted your requirements<br/>
+                        We will contact you soon. Thank you!
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" style="background-color:#f6ca21;" ng-click="redirect_home()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="error_request" role="dialog">
+    <div class="modal-dialog" style="margin-top: 7vh;max-width:90%;">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #f0bb2f;">
+                <h4 class="modal-title">Alert</h4>
+            </div>
+            <div class="modal-body">
+            <h3>Please enter valid input for below fields</h3>
+                <span id="error_data">
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#fdd206; color:#666;" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>      
+</div>
+<style>
+.pac-item{
+    font-family:'Montserrat',serif !important;
+    font-weight: 400 !important;
+    color: rgb(102, 102, 102) !important;
+    line-height: 30px !important;
+}
+
+.pac-item-query{
+    font-family:'Montserrat',serif !important;
+    font-size: 13px;
+}
+
+.pac-item:hover{
+    background-color: #eeeeee !important;
+    transition: background 0.15s linear;
+}
+
+.pac-container{
+    color: rgb(102, 102, 102) !important;
+    background-color: #fafafa;
+    border-bottom-right-radius: 5px;  
+    border-bottom-left-radius: 5px;
+}
+</style>

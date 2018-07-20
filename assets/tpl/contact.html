@@ -1,0 +1,76 @@
+<div class="contactmain" style="">
+<div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+<div class="container" style="background-color: white; overflow-x: hidden;" ng-controller="contactController">
+    <div class="row">
+        <!--   <div class="container-fluid"> -->
+        <div class="col-md-6 col-sm-6 col-xs-12 contactadd" id="corpborder" style="border-right: 2px solid #e1e4e8;margin-top: 15px;">
+            <div class="row" style="">
+                <div class=" col-md-1 col-sm-1 col-xs-1"></div>
+                <div class=" col-md-10 col-sm-10 col-xs-10">
+                    <center>
+                        <h2 style="margin-top: 10px; font-family:arial;border-color: #ffd804;"><b style="color: black" id="corpadrs">Corporate Address</b></h2>
+                    </center>
+                    <!--  <div class="container"> -->
+                    <p id="corpdetail" style="margin-top: 5px;text-align: justify;">
+                        5th Floor, Advant Towers near Kakateeya Hills arch, Kavuri Hills phase 1, Madhapur, Hyderabad, Telangana - 500081.
+                        <br/> Phone: +91 - 9866 49 6464.
+                        <br/> E-Mail: hello@goflytta.com
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form name="contact_query" novalidate ng-submit="contact_query.$valid && contact_query.submit()">
+                        <center>
+                            <h3 style="margin-top: 10px; font-family:arial; color: black"><b id="gintouch"> Get In Touch</b></h3>
+                        </center>
+                        <div id="forum" class="conct" style="margin-top: 10px;padding-left: 15px;">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">Name</label>
+                                    <input type="text" class="form-control" ng-model="name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">Email</label>
+                                    <input type="email" class="form-control" ng-model="mail" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">Phone No</label>
+                                    <input type="number" class="form-control" ng-model="phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="forum" class="conct" style="padding-left: 15px;">
+                            <div class=" col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="textArea" class="control-label">Message</label>
+                                    <textarea class="form-control vertical " ng-model="message" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <center>
+                                <div style="padding-bottom: 5px;">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <button type="submit" style="margin-bottom:10px;" ng-disabled="contact_query.$invalid" ng-click="onSubmit()" class="btn btn-default11">Submit</button>
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-controller="BasicMapController">
+            <div class="mapad" style="margin-top: 15px; width: initial; height: 86vh;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15225.500470557652!2d78.397412!3d17.441751!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd3b1988518b0277c!2sFlytta+Innovations+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1496736896597" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

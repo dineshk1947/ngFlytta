@@ -1,0 +1,296 @@
+ <div style="overflow: hidden; max-height: 100vh; max-width: 100%" ng-controller="moverController">
+<div ng-include src="'assets/tpl/search_header.html'" ng-controller="moverController"></div>
+<div class="container" style="overflow-y: auto; height: 90vh">
+<div class="card" style="background-color: white;margin-top: 30px;">
+	<div class="row">
+		<div class="col-md-4 col-sm-4 col-xs-12" id="origin_border" style="">
+		<div style="margin-left: 30px;margin-top: 30px">
+             <div style="">
+        <h4 style="margin-top: 10px;font-size: 14px">Origin Details </h4>
+             </div>
+        <div style="font-size: 12px;margin-top: 5px;">
+            <span> City : <b>{{json['Current_place']['curr_city']}}</b></span> <br/>
+            <span> Area : <b>{{json['Current_place']['curr_area']}}</b></span> <br/>
+            <span> BHK : <b>{{json['Current_place']['BHK']}}</b></span> <br/>
+           <!--  <span> Floor No : <b>{{json['Current_place']['Floor']}}</b></span> <br/> -->
+            <span> Lift : <b>{{json['Current_place']['Lift']}}</b></span> 
+        </div> 
+            <div style="">   
+        <h4 style="font-size: 14px;margin-top: 20px">Destination Details </h4>
+            </div>
+        <div style="font-size: 12px;margin-top: 5px;">
+          <span> City : <b>{{json['Destination_place']['dest_city']}}</b></span> <br/>
+          <span> Area : <b>{{json['Destination_place']['dest_area']}}</b></span> <br/>
+          <span> BHK : <b>{{json['Destination_place']['BHK']}}</b></span> <br/>
+         <!--  <span> Floor No : <b>{{json['Destination_place']['Floor']}}</b></span> <br/> -->
+          <span> Lift : <b>{{json['Destination_place']['Lift']}}</b></span> 
+      </div> 
+     <br/>
+    <!--   <div class="row">
+        <div class="col-xs-12 col-sm-12" style="margin-top: -10px;">
+            <span  style="font-size: 14px; ">PICK UP DATE: &nbsp;<span><b>{{json['date']['m_date']}}</b> </span> 
+            </span>
+        </div>
+      </div><br/> -->
+      </div>
+		</div>
+		<div class="col-md-8 col-sm-8 col-xs-12" style="">  
+		<center>
+		<h4 style="font-size: 14px;margin-top: 30px">Estimated Charges</h4>
+		</center>
+	    <div class="row" style="font-size: 12px;margin-left: 15px;margin-right: 15px;margin-top:12px;">
+           <div class="col-xs-6 col-sm-6" style="">
+             <span> Moving Charges:</span> <br/>
+             <span> Packing Charges:</span> <br/>
+             <span> Unpacking Charges:</span> <br/> 
+             <span> Loading Charges:</span> <br/>
+             <span> Unloading Charges:</span> <br/><br/>
+             <span> <b>Sub Total: </b></span><br/>
+             <span>Tax:</span> <br/> 
+             <span> Insurance:</span> <br/>
+             <span> Extra charges for not having lift:</span>
+           </div>
+           <div class="col-xs-6 col-sm-6" id="details_pad" >
+             <span>{{json['Estimated_charge']['moving']}}</span> <br/>
+             <span>{{json['Estimated_charge']['packing']}}</span> <br/> 
+             <span>{{json['Estimated_charge']['unpacking']}}</span> <br/>
+             <span>{{json['Estimated_charge']['loading']}}</span> <br/>
+             <span>{{json['Estimated_charge']['unloading']}}</span> <br/><br/>
+             <span><b>{{json['Estimated_charge']['sub_total']}}</b></span> <br/>
+             <span>{{json['Estimated_charge']['tax']}}</span> <br/>
+             <span>{{json['Estimated_charge']['insurance']}}</span> <br/>
+             <span>{{json['Estimated_charge']['lift-o']}}</span>
+           </div>
+        </div>
+        <div class="row" style="border-top: 1px solid #b7b7b7;margin-left: 15px;font-size: 12px;margin-right: 15px">
+            <div class="col-xs-12 col-sm-8" style="">
+              <span><b>Total Packing & Moving Charges </b></span> 
+            </div>
+            <div class="col-xs-12 col-sm-4" >
+              <span> {{json['Estimated_charge']['total']}}</span> 
+            </div>
+        </div>
+       <div class="row" style="margin-top: 36px;" id="list_schedule_item">
+          <div class="col-md-5 col-sm-12 col-xs-12"> 
+          <center>
+           	<button class="btn btn-sm" ng-click="select_status = 1" style="background-color:#f0bb2f;">
+         		   List your Items
+            	</button>
+            	</center>
+         	</div>
+          <div class="col-md-2 "><center>or</center></div>
+         	<div class="col-md-5 col-sm-12 col-xs-12">
+         	<center>
+              <button class="btn btn-sm" ng-click="select_status = 2" style="background-color:#f0bb2f;">
+         		    Schedule your vendor visit date
+           	</button>
+           	</center>
+         	</div>
+       </div>
+       <br/>
+		</div>
+	</div>
+</div>
+	<div ng-if="select_status == 1" class="card">
+		<div class="row">
+  		<div style="margin-right: 30px;margin-left: 30px;margin-top: 30px">
+    		<div class="col-md-6 col-sm-6 col-xs-12" style="">
+    		  <span>You are moving from</span>
+  			  <div class="form-group" style="padding:0px;">
+            <input style="font-size:14px;" ng-model="mover_areas['Current_place']['addr']" placeholder="Your current address" type="text" class="form-control">
+          </div>
+                    
+          <div class="form-group" style="padding:0px;">
+      			On: <input type="text" class="form-control" data-min-date="{{tomorrow}}" ng-model="move_date" placeholder="Date" data-autoclose="1" bs-datepicker>
+      			 <input type="text" placeholder="Time" style="font-size:14px;" class="form-control" ng-model="move_time" data-autoclose="1" bs-timepicker>
+          </div>
+    		</div>
+    		<div class="col-md-6 col-sm-6 col-xs-12" style="">
+    		  <span> to</span>
+  		    <div class="form-group" style="padding:0px;">
+              <input style="" placeholder="your destination address" style="font-size:14px;" ng-model="mover_areas['Destination_place']['addr']" type="text" class="form-control">
+          </div>
+    		</div>
+  		</div>
+		</div>
+  	<div class="container">
+      <div align="center" class="col-md-12 col-sm-12 col-xs-12"><br/>
+          <div style="display:inline-block;" class=""><h4>SELECT ITEMS FROM THE LIST</h4></div>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12"><br/>
+        <div class="row">
+          <div class="col-md-2 col-sm-2 " style="padding-right:5px; padding-left:5px;">
+           <div class="navtabs">
+              <div ng-click="onTabChanges(0)" class="navtabsli navtab" style="cursor: pointer;">Bedroom</div>
+              <div ng-click="onTabChanges(1)" class="navtabsli" style="cursor: pointer;">Living Room</div>
+              <div ng-click="onTabChanges(2)" class="navtabsli" style="cursor: pointer;">Dining Room</div>
+              <div ng-click="onTabChanges(3)" class="navtabsli" style="cursor: pointer;">Storage</div>
+              <div ng-click="onTabChanges(4)" class="navtabsli" style="cursor: pointer;">Kitchen</div>
+              <div ng-click="onTabChanges(5)" class="navtabsli" style="cursor: pointer;">Others</div>
+            </div>
+          <div class="mnavtabs">
+            <select class="form-control one-edge-shadow" style="font-size: 12px">
+              <option onselect="onTabChanges(0)">Bedroom</option>
+              <option onselect="onTabChanges(1)">Living Room</option>
+              <option onselect="onTabChanges(2)">Dining Room</option>
+              <option onselect="onTabChanges(3)">Storage</option>
+              <option onselect="onTabChanges(4)">Kitchen</option>
+              <option onselect="onTabChanges(5)">Others</option>
+            </select>
+          </div>
+          <div class="numofitems">
+              <button style="width:100%; background-color:#f0bb2f;  margin-bottom:0px;" class="btn btn-xs" ng-click="">{{ countitem }} Items</button>
+          </div>
+          </div>    
+          <div style="border-left:1px solid #e0e0e0; font-size: 15px; padding-left:8px; padding-right:5px;" class="col-md-5 col-sm-5 itemselecting">
+          <div style="padding:5px;">Select the items that you might be shifting from below</div>
+            <div class="row" style="padding-right:10px;">
+              <div class="col-md-5 col-sm-5 col-xs-4" style="padding-right:2px;"><div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" class="">Items</div>
+              </div>
+              <div class="col-md-3 col-sm-5  col-xs-3" style="padding-right:2px; padding-left:2px;">
+                <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;">Dismat.</div>
+              </div>        
+              <div class="col-md-4 col-sm-2 col-xs-5" style="padding-right:15px; padding-left:2px;">
+                <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" >Qty.</div>
+              </div>
+            </div>
+          <div style="max-height:360px; overflow-y:auto;">
+            <div class="row" style="padding-top:10px;" ng-repeat="Item in MoverData">
+              <div class="col-md-5  col-sm-5 col-xs-4">
+                <div style="padding-left:10px;">{{Item}}</div>
+              </div>
+              <div class="col-md-3 col-sm-5 col-xs-3" style="padding-right:2px;">  
+                <div class="checkbox" style=" margin-top:0px; margin-bottom:0px; margin-left:20px;" align="center">
+                  <label style="padding:0px;"><input ng-model="values['mov'+token[$index]]" type="checkbox" ng-change="movecheck(Item)"></label>
+                </div>
+              </div> 
+              <div class="col-md-4 col-sm-2 col-xs-5" style="padding-right:15px; padding-left:2px;">       
+                <div align="center">    
+                  <button ng-click="decrement(Item)" class="btn btn-sm">-</button><span>&nbsp;&nbsp;&nbsp;{{countarray[token[$index]]}}&nbsp;&nbsp;</span><button class="btn btn-sm" ng-click="increment(Item)">+</button>
+                </div>
+              </div>
+          </div>   
+          </div>
+          <div ng-show="otherdata" style="max-height:360px; overflow-y:auto;">
+            <div class="row" style="padding-top:10px;" ng-repeat="other_input in otherinputs">
+              <div class="col-md-5 col-xs-4">
+                <div style="padding-left:10px;">  
+                    <div class="form-group" style="padding:0px; height:28px;">
+                            <input style="font-size:13px;" ng-model="otherinputs[$index].otheritems" placeholder="Enter Other Items" type="text" class="form-control">
+                          </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-xs-3" style="padding-right:2px;">  
+                <div class="checkbox" style=" margin-top:0px; margin-bottom:0px; margin-left:20px;" align="center">
+                  <label style="padding:0px;"><input ng-model="otherinputs[$index].discheck" type="checkbox" ng-change="movecheck1($index)"></label>
+                </div>
+              </div> 
+              <div class="col-md-4 col-xs-5" style="padding-right:15px; padding-left:2px;">       
+                <div align="center">    
+                  <button ng-click="decrement1($index)" class="btn btn-sm">-</button><span>&nbsp;&nbsp;&nbsp;{{other_input['countitem']}}&nbsp;&nbsp;</span><button class="btn btn-sm" ng-click="increment1($index)">+</button>
+                </div>
+              </div>
+          </div>   
+          </div>
+          </div>
+          <div style="border-left:1px solid #e0e0e0; font-size: 15px;  max-height:360px;  "  class="col-md-5 col-sm-5 itemselected">
+            <div class="items-text1" style="padding:5px;">The items you select will come below. Click submit below to get Quotation</div> 
+            <div class="items-text" style="padding:5px;">These are the items you have selected. Click next button to get Quotation</div>      
+            <div class="row" style="padding-right:0px;">
+              <div class="col-md-4 col-xs-4" style="padding-right:2px;"><div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" class="">Items</div>
+              </div>
+              <div class="col-md-3 col-xs-2" style="padding-right:2px; padding-left:2px;">
+                <div class="w1" style="background-color:#cfcfd1;  text-align:center; display:inline-block;">Dism.</div>
+              </div>        
+              <div class="col-md-4 col-xs-4" style="padding-right:2px; padding-left:2px;">
+                <div class="w1" style="background-color:#cfcfd1;  text-align:center; display:inline-block;" >Qty.</div>
+              </div>      
+              <div class="col-md-1 col-xs-1" style="padding-right:5px; padding-left:5px;">
+                <div class="w1" style="background-color:#cfcfd1; text-align:center; display:inline-block;" >&#x2715</div>
+              </div>
+            </div>
+             <div style="max-height:360px; overflow-y:auto">      
+            <div class="row" style="padding-top:10px;" ng-repeat="selitem in s_items">
+              <div class="col-md-4 col-xs-4">
+                <div style="padding-left:10px;">{{ selitem['Item']}}</div>
+              </div>
+              <div class="col-md-3 col-xs-1">  
+                <div style="" align="center">
+                  {{ selitem['Dismantlable']}}
+                </div>
+              </div> 
+              <div class="col-md-4 col-xs-5" style="">       
+                <div style="text-align:center;">    
+                  <button class="btn btn-sm" ng-click="decrement(selitem['Item'])">-</button>&nbsp;&nbsp;&nbsp;{{ selitem['Quantity']}}&nbsp;&nbsp;<button class="btn btn-sm" ng-click="increment(selitem['Item'])">+</button>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1" style="padding-right:15px; padding-left:2px;">       
+                <div style="text-align:center; cursor:pointer"> <button class="btn btn-xs" ng-click="removedmitem(selitem['Item'])">&#x2715</button>
+                </div>
+              </div>
+          </div>  
+                <div align="center" class="col-md-12">
+                  <button style="background-color:#f0bb2f; padding:5px 20px;" class="btn btn-sm selectmore">Select more</button>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<center>
+		  <button class="btn" ng-click="submit_basic_1()" style="background-color:#f0bb2f;margin-top: 15px"> SUBMIT</button>
+		</center>	
+		<br/>
+	</div>
+  <div ng-if="select_status == 2" class="card">
+  	<div class="row">
+  		<div style="margin-right: 30px;margin-left: 30px;margin-top: 30px">
+  		<div class="col-md-6 col-sm-6 col-xs-12" style="">
+  		<span>You are moving from</span>
+  			  <div class="form-group" style="padding:0px;">
+                        <input style="font-size:14px;" ng-model="mover_areas['Current_place']['addr']" placeholder="Your current address" type="text" class="form-control">
+                      </div>
+                    
+                <div class="form-group" style="padding:0px;">
+  			On: <input type="text" style="font-size:14px;" class="form-control" data-min-date="{{tomorrow}}" ng-model="move_date" placeholder="Date" data-autoclose="1" bs-datepicker>
+  			 <input type="text" placeholder="Time" style="font-size:14px;" class="form-control" ng-model="move_time" data-autoclose="1" bs-timepicker>
+                </div>
+  		</div>
+  		<div class="col-md-6 col-sm-6 col-xs-12" style="">
+  		  <span> to</span>
+  		    <div class="form-group" style="padding:0px;">
+                  <input style="font-size:14px;" placeholder="your destination address" ng-model="mover_areas['Destination_place']['addr']" type="text" class="form-control">
+              </div>
+               <span> vendor visit date</span>
+              	<div class="form-group" style="padding:0px;">
+  		  <input type="text" class="form-control" style="font-size:14px;" ng-model="sch_date" data-min-date="{{tomorrow}}" data-autoclose="1" bs-datepicker>
+  			 <input type="text" class="form-control" ng-model="sch_time" data-autoclose="1" bs-timepicker>
+                </div>
+  		</div>
+  		</div>
+  	</div>
+		<center>
+		  <button class="btn" ng-click="submit_basic_2()" style="background-color:#f0bb2f;margin-top: 15px"> SUBMIT</button>
+		</center>	<br/>
+	</div>
+</div>
+<script>
+jQuery('.navtabsli').click(function(){
+  jQuery('.navtabsli').removeClass('navtab');
+  jQuery(this).addClass('navtab');  
+});
+jQuery('.numofitems').click(function(){
+  $(".itemselecting").fadeOut(500);
+  $(".itemselected").css('padding-left', '0px');
+  $(".itemselected").css('border-left', '0px');
+  $(".itemselected").fadeIn(500);
+  $(".numofitems").css('display', 'none');
+  $(".items-text1").css('display', 'none');
+  $(".items-text").css('display', 'block');
+});
+jQuery('.selectmore').click(function(){
+  $(".itemselected").fadeOut(500);
+  $(".itemselecting").fadeIn(500);
+  $(".numofitems").show();
+});
+</script>

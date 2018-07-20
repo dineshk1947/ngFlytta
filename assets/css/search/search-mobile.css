@@ -1,0 +1,211 @@
+.shcvisit{
+/*width:96%;*/
+border-right: 0px solid #bdbbbb;
+height:370px; 
+}
+.cardsch{
+height:370px; 
+}
+.confirmitemdiv{
+  overflow-y: auto;
+}
+.imagewidth{
+  width:113%;
+}
+#rentcost{
+  font-size: 16px;
+}
+.viisitremove{
+  position:relative; 
+  bottom:2px; 
+  right:0px;
+}
+.cardstotal{
+    margin-left: 0px;
+}
+.navtabs{
+    display: none;
+  }  
+  .mnavtabs{
+    display: inline-block;
+    width:50%;
+    padding-left: 5px;
+  }
+  .numofitems{
+    display: inline-block;
+    width:30%;
+    float:right;
+  }
+  .selectmore{
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+.confirmprop{
+  overflow-x: hidden; 
+  overflow-y: auto;  
+  max-width: 100%; 
+  font-size: 10px;
+}
+.totawidthmover{
+margin-left:0%; 
+margin-right:0%
+}
+.topclicktext{
+  margin-left: 0%;
+}
+.pkchrgover{
+  overflow-y:auto;
+}
+.cardres{
+  height:80px; 
+  padding:10px;
+}
+.pmcharge{
+  padding-left:30px;
+}
+.pmcha{
+  margin-left: -28px; 
+}
+.contactmain{
+  height:auto; 
+  overflow-y:auto
+}
+.contactadd{
+  height:115vh; 
+  overflow-y:hidden
+}
+.confirmpayrent{
+  border-left: 0px solid #bbbbbb; 
+  padding-left: 0px
+}
+@media (max-width: 425px){
+.listmodal{  
+  width:95.5%;
+}
+.imagewidth{
+  width:108%;
+}
+.totawidthmover{
+margin-left:0%; 
+margin-right:0%
+}
+.schmodal{  
+  width: 95%;
+}
+.topclicktext{
+  margin-left: 0%;
+}
+}
+@media (max-width: 375px){
+.imagewidth{
+  width:109%;
+}
+.totawidthmover{
+margin-left:0%; 
+margin-right:0%
+}
+.cardres{
+  height:100px; 
+  padding:10px;
+}
+}
+@media (max-width: 320px){
+.imagewidth{
+  width:111%;
+}
+.totawidthmover{
+margin-left:0%; 
+margin-right:0%
+}
+}
+@media (max-width: 320px){
+ #secmain{
+   font-size: 12px;
+   margin-top: 1vh;
+ } 
+.confcard{
+ width:100%;
+ padding-right:0px;
+  height:250px; 
+  border-right: 0px solid #bdbbbb; 
+}
+}
+    #fslide{
+        height: 309px;
+   }
+   #simg{
+         height: 300px;
+   }
+.confcard{
+ width:100%;
+ padding-right:0px;
+  height:250px; 
+  border-right: 0px solid #bdbbbb; 
+}
+.selectmore{
+  display: none;
+}
+.paddremove{
+ margin-top:0px;
+ margin-left:-15px;
+}
+.card-view {
+  z-index: 15; 
+  position: absolute; 
+  top: 0px;
+  width:230px;
+  }
+.overview-div{
+  background-color: #fff;
+  cursor: pointer;
+  margin-left: 230px;
+}
+.overview-div:hover{
+  background-color: #f0bb2f;
+  color: #fff;
+}
+.nearweb{
+  display: none;
+}
+.nearmobile{
+  display: block;
+}
+.propertyarea{
+  position: absolute; 
+  top:1645px; 
+  left:30px;
+}
+.cardselect{
+  width:85%;
+}
+.removearrow{
+  display:none;
+}
+
+@media (min-width:375px) and (max-width: 425px){
+.listqhv{
+ width:96.4%;
+}
+}
+@media (min-width:320px) and (max-width: 375px){
+.listqhv{
+ width:96%;
+}
+}
+
+@media (max-width: 375px){
+  .listqhv{
+ width:97%;
+}
+}
+
+@media (max-width: 320px){ .listqhv{
+ width:95.3%;
+}
+}
+@media (max-width: 320px){ 
+.mblvermarg{
+ margin-top:10px
+}
+}

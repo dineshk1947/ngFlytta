@@ -1,0 +1,167 @@
+  <div  ng-controller="invoiceController" style="margin-bottom: 100px;">
+    <div class="col-md-2 col-sm-2 col-xs-12"> <button class="btn btn-sm pull-left" ng-click="gotopage();" style="background-color:#f0bb2f;margin-left:15px;margin-top: 24px;">BACK</button> </div> 
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">            
+              <h1 class="companyname">Flytta Innovations Private Limited</h1>
+          </div>
+          <div class="col-md-6">
+              <div>hello@goflytta.com</div>
+              <div>https://www.goflyta.com</div>
+              <div>CIN: U93090TG2016PTC11015</div>
+          </div>
+          <div class="col-md-6">
+              <div class="pull-right"><img width="130px" src="assets/img/flytta_logo_full.png" /></div>
+          </div>
+        </div>
+        <div class="row rowborderbtm">
+          <div class="col-md-12">
+              <h1 class="invoice">INVOICE</h1>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+              <div><b>INVOICE TO</b></div>
+              <div>{{c_name}}</div>
+              <div>{{c_email}}</div>
+          </div>
+          <div class="col-md-6 col-sm-6 visible-md visible-lg visible-sm"> 
+              <span class="pull-right">           
+                <div>&nbsp;</div>
+                <div><b>INVOICE NO.</b> {{s_no}}</div>
+                <div><b>DATE</b> {{todaydate}}</div>
+              </span>
+          </div>
+          <div class="col-xs-12 visible-xs"> 
+              <span>           
+                <div>&nbsp;</div>
+                <div><b>INVOICE NO.</b> {{s_no}}</div>
+                <div><b>DATE</b> {{todaydate}}</div>
+              </span>
+          </div>
+        </div>
+        <div class="datatables">
+          <table id="example" class="table table-full table-full-small" cellspacing="0" width="100%">
+            <thead style="font-family: 'Montserrat';">
+                <tr class="invoicetableh" style="margin-top: 2px;margin-bottom: 2px;">
+                    <th>ACTIVITY</th>
+                    <th>QTY</th>
+                    <th>RATE</th>
+                    <th>AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-if="predata">
+                    <td> <div><b>{{invoice_data['prepay']['name']}}</b><br/>
+                      {{invoice_data['prepay']['loca']}}</div></td>
+                    <td>{{invoice_data['prepay']['qty']}}</td>
+                    <td>{{invoice_data['prepay']['amount1']}}</td>
+                    <td>{{invoice_data['prepay']['amount2']}}</td>
+                </tr>
+                <tr ng-if="propdata">
+                    <td> <div><b>{{invoice_data['prop']['name']}}</b><br/>
+                      {{invoice_data['prop']['loca']}}</div></td>
+                    <td>{{invoice_data['prop']['qty']}}</td>
+                    <td>{{invoice_data['prop']['amount1']}}</td>
+                    <td>{{invoice_data['prop']['amount2']}}</td>
+                </tr>
+                <tr ng-if="movedata">
+                    <td> <div><b>{{invoice_data['move']['name']}}</b><br/>
+                      {{invoice_data['move']['loca']}}</div></td>
+                    <td>{{invoice_data['move']['qty']}}</td>
+                    <td>{{invoice_data['move']['amount1']}}</td>
+                    <td>{{invoice_data['move']['amount2']}}</td>
+                </tr>
+                <tr ng-show="invdiv" ng-repeat="indata in inputdataarray track by $index">
+                    <td><div><b>{{invoice_data['prepay']['name']}}</b><br/>
+                      {{invoice_data['prepay']['loca']}}</div></td>
+                    <td>{{invoice_data['prepay']['qty']}}</td>
+                    <td>{{invoice_data['prepay']['amount1']}}</td>
+                    <td>{{invoice_data['prepay']['amount2']}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>      
+        <div class="row">  
+          <div class="row lcharges" ng-show="!invdiv">                    
+              <div class="datarows" ng-repeat="inv_input in invinputs">       
+                <div class="col-md-3">                
+                  <div class="form-group" style="height:28px;">
+                      <input style="font-size:13px; width:100%; padding-left:10px;" ng-model="invinputs[$index].paidfor" placeholder="Paid for" type="text" class="form-control">
+                  </div>   
+                </div>       
+                <div class="col-md-3">              
+                  <div class="form-group" style="height:28px;">
+                      <input style="font-size:13px; width:100%; padding-left:10px;" ng-model="invinputs[$index].enterdetails" placeholder="Enter details" type="text" class="form-control">
+                  </div>    
+                  </div>          
+                <div class="col-md-2">               
+                  <div class="form-group" style="height:28px;">
+                      <input style="font-size:13px; padding-left:10px;" ng-model="invinputs[$index].qunty" placeholder="Enter QTY" type="number" class="form-control">
+                  </div>
+                </div> 
+                <div class="col-md-2" style="padding-left:0px;">            
+                  <div class="form-group" style="height:28px;">
+                      <input style="font-size:13px; padding-left:10px;" ng-model="invinputs[$index].inputrate" placeholder="Enter Rate" type="number" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-2" style="padding-left:0px;">            
+                  <div class="form-group" style="height:28px;">
+                      <input style="font-size:13px; padding-left:10px;" ng-model="invinputs[$index].inputamount" placeholder="Enter Amount" type="number" class="form-control">
+                  </div>
+                </div>
+              </div> 
+          </div>
+          <div class="col-md-12">               
+              <div class="row">       
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">AMOUNT PAID</div>
+                <div class="col-md-3 col-sm-3 col-xs-3 totalprice">                
+                  <b>Rs. {{totalamount}}</b>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12"></div>
+  </div>
+  <style>
+  .companyname{
+  font-size: 16px;
+}
+.companydetails{
+  text-align: left;
+}
+.invoice{
+  color:#0e98b7;
+  font-size: 26px;
+  text-transform: uppercase;
+  margin-top: 45px;
+}
+.rowborderbtm{
+  border-bottom: 1px solid #0e98b7;
+  padding-bottom: 20px;
+}
+.invoicetableh{
+  margin-top: 45px;
+  color:#0e98b7;
+  background-color: #edefef;
+}
+.taxclass{
+  margin-top: 25px;
+}
+.lcharges{
+  border-style: solid;  
+  border: 0px solid #0e98b7;
+  border-bottom: 1px dotted #0e98b7;
+  padding-bottom: 15px;
+}
+.totalprice{
+  line-height: 25px;
+  font-size: 16px;
+}
+.datarows{  
+  padding-top: 15px;
+}
+</style>

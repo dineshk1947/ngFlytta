@@ -1,0 +1,113 @@
+ <div class="container-fluid" style="margin: 0; height: 100%; overflow: hidden; background-color: #ffffff;padding-top: 2vh; box-shadow: 0px 0px 10px #666666; position:relative; z-index:100">
+  <div class="row" style="padding-bottom:15px; background-color:#fff; "> 
+    <div style="padding-top:15px; display:inline-block" class="col-md-8">
+        <button class="btn btn-sm"><b>House Rental</b></button>
+        <button style="background-color:#f0bb2f; color:#fff" class="btn btn-sm"><b>Packers & Movers</b></button>
+        <button class="btn btn-sm"><b>Settling in Services</b></button>
+    </div>
+    <div class="col-md-4">
+      <ul  class="nav nav-tabs pull-right">
+        <li class="active"><a href="#">Tab 1</a></li>
+        <li><a href="#">Tab 2</a></li>
+        <li><a href="#">Tab 3</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+  <div class="col-md-4 col-xs-12" style="padding-top: 20px; border-right:1px solid #e0e0e0; border-bottom:1px solid #e0e0e0;">
+    <h3 class="page-header" style="margin-bottom: 20px; border-bottom: 2px solid #f0bb2f;">User Profile</h3>
+        <div class="col-xs-12 col-sm-12 ">
+           <p><strong>Email: </strong> test@goflytta.com </p>
+           <p><strong>Name: </strong> Test </p>                    
+           <p><strong>Phone: </strong> +91 9112345678 </p>
+       </div>
+
+    <h3 class="page-header" style="margin-bottom: 5px; border-bottom: 2px solid #f0bb2f;">Wishlist</h3>
+    <div style="display:inline-block; font-size:10px;" class="">
+        <button class="btn btn-sm">House Rental</button>
+        <button style="background-color:#f0bb2f; color:#fff" class="btn btn-sm">Packers & Movers</button>
+        <button class="btn btn-sm">Settling in Services</button>
+    </div>
+    <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>      
+  </div>  
+  <div ng-controller="profilectrl" class="col-md-8 col-sm-12 col-xs-12 pull-right" style="padding-top: 20px; font-size: 15px; border-bottom:1px solid #e0e0e0;">
+    <h3 class="page-header" style="margin-bottom: 20px; border-bottom: 2px solid #f0bb2f;">Request a query</h3>
+        <div class="col-xs-8 col-sm-8 col-xs-12 col-md-offset-2">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-3"><b>Query Type:</b></div>
+                    <div class="col-xs-9">
+                      <select ng-model="selectctrl" class="form-control">
+                        <option>Select Query Type</option>
+                        <option>Dining Room</option>
+                        <option>Kitchen</option>
+                        <option>Other</option>
+                      </select></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-3"><b>Query:</b></div>
+                    <div class="col-xs-9"><textarea ng-model="queryctrl" type="text" class="form-control" placeholder="Enter your query...!"></textarea></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row text-center">
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-9"><button ng-click="onSubmit()" class="btn btn-default"><b>Submit</b></button></div>
+                  </div>
+                </div>
+       </div>      
+  </div>  
+  <div class="col-md-8 col-sm-12 col-xs-12 pull-right" style="padding-top: 20px; border-bottom:1px solid #e0e0e0;">
+    <h3 class="page-header" style="margin-bottom: 20px; border-bottom: 2px solid #f0bb2f;">Requested queries</h3>
+        <div class="col-xs-12 col-sm-12 col-xs-12">
+            <div class="well query-cards" style="min-height:125px; margin-bottom:10px; padding-top:10px;">
+                <div class="col-md-12">
+                  <h5 style="margin:0px;" class="pull-right">Query Type</h5>
+                  <h5 style="margin:0px;" >Query No: 125</h5>
+                  <div style="">We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback! <div class="pull-right"><button style="margin:10px;" class="btn btn-default btn-xs"><b>View more</b></button></div></div>                  
+                </div>
+            </div>
+            <div class="well query-cards" style="min-height:125px; margin-bottom:10px; padding-top:10px;">
+                <div class="col-md-12">
+                  <h5 style="margin:0px;" class="pull-right">Query Type</h5>
+                  <h5 style="margin:0px;" >Query No: 125</h5>
+                  <div>We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!
+                  <div class="pull-right"><button style="margin:10px;" class="btn btn-default btn-xs"><b>View more</b></button></div></div>
+                </div>
+            </div>
+            <div class="well query-cards" style="min-height:125px; margin-bottom:10px; padding-top:10px;">
+                <div class="col-md-12">
+                  <h5 style="margin:0px;" class="pull-right">Query Type</h5>
+                  <h5 style="margin:0px;" >Query No: 125</h5>
+                  <div>We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback! <div class="pull-right"><button style="margin:10px;" class="btn btn-default btn-xs"><b>View more</b></button></div></div>
+                </div>
+            </div>
+            <div class="well query-cards" style="min-height:125px; margin-bottom:10px; padding-top:10px;">
+                <div class="col-md-12">
+                  <h5 style="margin:0px;" class="pull-right">Query Type</h5>
+                  <h5 style="margin:0px;" >Query No: 125</h5>
+                  <div>We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback!We Value Your Feedback! <div class="pull-right"><button style="margin:10px;" class="btn btn-default btn-xs"><b>View more</b></button></div></div>
+                </div>
+            </div>
+       </div>      
+  </div>

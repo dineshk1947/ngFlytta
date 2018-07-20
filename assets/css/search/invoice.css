@@ -1,0 +1,37 @@
+.companyname{
+  font-size: 16px;
+}
+.companydetails{
+  text-align: left;
+}
+.invoice{
+  color:#0e98b7;
+  font-size: 26px;
+  text-transform: uppercase;
+  margin-top: 45px;
+}
+.rowborderbtm{
+  border-bottom: 1px solid #0e98b7;
+  padding-bottom: 20px;
+}
+.invoicetableh{
+  margin-top: 45px;
+  color:#0e98b7;
+  background-color: #edefef;
+}
+.taxclass{
+  margin-top: 25px;
+}
+.lcharges{
+  border-style: solid;  
+  border: 0px solid #0e98b7;
+  border-bottom: 1px dotted #0e98b7;
+  padding-bottom: 15px;
+}
+.totalprice{
+  line-height: 25px;
+  font-size: 16px;
+}
+.datarows{  
+  padding-top: 15px;
+}

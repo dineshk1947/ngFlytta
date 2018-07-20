@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tabs Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="DemoController">
+    <tabset>
+        <tab heading="Heading 1" active>
+            Some content here
+        </tab>
+        <tab heading="Heading 2">
+            Some other content here
+        </tab>
+    </tabset>
+
+    <tabset>
+        <tab ng-repeat="tab in tabs" heading="{{tab.header}}">
+            {{tab.content}}
+        </tab>
+    </tabset>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/src/tabs/index.js"></script>
+    <script src="/src/tabs/tabset/controller.js"></script>
+    <script src="/src/tabs/tabset/directive.js"></script>
+    <script src="/src/tabs/tab/directive.js"></script>
+    <!-- // <script src="/dist/semanticular.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>

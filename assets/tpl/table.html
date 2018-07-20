@@ -1,0 +1,208 @@
+<div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+<h1 style="text-align: center">Property</h1>
+<div class="main-container" ng-controller="myCtrl">
+    <div class="col-sm-2">
+        <div class="search">
+            <span class="fa fa-search"></span>
+            <input type="search" ng-model="searchText" class="form-control" placeholder="Search data" autofocus/>
+        </div>
+    </div>
+    <div class="input-group-btn">
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="" ng-click="send_sms()">Send Sms</a></li>
+            <li class="divider"></li>
+            <li><a href="" ng-click="occupied('occupy')">Occupied</a></li>
+            <li class="divider"></li>
+            <li><a href="" ng-click="occupied('unoccupy')">Vacate</a></li>
+            <li class="divider"></li>
+            <li><a href="" ng-click="delete_fun_prop()">Delete</a></li>
+            <li class="divider"></li>
+
+        </ul>
+        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
+            Select <span class="caret"></span></button>
+    </div>
+    <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+        <section class="tables-data">
+            <div class="page-header">
+            </div>
+            <div class="card">
+                <div>
+                    <div class="datatables">
+                        <table ng-table="tableParams"  class="table table-full table-full-small" cellspacing="0"
+                               width="100%;">
+                            <thead>
+                            <tr>
+                                <th><strong>Serial No.</strong></th>
+                                <th><strong>Date</strong></th>
+                                <th><strong>Property Id</strong></th>
+                                <th><strong>Description</strong></th>
+                                <th><strong>Other channels</strong></th>
+                                <th><strong>Entered By</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="x in items | filter:searchText |startFrom:currentPage*pageSize | limitTo:pageSize track by $index">
+                                <td class="collapsing">
+                                    <div style="padding-top:4px;" class="checkbox">
+                                        <input type="checkbox" ng-change="test(x._id,prop);"
+                                               style="color: #f0bb2f; margin-left:inherit"
+                                               ng-model='prop["checked"+x._id]'></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{$index+1}}.
+                                </td>
+
+                                <td>{{x.datetime}}</td>
+
+                                <td>{{x.service_id}}</td>
+
+                                <td style="font-size:13px;">
+                                    <div style="font-size:14px;">{{x.city}}, {{x.area}}<i class="pencil icon"
+                                                                                          style="float:right;cursor:pointer;"
+                                                                                          onclick="edit_fun('59ba119c39adc7bc5489aca3')"></i>
+                                    </div>
+                                    <div>{{x._id}}</div>
+                                    <div>BHK/ Total Area: <span class="prop_detail">{{x.configuration}}/ {{x.totalArea}}&nbsp;<span
+                                            ng-if="x['totalArea'].indexOf('Feet')<0">Sq Feet</span></span></div>
+
+                                    <div>Rent: <span class="prop_detail"> Rs. {{x.m_rent}}</span><br>Maintenance: <span
+                                            class="prop_detail"> Rs. {{x.maintenance}}</span><br>Security: <span
+                                            class="prop_detail"> Rs. {{x.advance}}</span>
+                                    </div>
+
+                                    <div>Facing: <span class="prop_detail">{{x.facing}}</span></div>
+                                    <div>Address: <span class="prop_detail">Casa Rouge Lane</span></div>
+                                </td>
+
+                                <td>
+                                    <span ng-repeat="y in  x.channel_id track by $index-1" ng-if="x.channel_id.length >0"></span><br>
+                                    <div style="padding-bottom: 20px">
+                                    Add other channel IDs&nbsp;&nbsp;&nbsp;<button type="button"
+                                                                                   class="btn btn-lg btn-round btn-default style " style="float: right;"
+                                                                                   ng-click="click=true"><span
+                                        class="md md-add"></span>
+                                    <div class="ripple-wrapper">
+                                        <div class="ripple ripple-on ripple-out"
+                                             style="left: 23.375px; top: 26.5px; background-color: rgb(255, 255, 255); transform: scale(6.25);"></div>
+                                    </div>
+                                </button>
+                                    </div>
+                                    <br>
+                                    <div class="form-group" ng-show='click == true' style="width: 40%">
+                                        <label class="control-label">Enter Your Id: </label>
+                                        <input type="text" class="form-control"
+                                               ng-model="pqr['xyz'+x._id]"><br>
+                                        <button class="btn btn-default" ng-click="sendId(x._id);">
+
+                                            Submit
+                                            <div class="ripple-wrapper"></div>
+
+                                        </button>
+                                    </div>
+                                    <div style="padding-bottom: 20px;" ng-repeat="y in  x.channel_id track by $index" ng-if="x.channel_id.length >0">
+                                        {{y}} <button style="float: right" type="button"
+                                                            class="btn btn-lg btn-round btn-default "
+                                                            ng-click="removeId(x._id,y);"><span
+                                            class="fa fa-minus "></span>
+                                        <div class="ripple-wrapper">
+                                            <div class="ripple ripple-on ripple-out"
+                                                 style="left: 23.375px; top: 26.5px; background-color: rgb(255, 255, 255); transform: scale(6.25);"></div>
+                                        </div>
+                                    </button>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                </td>
+
+                                <td>{{x.user}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="p-20">
+                            <ul class="pager ng-cloak">
+                                <li>
+                                    <button type="button" class="btn btn-default pull-left ng-scope"ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">« Previous</button>
+                                    <button type="button"  class="btn btn-default pull-right" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next &raquo;</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<style>
+    .glyphicon-spin-jcs {
+        -webkit-animation: spin 1000ms infinite linear;
+        animation: spin 1000ms infinite linear;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    .input-group-btn {
+        position: relative;
+        font-size: 0;
+        white-space: nowrap;
+        display: inline-block;
+
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 46%;
+        left: 900px;
+    }
+
+    .dropdown-toggle {
+        margin-top: 40px;
+        cursor: pointer;
+        left: 964px;
+        top: -40px;
+    }
+
+    /*search icon start*/
+    .search {
+        position: relative;
+    }
+
+    .search input {
+        text-indent: 30px;
+    }
+
+    .search .fa-search {
+        position: absolute;
+        top: 12px;
+        font-size: 15px;
+    }
+    .table-full tbody > tr > td {
+        border: 0.001px solid gainsboro;
+    }
+    /*tbody> td> th {
+        display: table-cell;
+        vertical-align: inherit;
+        border: 1px solid;
+    }*/
+    /*search icon end*/
+</style>
+

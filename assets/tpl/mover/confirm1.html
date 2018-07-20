@@ -1,0 +1,421 @@
+<div style="overflow: hidden; height: 100vh; max-width: 100%;background-color: #3f51b5" ng-controller="moverController">
+    <div ng-include src="'assets/tpl/search_header.html'"></div>
+    <div class="container confirmitemdiv" style="height: 90vh;width: 100%;overflow-y: auto">
+        <div class="card" style="background-color: white;margin-top: 30px">
+            <div class="card-content">
+                <div class="row" style="" ng-if="item_status == 1" style="overflow-y:auto;">
+                    <div class="col-md-3 col-sm-3 col-xs-12 main_column" id="oirignde" style="">
+                        <h4 style="font-size: 14px; margin-top: 11px;"><b>Origin Details</b></h4>
+                        <div style="font-size: 12px; ">
+                            <span> City : <b>{{json['Current_place']['curr_city']}}</b></span>
+                            <br/>
+                            <span> Area : <b>{{json['Current_place']['curr_area']}}</b></span>
+                            <br/>
+                            <span> Address : <b>{{json['Current_place']['addr']}}</b></span>
+                            <br/>
+                            <span> BHK : <b>{{json['Current_place']['BHK']}}</b></span>
+                            <br/>
+                            <span> Lift : <b>{{json['Current_place']['Lift']}}</b></span>
+                        </div>
+                        <div style="">
+                            <h4 style="font-size: 14px; margin-top: 15px;"><b>Destination Details</b></h4>
+                        </div>
+                        <div style="font-size: 12px;">
+                            <span> City : <b>{{json['Destination_place']['dest_city']}}</b></span>
+                            <br/>
+                            <span> Area : <b>{{json['Destination_place']['dest_area']}}</b></span>
+                            <br/>
+                            <span> Address : <b>{{json['Destination_place']['addr']}}</b></span>
+                            <br/>
+                            <span> BHK : <b>{{json['Destination_place']['BHK']}}</b></span>
+                            <br/>
+                            <span> Lift : <b>{{json['Destination_place']['Lift']}}</b></span>
+                        </div>
+                    </div>
+                    <div id="leftrightline" class="col-md-5 col-sm-5 col-xs-12 main_column" style="height: 50vh" id="">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  col-xs-12">
+                                <center>
+                                    <h4 style="padding: 6px;margin-top: 11px;font-size: 14px;">
+              <div class="col-md-4 col-sm-3 col-xs-3" style="display:inline"><b>Items</b></div>
+              <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline"><b>Dismantlable</b></div>
+              <div class="col-md-2 col-sm-2 col-xs-2" style="display:inline"><b>Qty</b></div></h4>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="" style="overflow-y:auto; height: 40vh;">
+                            <div class="row itemline" style="border-bottom: 1px solid #c2c3c4" id="" ng-repeat="p_mdata in s_items">
+                                <div id="goods" class="col-md-6 col-sm-6 col-xs-6">
+                                    <span>{{$index+1}}) {{p_mdata['Item']}}</span>
+                                </div>
+                                <div class="col-md-4 col-xs-4">
+                                    <span>{{ p_mdata['Dismantlable'] }}</span>
+                                </div>
+                                <div style="text-align: center;" class="col-md-2 col-sm-2 col-xs-2">
+                                    <span>{{p_mdata['Quantity']}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="m_status < 3" class="col-md-4 col-sm-4 col-xs-12 main_column" id="packmove" style="">
+                        <h4 style="font-size: 14px;margin-top: 11px;"><b>Expected Charges</b></h4>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Moving Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['moving']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Packing Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['packing']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Unpacking Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['unpacking']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Loading Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['loading']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Unloading Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['unloading']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> <b>Sub Total: </b></span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span><b>Rs {{json['Estimated_charge']['sub_total']}}</b></span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span>Tax:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['tax']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Insurance:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['insurance']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" id="bd" style=";font-size: 12px;border-top: 1px solid #b7b7b7">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span><b>Total Packing & Moving Charges </b></span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 ">
+                                <span><b>Rs {{json['Estimated_charge']['total']}}</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="m_status >2" class="col-md-4 col-sm-4 col-xs-12 main_column" id="packmove" style="">
+                        <h4 style="font-size: 14px;margin-top: 11px;"><b>Packing & Moving Charges</b></h4>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Moving Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['moving']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Packing Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['packing']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Unpacking Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['unpacking']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Loading Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['loading']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Unloading Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['unloading']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> <b>Sub Total: </b></span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span><b>Rs {{json['Original_charge']['sub_total']}}</b></span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span>Tax:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['tax']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span> Insurance:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Original_charge']['insurance']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" id="bd" style=";font-size: 12px;border-top: 1px solid #b7b7b7">
+                            <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                <span><b>Total Packing & Moving Charges </b></span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 ">
+                                <span><b>Rs {{json['Original_charge']['total']}}</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <center>
+                        <div class="col-md-12 col-sm-12" style="">
+                            <br/>
+                            <center>
+                                <div>You are moving on <b>{{json["date"]["m_date"]}}</b></div>
+                            </center>
+                            <center>
+                                <div ng-if="m_status < 3" style="color: red">We are processing your request. We will send you final packing and moving charges shortly.</div>
+                            </center>
+                            <br/>
+                            <div ng-if="m_status > 2" align="center" class="col-md-12" style="">
+                                <button style="background-color:#f0bb2f; padding:5px 25px;  margin-top:-15px; margin-bottom:40px;" class="btn btn-sm" ng-click="gottonext2(json['Original_charge']['total']);"><b>Payment</b></button>
+                            </div>
+                            <br/>
+                        </div>
+                    </center>
+                </div>
+                <div class="row" style="" ng-if="item_status == 0" style="overflow-y:auto;max-width: 100%">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5 col-sm-5 col-xs-12 main_column" id="oirignde" style="">
+                        <h4 style="font-size: 14px; margin-top: 11px;"><b>Origin Details</b></h4>
+                        <div style="font-size: 12px;  margin-bottom: 15px;">
+                            <span> City : <b>{{json['Current_place']['curr_city']}}</b></span>
+                            <br/>
+                            <span> Area : <b>{{json['Current_place']['curr_area']}}</b></span>
+                            <br/>
+                            <span> Address : <b>{{json['Current_place']['addr']}}</b></span>
+                            <br/>
+                            <span> BHK : <b>{{json['Current_place']['BHK']}}</b></span>
+                            <br/>
+                            <span> Lift : <b>{{json['Current_place']['Lift']}}</b></span>
+                        </div>
+                        <div style="">
+                            <h4 style="font-size: 14px; margin-top: 15px;"><b>Destination Details</b></h4>
+                        </div>
+                        <div style="font-size: 12px;margin-top: 5px; ">
+                            <span> City : <b>{{json['Destination_place']['dest_city']}}</b></span>
+                            <br/>
+                            <span> Area : <b>{{json['Destination_place']['dest_area']}}</b></span>
+                            <br/>
+                            <span> Address : <b>{{json['Destination_place']['addr']}}</b></span>
+                            <br/>
+                            <span> BHK : <b>{{json['Destination_place']['BHK']}}</b></span>
+                            <br/>
+                            <span> Lift : <b>{{json['Destination_place']['Lift']}}</b></span>
+                        </div>
+                    </div>
+                    <div ng-if="m_status < 3" class="col-md-5 col-sm-5 col-xs-12 main_column" id="packmove" style="padding-left: 2vw">
+                        <h4 style="font-size: 14px;margin-top: 11px;"><b>Expected Charges</b></h4>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> Moving Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['moving']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> Packing Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['packing']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> Unpacking Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['unpacking']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> Loading Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['loading']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> Unloading Charges:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['unloading']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> <b>Sub Total: </b></span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span><b>Rs {{json['Estimated_charge']['sub_total']}}</b></span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Tax:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['tax']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-6 col-sm-6">
+                                <span> Insurance:</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <span>Rs {{json['Estimated_charge']['insurance']}}</span>
+                            </div>
+                        </div>
+                        <div class="row" id="bd" style=";font-size: 12px;border-top: 1px solid #b7b7b7">
+                            <div class="col-xs-6 col-sm-6" style="">
+                                <span><b>Total Packing & Moving Charges </b></span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 padleft">
+                                <span><b>Rs {{json['Estimated_charge']['total']}}</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="m_status > 2" class="col-md-5 col-sm-5 col-xs-12 main_column" id="packmove" style="padding-left: 2vw">
+                        <h4 style="font-size: 14px;margin-top: 11px;"><b>Packing & Moving Charges</b></h4>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-xs-8 col-sm-8">
+                                <span> Moving Charges:</span>
+                                <br/>
+                                <span> Packing Charges:</span>
+                                <br/>
+                                <span> Unpacking Charges:</span>
+                                <br/>
+                                <span> Loading Charges:</span>
+                                <br/>
+                                <span> Unloading Charges:</span>
+                                <br/>
+                                <span> <b>Sub Total: </b></span>
+                                <br/>
+                                <span>Tax:</span>
+                                <br/>
+                                <span> Insurance:</span>
+                                <br/>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 padleft" id="details_pad" style="padding-left: 0px;">
+                                <span>Rs {{json['Original_charge']['moving']}}</span>
+                                <br/>
+                                <span>Rs {{json['Original_charge']['packing']}}</span>
+                                <br/>
+                                <span>Rs {{json['Original_charge']['unpacking']}}</span>
+                                <br/>
+                                <span>Rs {{json['Original_charge']['loading']}}</span>
+                                <br/>
+                                <span>Rs {{json['Original_charge']['unloading']}}</span>
+                                <br/>
+                                <span><b>Rs {{json['Original_charge']['sub_total']}}</b></span>
+                                <br/>
+                                <span>Rs {{json['Original_charge']['tax']}}</span>
+                                <br/>
+                                <span>Rs {{json['Original_charge']['insurance']}}</span>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row" id="bd" style=";font-size: 12px;border-top: 1px solid #b7b7b7">
+                            <div class="col-xs-8 col-sm-8" style="">
+                                <span><b>Total Packing & Moving Charges </b></span>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 padleft" style="padding-left: 0px;">
+                                <span><b>Rs {{json['Original_charge']['total']}}</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <center>
+                        <div class="col-md-12 col-sm-12" style="">
+                            <br/>
+                            <center>
+                                <div>You have scheduled vendor-visit on <b>{{json["date"]["s_date"]}}</b></div>
+                            </center>
+                            <center>
+                                <div>You are moving on <b>{{json["date"]["m_date"]}}</b></div>
+                            </center>
+                            <center>
+                                <div ng-if="m_status < 3" style="color: red">We are processing your request. We will send you final packing and moving charges shortly.</div>
+                            </center>
+                            <div ng-if="m_status > 2" align="center" class="col-md-12" style="">
+                                <button style="background-color:#f0bb2f; padding:5px 25px; margin-top: -22vh;" class="btn btn-sm" ng-click="gottonext2(json['Original_charge']['total']);"><b>Payment</b></button>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>
+<div class="modal fade" id="conpaymodal">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        Your payment has been successful
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-click="gotolink();">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

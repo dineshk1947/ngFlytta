@@ -1,0 +1,1753 @@
+<!-- <div style="overflow: hidden;max-height: 100%;max-width: 100%">
+    <div ng-include src="'assets/tpl/home/home_property.html'"></div>
+
+</div> -->
+<style>
+.select2-container .select2-choice span{
+    margin-right:3px;
+    text-align: center;
+}
+</style>
+<div style="overflow-x: hidden;">
+<!-- <div ng-controller="MainController">
+    <div class="modal modal-fullscreen loader1" style="opacity:0.5" id="preloader">
+        <div class="ui active dimmer">
+            <div class="ui loader"></div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div ng-include src="'assets/tpl/partials/sidebar.html'"></div> -->
+<!-- <div ng-include src="'assets/tpl/partials/topnav.html'"></div> -->
+<div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+<div ng-controller="homemainController">
+    <div style="background-color:white;height: 100%;font-family: 'Montserrat'">
+        <div  style="background-color:#3f51b5; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;min-height: 100%;background-image: url('assets/img/background.webp'); background-size: cover;">
+            <center>
+                <div class="visible-lg visible-md">
+                    <h1 align="center" id="main-heading" style="margin-top:0px; margin-bottom:0px; line-height:60px; font-size:33px;">
+                        one stop relocation shop
+                    </h1>
+                </div>
+                <div class="visible-sm visible-xs">
+                    <h1 align="center" id="main-heading1" style="margin-top:0px; margin-bottom:0px; line-height:36px;  font-size:20px;">
+                        one stop relocation shop
+                    </h1>
+                </div>
+                <div class="visible-lg visible-md">
+                    <div class="row no-gutters" style="padding-top: 3vh;width: 65vw">
+                        <div class="col-md-4 col-sm-4 col-xs-4 borderite" style="border-width: 1px;color: white;height:30px;"><div class="maintabs" ng-click="selectbtn(0)" ng-class="{mainbtn: isActive(0)}"><span class="visible-lg visible-md visible-sm">House Rentals</span><span class="visible-xs">Property</span></div></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 borderite" style="border-width: 1px;color: white;height:30px;"><div class="maintabs" ng-click="selectbtn(1)" ng-class="{mainbtn: isActive(1)}"><span class="visible-lg visible-md visible-sm">Packers & Movers</span><span class="visible-xs">Movers</span></div></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 " style="border-width: 1px;color: white;height:30px;">
+                            <div class="maintabs" ng-click="selectbtn(2)" ng-class="{mainbtn: isActive(2)}"><span class="visible-lg visible-md visible-sm">Settling-in Services</span><span class="visible-xs">Settling-in</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visible-sm visible-xs">
+                    <div class="row no-gutters" style="padding-top: 3vh; width:95vw">
+                        <div class="col-md-4 col-sm-4 col-xs-4 borderite" style="border-width: 1px;color: white;height:30px;"><div class="maintabs" ng-click="selectbtn(0)" ng-class="{mainbtn1: isActive(0)}"><span class="visible-lg visible-md visible-sm">House Rentals</span><span class="visible-xs">Property</span></div></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 borderite" style="border-width: 1px;color: white;height:30px;"><div class="maintabs" ng-click="selectbtn(1)" ng-class="{mainbtn1: isActive(1)}"><span class="visible-lg visible-md visible-sm">Packers & Movers</span><span class="visible-xs">Movers</span></div></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 " style="border-width: 1px;color: white;height:30px;">
+                            <div class="maintabs" ng-click="selectbtn(2)" ng-class="{mainbtn1: isActive(2)}"><span class="visible-lg visible-md visible-sm">Settling-in Services</span><span class="visible-xs">Settling-in</span></div>
+                        </div>
+                    </div>
+                </div>
+            </center> 
+            <div class="visible-md visible-lg"> 
+                <div ng-show='house_show' class="container" style="padding-top:40px;padding-bottom: 40px;">
+                    <div class="row container" style="margin: auto;">
+                        <div class="col-md-3 col-sm-3"></div>
+                        <div class="col-md-7 col-sm-7" align="center">
+                            <div class="row">
+                                <div class="col-md-8 " style="padding-right: 0px;margin-right: -3px;">
+                                    <form id="suus">
+                                    <div class="form-group" style="width: 100%">   
+                                        <!-- <dropdown ng-model="multipleDemo.inputareas" options="onSelectCallback1" style="width: 100%;">
+                                            <dropdown-item ng-repeat="item in areas" title="item.value" value="item.value"></dropdown-item>
+                                        </dropdown> -->   
+                                        <input id="local" class="form-control" ng-model="multipleDemo.inputareas" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; padding:4% 13px; box-shadow: 0 0px #d9d9db; background-color:#fff" placeholder="Select area" type="text"></input>
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="col-md-4" align="left" style="padding-left: 1px;">
+                                    <button class="btn btn-flat btn-lg" ng-disabled="!multipleDemo.inputareas" ng-click="SearchPage()" style="background-color: #f0bb2f;height:39.41px;" id="btn-search">{{button_text}}</button>
+                                </div>
+                            </div>                          
+                        </div>
+                        <div class="col-md-2 col-sm-2"></div>
+                    </div>
+                    <div class="localities-container container" style="margin-top: 10px;">
+                        <div  align="center">
+                            <h4 style="color: white">Recommended Localities</h4>
+                            <div class="row text-center">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2 col-sm-2" ng-repeat="area in r_areas">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" name="check1" id="{{area}}" style="color: #f0bb2f" ng-model="check_area['area_'+area]" value="{{area}}" ng-click="setSelectedArea(area)"> {{area}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="multipleDemo.inputareas" class="card" style="width:95%;margin-left: 2.5%;margin-right: 2.5%;padding-top: 15px">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <h4>BHK</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk1" ng-click="filter_bhk($event, '1 BHK','bhk')" ng-disabled="d_value"> 1BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk2" ng-click="filter_bhk($event, '2 BHK','bhk')" ng-disabled="d_value"> 2BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk3" ng-click="filter_bhk($event, '3 BHK','bhk')" ng-disabled="d_value"> 3BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk4" ng-click="filter_bhk($event, '4 BHK','bhk')" ng-disabled="d_value"> 4BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-5" >
+                                                <h4>Home for</h4>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-click="filter_bhk($event, 'Family', 'rent')" ng-disabled="d_value"> Family
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-click="filter_bhk($event, 'Single (Men)', 'rent')" ng-disabled="d_value"> Bachelor
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="">                                    
+                                  <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h4>Furnished State</h4>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-click="filter_bhk($event, 'furnished','furnishing')" ng-disabled="d_value"> Furnished
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3" style="padding-right:0px;">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-click="filter_bhk($event, 's_furnished','furnishing')" ng-disabled="d_value"> Semi-Furnished
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3" style="padding-left:0px;">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-click="filter_bhk($event, 'n_furnished','furnishing')" ng-disabled="d_value"> Unfurnished
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <!--  <div class="col-md-4">
+                                            <div class="row no-gutters">
+                                                <div class="col-sm-3" >
+                                                    <h4>Range</h4>
+                                                </div>
+                                                <div class="col-sm-9">                                                
+                                                    <div class="form-group" style="padding-top: 20px;">
+                                                      <div id="range" noui-slider min="0" max="5" start="0" step="1" indicator="true"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        </div>
+                                    </div>                                  
+                                    <div class="col-md-5" style="padding:0px 30px;">
+                                        <div class="row">                                            
+                                            <div class="row no-gutters">
+                                                <div class="col-sm-3" >
+                                                    <h4>Range</h4>
+                                                </div>
+                                                <div class="col-sm-9">                                                
+                                                    <div class="form-group" style="padding-top: 20px;">
+                                                      <div id="range" bind=".radrange" onLoadCallback="passRangeHere()" noui-slider min="1" max="10" start="2" step="1" ng-model="rangeModel" ></div>                         
+                                                        <span class="help-block">
+                                                            Radius range: <span class="radrange" id="rrange">2</span> Km
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+                                     </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-2"> 
+                                        <h4>Budget</h4>
+                                    </div>
+                                    <div class="col-md-8"> 
+                                        <div class="form-group" align="none" style="padding-top: 20px;">
+                                            <div id="slider1" noui-slider min="10000" max="50000" step="1000" start="10000" range="50000" bind=".sliderval11" onLoadCallback="passValueHere()" ng-model="sliderModel"  bind-range=".sliderval22"></div>
+                                            <span class="help-block">
+                                                Amount: Rs. <span class="sliderval11" id="side1">10000</span> - Rs. <span class="sliderval22" id="side2">50000</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show='mover_show' class="movers-container container" style="padding-top:40px;padding-bottom: 40px;">
+                    <div>
+                        <center>
+                            <ul class="nav nav-tabs" align="center" style="border-radius:3px;max-width:200px;">
+                                <li id="inter" class="active"><a style="cursor: pointer;" ng-click="changeactive(); inter = true;intra = false;">Inter City</a></li>
+                                <li id="intra"><a style="cursor: pointer;" ng-click="changeactive1(); inter = false;intra = true;">Intra City</a></li>
+                            </ul>
+                        </center>
+                        <div ng-show="inter" align="center" class="row" style="margin-top: 20px;width:60%;margin-left: 20%;margin-right: 20%;">
+                            <div class="col-md-6">
+                                <div class="form-group" style="">
+                                    <dropdown ng-model="mover.city1" options="getareas11" style="width: 90%;">
+                                        <dropdown-item ng-repeat="item in cities" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="">
+                                    <dropdown ng-model="mover.city2" options="getareas21" style="width: 90%;">
+                                        <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="intra" align="center" class="row" style="margin-top: 20px;width:60%;margin-left: 20%;margin-right: 20%;">
+                            <div class="col-md-12">
+                                <center>
+                                    <div class="form-group" style="">
+                                        <center><h4 style="color:white">City</h4></center>
+                                        <center>
+                                            <div class="form-group" style="">
+                                                <dropdown ng-model="mover.city2" options="getareas21" style="width: 80%;">
+                                                    <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                                </dropdown> 
+                                            </div>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div ng-if="mover.city1 || mover.city2" class="card" id="mover-card" style="margin-top: 20px;width:60%;margin-left: 20%;margin-right: 20%;color:#f3f2f2;">
+                            <div class="card-content">
+                                <div  class="row" style="margin-left:0px;margin-right: 0px;">
+                                    <div class="col-md-6" style="padding-left:0px;">
+                                        <center><h4 style="color:black">moving from</h4></center>
+                                        <div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.ar1" options="getar11" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in mover.area1" title="item.value" value="item.value"></dropdown-item>
+                                                </dropdown> 
+                                            </div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.bhk1" options="getbhk11" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in bhks" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.lift1" options="getlift1" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in Liftstatus" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-right:0px;">
+                                        <center><h4 style="color:black">moving to</h4></center>
+                                        <div>
+                                            <div class="form-group" style="">
+                                               <dropdown ng-model="mover.ar2" options="getar21" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in mover.area2" title="item.value" value="item.value"></dropdown-item>
+                                                </dropdown> 
+                                            </div>
+                                            <div class="form-group" style="">
+                                                <dropdown ng-model="mover.bhk2" options="getbhk21" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in bhks" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                            <div class="form-group" style="">
+                                                <dropdown ng-model="mover.lift2" options="getlift2" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in Liftstatus" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <center>
+                            <button class="btn" style="background-color: #f0bb2f;margin-top:20px;color: #666" novalidate="novalidate" ng-click="goMover()">Calculate your moving cost<i class="md md-keyboard-arrow-right"></i></button>
+                        </center>
+                    </div>
+                </div>
+                <div ng-show='settlein_show' class="container" style="padding-top:40px; padding-bottom: 40px;">
+                    <div class="localities-container container" >
+                        <div  align="center">
+                            <h4 style="color: white">Select your Services</h4>
+                            <div class="row text-center visible-lg visible-md" style="margin-left: 1%">
+                                <div class="col-md-2 col-sm-2">
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" ng-change="test();" style="color: #f0bb2f" ng-model="settling.telecom"> Telecom/Internet
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" ng-change="test();" style="color: #f0bb2f" ng-model="settling.gas"> Gas/Water
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" ng-change="test();" style="color: #f0bb2f" ng-model="settling.home"> Home Services
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="card" ng-show="!settling_div" ng-if="settling.telecom || settling.gas || settling.home" style="margin-top: 20px;width:60%;margin-left: 20%;margin-right: 20%;color:#666">
+                        <div class="card-content">
+                            <center><h4 style="color:black">you can specify your requirements here</h4></center>
+                            <div class="form-group" ng-if="settling.telecom">
+                                <label for="inputLocality" class="control-label" style="color: black">Telecom/Internet Services</label>
+                                <input class="form-control vertical" placeholder="Enter your telecom requirements. For eg.,I need a new connection" style="margin-bottom: 10px;font-size: 12px;" ng-model="settle.telecom">
+                            </div>
+                            <div class="form-group" ng-if="settling.gas">
+                                <label for="inputGas" class="control-label" style="color: black">Gas/Water Services</label>
+                                <input placeholder="Enter your requirements for gas and water. For eg., I need a new gas / water connection" class="form-control vertical " style="margin-bottom: 10px;font-size: 12px;" ng-model="settle.gas">
+                            </div>
+                            <div class="form-group" ng-if="settling.home">
+                                <label for="inputHome" class="control-label" style="color: black">Home Services</label>
+                                <input class="form-control vertical" placeholder="Enter your required home services. For eg., require a plumber / electrician / etc." id="m_info_i_3" style="margin-bottom: 10px;font-size: 12px;" rows="1" ng-model="settle.home">
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="card" ng-show="settling_div" ng-if="settling.telecom || settling.gas || settling.home" style="margin-top: 20px;width:60%;margin-left: 20%;margin-right: 20%;color:#666">
+                        <!-- <div class="row"> -->
+                            <div class="card-content" style="padding-left:5%;padding-right:5%; padding-top:2%">
+
+                                <button class="btn btn-sm btn-border btn-success" ng-click="test1();"><i class="md md-keyboard-arrow-left"></i>Back</button>
+                                <center><h4 style="color:#666 ">provide your contact details</h4></center>
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="inputName" class="control-label">Name</label>
+                                    <input style="font-size: 16px" type="text" placeholder="Name" class="form-control" id="inputName" ng-model="settle.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail" class="control-label">Email</label>
+                                    <input style="font-size: 16px" type="email" placeholder="Email" class="form-control" id="inputEmail" ng-model="settle.email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone" class="control-label">Phone Number</label>
+                                    <input style="font-size: 16px" type="number" placeholder="Phone" class="form-control" id="inputPhone" min="0" ng-model="settle.phone" minlength="10" maxlength="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputCity" class="control-label">City</label>
+                                    <dropdown ng-model="settle.s_city" options="get_s_city" style="width: 100%">
+                                        <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLocality" class="control-label">Locality</label>
+                                    <dropdown ng-model="settle.s_area" options="get_s_area" style="width: 100%">
+                                        <dropdown-item ng-repeat="item in settling" title="item.value" value="item.value"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                                <div class="form-group" style="">
+                                    <label for="inputOther" class="control-label">Other service queries</label>
+                                    <textarea class="form-control vertical" placeholder="Enter any other services your required or any query" rows="1" style="" ng-model="settle.other"></textarea>
+                                </div>
+                                <center>
+                                    <div class="btn" ng-click='submit_settle()' style="background-color: #f0bb2f;">Request Services<i class="md md-keyboard-arrow-right"></i></div>
+                                </center>
+                            </div>
+                    </div>
+                    <center>
+                        <div class="btn" ng-show="!settling_div" ng-click='storeServices();' style="background-color: #f0bb2f;margin-top: 2vh">Continue<i class="md md-keyboard-arrow-right"></i></div>
+                    </center>
+                </div>
+            </div>
+            <div class="visible-xs visible-sm"> 
+                <div ng-show='house_show' class="container" style="padding-top:40px;padding-bottom: 40px;">
+                    <div class="row container" style="margin: auto;">
+                        <div class="col-sm-2 col-xs-12"></div>
+                        <div class="col-sm-8 col-xs-12"  align="center">
+                            <div class="form-group" style="width: 100%">   
+                               <!--  <dropdown ng-model="multipleDemo.inputareas" options="onSelectCallback1" style="width: 100%;">
+                                    <dropdown-item ng-repeat="item in areas" title="item.value" value="item.value"></dropdown-item>
+                                </dropdown>   -->                                   
+                                <label for="Local area"><input id="localmbl" class="form-control" ng-model="multipleDemo.inputareas" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; padding:4% 13px; box-shadow: 0 0px #d9d9db; background-color:#fff" placeholder="Select area" type="text"></input></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-12"></div>
+                    </div>
+                        <div class="col-sm-12 col-xs-12">
+                             <center><button class="btn btn-lg" ng-disabled="!multipleDemo.inputareas" ng-click="SearchPage()" style="background-color: #f0bb2f;height:39.41px; margin-bottom:15px;" id="btn-search2">{{button_text}}</button></center>
+                        </div>  
+                    <div class="localities-container container" style="margin-top: 10px;">
+                        <div  align="center">
+                            <h4 style="color: white">Recommended Localities</h4>
+                            <div class="row" align="left" style="width: 130%;padding-left:90px;">
+                                <div class="col-sm-2" ng-repeat="area in r_areas">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label style="color: white" style="padding-right: 15px">
+                                                <input type="checkbox" style="color: #f0bb2f" ng-model="check_area['area_'+area]" ng-click="setSelectedArea(area)"> {{area}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="multipleDemo.inputareas" class="card" style="width:95%;margin-left: 2.5%;margin-right: 2.5%;padding-top: 15px">
+                            <div class="card-content">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6">
+                                        <div class="row no-gutters" style="">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <h4>BHK</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk1" ng-click="filter_bhk($event, '1 BHK','bhk')" ng-disabled="d_value"> 1BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk2" ng-click="filter_bhk($event, '2 BHK','bhk')" ng-disabled="d_value"> 2BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk3" ng-click="filter_bhk($event, '3 BHK','bhk')" ng-disabled="d_value"> 3BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="mover_bhk4" ng-click="filter_bhk($event, '4 BHK','bhk')" ng-disabled="d_value"> 4BHK
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-5">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12" >
+                                                <h4>Home for</h4>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group"  style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-click="filter_bhk($event, 'Family', 'rent')" ng-disabled="d_value"> Family
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group" style="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-click="filter_bhk($event, 'Single (Men)', 'rent')" ng-disabled="d_value"> Bachelor
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="row no-gutters" style="">
+                                    <div class="col-sm-12">
+                                        <h4>Furnished State</h4>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-click="filter_bhk($event, 'furnished','furnishing')" ng-disabled="d_value"> Furnished
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-click="filter_bhk($event, 's_furnished','furnishing')" ng-disabled="d_value"> Semi-Furnished
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-click="filter_bhk($event, 'n_furnished','furnishing')" ng-disabled="d_value"> Unfurnished
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                      
+                                <div class="row no-gutters">
+                                    <div class="col-sm-2" >
+                                        <h4>Range</h4>
+                                    </div>
+                                    <div class="col-sm-6">                                                
+                                        <div class="form-group" style="padding-top: 20px;">
+                                          <div id="range" bind=".radrange" onLoadCallback="passRangeHere()" noui-slider min="1" max="10" start="2" step="1" ng-model="rangeModel" ></div>                         
+                                            <span class="help-block">
+                                                Radius range: <span class="radrange" id="rrange">2</span> Km
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters" style=""> 
+                                    <div class="col-sm-12"> 
+                                        <h4>Budget</h4>
+                                    </div>
+                                    <div class="col-sm-8"> 
+                                        <div class="form-group" align="none" style="padding-top: 2%">
+                                            <div id="slider1" noui-slider min="10000" max="50000" step="1000" start="10000" range="50000" bind=".sliderval11" onLoadCallback="passValueHere()" ng-model="sliderModel"  bind-range=".sliderval22"></div>
+                                            <span class="help-block">
+                                                Amount: Rs. <span class="sliderval11" id="side1">10000</span> - Rs. <span class="sliderval22" id="side2">50000</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show='mover_show' class="movers-container container" style="padding-top:40px;padding-left: 12px;padding-right: 12px;padding-bottom: 40px;">
+                    <div>
+                        <center>
+                            <ul class="nav nav-tabs" align="center" style="border-radius:3px;max-width:200px;">
+                                <li id="inter" class="active"><a style="cursor: pointer;" ng-click="changeactive(); inter = true; intra = false;">Inter City</a></li>
+                                <li id="intra"><a style="cursor: pointer;" ng-click="changeactive1(); inter = false;intra = true;">Intra City</a></li>
+                            </ul>
+                        </center>
+                        <div ng-show="inter" class="row" style="margin-top: 20px;width:96%;margin-left:2%;margin-right:2%;">
+                            <div class="col-md-6" align="center">
+                                <div class="form-group" style="">
+                                    <dropdown ng-model="mover.city1" options="getareas11" style="width: 80%;">
+                                        <dropdown-item ng-repeat="item in cities" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                            </div>
+                            <div class="col-md-6" align="center">
+                                <div class="form-group" style="">
+                                    <dropdown ng-model="mover.city2" options="getareas21" style="width: 80%;">
+                                        <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="intra" class="row" style="margin-top: 20px;width:96%;margin-left:2%;margin-right:2%;">
+                            <div class="col-md-12">
+                                <center>
+                                    <div class="form-group" style="">
+                                        <center><h4 style="color:white">City</h4></center>
+                                        <center>
+                                            <div class="form-group" style="">
+                                                <dropdown ng-model="mover.city2" options="getareas21" style="width: 100%;">
+                                                    <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                                </dropdown> 
+                                            </div>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div ng-if="mover.city1 || mover.city2" class="card" id="mover-card" style="margin-top: 20px;width:96%;margin-left:2%;margin-right:2%;color:#f3f2f2">
+                            <div class="card-content">
+                                <div class="row" style="margin-left:0px;margin-bottom:0px;margin-right: 0px;">
+                                    <div class="col-md-6" style="">
+                                        <center><h4 style="color:black">moving from</h4></center>
+                                        <div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.ar1" options="getar11" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in mover.area1" title="item.value" value="item.value"></dropdown-item>
+                                                </dropdown> 
+                                            </div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.bhk1" options="getbhk11" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in bhks" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.lift1" options="getlift1" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in Liftstatus" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <center><h4 style="color:black">moving to</h4></center>
+                                        <div>
+                                            <div class="form-group">
+                                               <dropdown ng-model="mover.ar2" options="getar21" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in mover.area2" title="item.value" value="item.value"></dropdown-item>
+                                                </dropdown> 
+                                            </div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.bhk2" options="getbhk21" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in bhks" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                            <div class="form-group">
+                                                <dropdown ng-model="mover.lift2" options="getlift2" style="width: 100%">
+                                                    <dropdown-item ng-repeat="item in Liftstatus" title="item" value="item"></dropdown-item>
+                                                </dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <center>
+                            <button class="btn" style="background-color: #f0bb2f;margin-top:20px;color: #666" novalidate="novalidate" ng-click="goMover()">Calculate your moving cost<i class="md md-keyboard-arrow-right"></i></button>
+                        </center>
+                    </div>
+                </div>
+                <div ng-show='settlein_show' class="container" style="padding-top:40px; padding-bottom: 40px;">
+                    <div class="localities-container container">
+                        <div>
+                            <h4 style="color: white" align="center">Select your Services</h4>
+                            <div class="row" style="margin-left:10vw">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" ng-change="test();" style="color: #f0bb2f" ng-model="settling.telecom"> Telecom/Internet
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" ng-change="test();" style="color: #f0bb2f" ng-model="settling.gas"> Gas/Water
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <div class="checkbox" >
+                                            <label style="color: white">
+                                                <input type="checkbox" ng-change="test();" style="color: #f0bb2f" ng-model="settling.home"> Home Services
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="card" ng-show="!settling_div" ng-if="settling.telecom || settling.gas || settling.home" style="margin-top: 20px;width:100%;color:#666">
+                        <div class="card-content">
+                            <center><h4 style="color: black">you can specify your requirements here</h4></center>
+                            <div class="form-group" ng-if="settling.telecom">
+                                <label for="inputLocality" class="control-label" style="color: black">Telecom/Internet Services</label>
+                                <input class="form-control vertical" placeholder="Enter your telecom requirements. For eg.,I need a new connection" style="margin-bottom: 10px;" ng-model="settle.telecom">
+                            </div>
+                            <div class="form-group" ng-if="settling.gas">
+                                <label for="inputGas" class="control-label" style="color: black">Gas/Water Services</label>
+                                <input placeholder="Enter your requirements for gas and water. For eg., I need a new gas / water connection" class="form-control vertical " style="margin-bottom: 10px;" ng-model="settle.gas">
+                            </div>
+                            <div class="form-group" ng-if="settling.home">
+                                <label for="inputHome" class="control-label" style="color: black">Home Services</label>
+                                <input class="form-control vertical" placeholder="Enter your required home services. For eg., require a plumber / electrician / etc." id="m_info_i_3" style="margin-bottom: 10px;" rows="1" ng-model="settle.home">
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="card" ng-show="settling_div" ng-if="settling.telecom || settling.gas || settling.home" style="margin-top: 20px;width:100%;color:#666">
+                            <div class="card-content" style="padding-left:5%;padding-right:5%; padding-top:2%">
+
+                                <button class="btn btn-sm btn-border btn-success" ng-click="test1()"><i class="md md-keyboard-arrow-left"></i>Back</button>
+                                <center><h4 style="color:#666 ">provide your contact details</h4></center>
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="inputName" class="control-label">Name</label>
+                                    <input style="font-size: 16px" type="text" placeholder="Name" class="form-control" id="inputName" ng-model="settle.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail" class="control-label">Email</label>
+                                    <input style="font-size: 16px" type="email" placeholder="Email" class="form-control" id="inputEmail" ng-model="settle.email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone" class="control-label">Phone Number</label>
+                                    <input style="font-size: 16px" type="number" placeholder="Phone" class="form-control" id="inputPhone" min="0" ng-model="settle.phone" minlength="10" maxlength="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputCity" class="control-label">City</label>
+                                    <dropdown ng-model="settle.s_city" options="get_s_city" style="width: 100%">
+                                        <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLocality" class="control-label">Locality</label>
+                                    <dropdown ng-model="settle.s_area" options="get_s_area" style="width: 100%">
+                                        <dropdown-item ng-repeat="item in settling" title="item.value" value="item.value"></dropdown-item>
+                                    </dropdown> 
+                                </div>
+                                <div class="form-group" style="">
+                                    <label for="inputOther" class="control-label">Other service queries</label>
+                                    <textarea class="form-control vertical" placeholder="Enter any other services your required or any query" rows="1" style="" ng-model="settle.other"></textarea>
+                                </div>
+                                <center>
+                                    <div class="btn" ng-click='submit_settle()' style="background-color: #f0bb2f;">Request Services<i class="md md-keyboard-arrow-right"></i></div>
+                                </center>
+                            </div>
+                    </div>
+                    <center>
+                        <div class="btn" ng-show="!settling_div" ng-click='storeServices();' style="background-color: #f0bb2f;margin-top: 2vh">Continue<i class="md md-keyboard-arrow-right"></i></div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="how" ng-show="house_show" style="background-color: #fff;height: 100%">
+        <div class="card" style="width:90%;margin-left: 5%;margin-right: 5%;min-height: 250px;font-weight:200;font-family: 'Montserrat'">
+            <div class="card-content"> 
+                   <center> <h2>HOUSE RENTALS</h2> </center>
+                <div class="row" style="margin-left: 5%; width: 90%;">
+                    <center><h4 style="text-transform: none !important;"><p>Discover your dream house at your preferred location with Flytta.</p></h4></center>
+                </div>
+                <br/>
+                <div class="row">
+                    <center>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Choose a property" title="Choose a property" data-pico="assets/img/houserentals/map.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Choose a property</h3>
+                              <p>Search, select and add properties to your wishlist</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Schedule a visit" title="Schedule a visit" data-pico="assets/img/houserentals/schedule_visit.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Schedule a visit</h3>
+                              <p>Flytta Relocation Manager will assist with the visit</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Confirm and move" title="Confirm and move" data-pico="assets/img/houserentals/confirmnmove1.png" data-webp="true" data-prefix="custom-prefix-2x" >
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Confirm & move</h3>
+                              <p>After confirming the property, pay, sign the document and move in.</p>
+                            </div>
+                          </div>
+                      </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="how" ng-show="mover_show" style="background-color: #fff;height: 100%">
+        <div class="card z-depth-1" style="width:90%;margin-left: 5%;margin-right: 5%;min-height: 250px;font-weight:200;font-family: 'Montserrat'">
+            <div class="card-content"> 
+                   <center> <h2>PACKERS AND MOVERS</h2> </center>
+                <div class="row" style="margin-left: 10%; width: 80%;">
+                    <center><h4 style="text-transform: none !important;"><p>Pick your best quote and start transit with Flytta.</p></h4></center>
+                </div>
+                <br/>
+                <div class="row">
+                    <center>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Get an instant quote" title="Get an instant quote" data-pico="assets/img/packers&movers/quotation.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Get an instant quote</h3>
+                              <p>Give current & destination details and get an appropriate moving cost.</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="List your items" title="List your items" data-pico="assets/img/packers&movers/list_items.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">List your items</h3>
+                              <p>Provide the details of items to move or request us a visit to list it for you.</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Confirm and move" title="Confirm and move" data-pico="assets/img/packers&movers/move.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Confirm & move</h3>
+                              <p>After confirming the charges, complete the payment and move.</p>
+                            </div>
+                          </div>
+                      </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="how" ng-show="settlein_show" style="background-color: #fff;min-height: 300px;height: 100%">
+        <div class="card z-depth-1" style="width:90%;margin-left: 5%;margin-right: 5%;min-height: 250px;font-weight:200;font-family: 'Montserrat'">
+            <div class="card-content"> 
+                   <center> <h2>SETTLING-IN SERVICES</h2> </center>
+                <div class="row" style="margin-left: 10%; width: 80%;">
+                    <center><h4 style="text-transform: none !important;"><p>Get assistance for home services like gas connection, telecom etc. with Flytta.</p></h4></center>
+                </div>
+                <br/>
+                <div class="row">
+                    <center>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Share your requirements" title="Share your requirements" data-pico="assets/img/settlingservices/services.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Share your requirements</h3>
+                              <p>Mention details of the required services.</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Talk to Flytta expert" title="Talk to Flytta expert" data-pico="assets/img/settlingservices/communicate.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Talk to Flytta expert</h3>
+                              <p>Receive a call from our expert and schedule.</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                          <div class="card" style="box-shadow:none !important;">
+                            <div class="card-image" style="max-width: 200px;max-height: 200px;">
+                              <img alt="Settle hassle free" title="Settle hassle free" data-pico="assets/img/settlingservices/hasslefree.png" data-webp="true" data-prefix="custom-prefix-2x">
+                            </div>
+                            <div class="card-content">
+                              <h3 class="card-title" style="line-height:23px; color:#666;">Settle hassle free</h3>
+                              <p>Get your service fixed.</p>
+                            </div>
+                          </div>
+                      </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:none;background-color: #f6f6f6;padding-top: 10px;padding-bottom: 10px;">
+    <div align="center" style="font-family: 'Montserrat-Light';color:#666666; padding-bottom: 5px;">
+        <h1 id="featured_service_text_header">Popular Communities</h1>
+    </div>
+    <br/>
+    <div class="owl-carousel" style="height: 300px;">
+        <div>
+            <div class="post-prev-img ">
+                <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                    <img class="owl-lazy" style="width: 30vw;height: 300px;" src="/assets/img/index/compresses/back-featured.png">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="post-prev-img ">
+                <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                    <img class="owl-lazy" style="width: 30vw;height: 300px;" src="/assets/img/index/compresses/back-featured.png">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="post-prev-img ">
+                <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                    <img class="owl-lazy" style="width: 30vw;height: 300px;" src="/assets/img/index/compresses/back-featured.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-controller="homemainController" style="padding-top: 10px;padding-bottom: 10px;font-family: 'Montserrat';" class="queries container">
+    <form name="query" novalidate ng-submit="query.$valid && query.submit()">
+        <!-- <div align="center" id="how_it_works_text" style="font-family: 'Montserrat';color:#666666;">
+          Drop Your Queries
+        </div> -->
+        <center><h2>DROP YOUR QUERIES</h2></center>
+        <div class="card visible-md visible-lg" style="width:60%;margin-left: 20%;margin-right: 20%;">
+            <div class="card-content">  
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input type="text" class="form-control" ng-model="name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input type="email" class="form-control" ng-model="mail" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="form-group">
+                            <label class="control-label">Phone No</label>
+                            <input type="number" class="form-control" min="0" ng-model="phone" minlength="10" maxlength="10" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="form-group" style="">
+                            <label for="textArea" class="control-label">Your Query</label>
+                            <input class="form-control vertical " ng-model="message" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 2vh">
+                        <center>
+                            <div class="form-group">
+                                <button type="submit" ng-disabled="query.$invalid" ng-click="onSubmit()" class="btn btn-default11">Submit</button>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card visible-xs visible-sm" style="width:80%;margin-left: 10%;margin-right: 10%;">
+            <div class="card-content">  
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input type="text" class="form-control" ng-model="name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input type="email" class="form-control" ng-model="mail" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="form-group">
+                            <label class="control-label">Phone No</label>
+                            <input type="number" min="0" class="form-control" ng-model="phone" minlength="10" maxlength="10" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="form-group" style="">
+                            <label for="textArea" class="control-label">Your Query</label>
+                            <input class="form-control vertical " ng-model="message" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 2vh">
+                        <center>
+                            <div class="form-group">
+                                <button type="submit" ng-disabled="query.$invalid" ng-click="onSubmit()" class="btn btn-default11">Submit</button>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- <div style="background-color: #E5E5E5;padding-top: 10px;padding-bottom: 10px;display: none;">
+    <center><h2>TESTIMONIALS</h2></center>
+    <div class="owl-carousel1" style="height: 300px;">
+        <div>
+            <div class="post-prev-img ">
+                <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                    <img class="owl-lazy" style="width: 80vw;height: 300px;" src="/assets/img/index/compresses/back-featured.png">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="post-prev-img ">
+                <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                    <img class="owl-lazy" style="width: 80vw;height: 300px;" src="/assets/img/index/compresses/back-featured.png">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="post-prev-img ">
+                <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                    <img class="owl-lazy" style="width: 80vw;height: 300px;" src="/assets/img/index/compresses/back-featured.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div style="background-color: #2d2d2d;margin-top: -12px;" class="visible-md visible-lg">
+<div class="seenon" align="center" style="min-height: 140px;background-color: #1b1b1b">
+    <h4 align="center" id="as_seen_on_text" class="as_seen_on_texts"><b>Featured On</b></h4>
+    <div class="row">
+        <div class="owl-carousel" style="height: 60px;padding-right: 30px">
+            <div>
+                <div class="post-prev-img">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://www.thehindu.com/todays-paper/tp-features/tp-downtown/article8773766.ece" rel="noopener" target="_blank"><img stylee= alt="The Hindu" title="The Hindu" src="assets/img/other_logo/hindi_w.png"  style="width:75%"></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://www.newindianexpress.com/education/edex/Flytta-Helps-You-Move-On/2016/03/28/article3345874.ece" rel="noopener" target="_blank"><img alt="New Indian Express" title="New Indian Express" src="assets/img/other_logo/indianexpress_w.png" ></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://www.thehighereducationreview.com/news/chennai-city-was-marooned-battered-and-ravaged-by-the-floods-nid-281.html" rel="noopener" target="_blank"><img alt="The higher education review" title="The higher education review" src="assets/img/other_logo/higheducation_w.png"  style="width:75%"></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://www.thehindu.com/todays-paper/tp-features/tp-educationplus/migrate-with-ease/article8292976.ece" rel="noopener" target="_blank"><img alt="The Hindu" title="The Hindu" src="assets/img/other_logo/eduplus_w.png" ></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="https://indianceo.in/startup/goflytta-movers-packers/" rel="noopener" target="_blank"><img alt="Indian CEO" title="Indian CEO" src="assets/img/other_logo/indianceo_w.png"  style="width:75%"></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://startuphyderabad.com/flytta-one-stop-relocation-shop/" rel="noopener" target="_blank"><img alt="Startup Hyderabad" title="Startup Hyderabad" src="assets/img/other_logo/Startup-Hyd-w.png"  style="width:75%"></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://www.thenewsminute.com/article/if-you-are-looking-relocate-startup-promises-sort-it-all-out-you-59903" rel="noopener" target="_blank"><img alt="The news minute" title="The news minute" alt="The news minute" src="assets/img/other_logo/thenewminute_w.png" ></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="post-prev-img ">
+                    <div class="lightbox-gallery-2 mfp-image" style="position:relative;">
+                        <a style="" href="http://hyderabad.techstartup.in/feature/flytta-of-relocation-on-earth-and-mars/" rel="noopener" target="_blank"><img alt="Hyderabad tech startup" title="Hyderabad tech startup" src="assets/img/other_logo/startuphyd_w.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div style="background-color: #2d2d2d;margin-top: -12px;" class="visible-md visible-lg">
+<div class="seenon" style="height: 615px;background-color: #1b1b1b">
+<h4 align="center" style="padding-top:0px;" id="as_seen_on_text1"  class="as_seen_on_texts"><b>House Rentals</b></h4>
+<div class="col-md-12" style="margin-bottom:20px; margin-left:20px;">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Gachibowli-Hyderabad/2BHK-3BHK-4BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ387edqKTyzsR4kSTb57nEiw">Flat for rent in Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Gachibowli-Hyderabad/3BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ387edqKTyzsR4kSTb57nEiw">3 BHK flat for rent in Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Gachibowli-Hyderabad/2BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ387edqKTyzsR4kSTb57nEiw">2 BHK flat for rent in Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Gachibowli-Hyderabad/2BHK-3BHK-4BHK/30000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ387edqKTyzsR4kSTb57nEiw">Luxurious flat for rent in Gachibowli</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Madhapur-Hyderabad/2BHK-3BHK-4BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJBbIB8liRyzsRG0GSd77nuxE">Flat for rent in Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Madhapur-Hyderabad/3BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJBbIB8liRyzsRG0GSd77nuxE">3 BHK flat for rent in Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Madhapur-Hyderabad/2BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJBbIB8liRyzsRG0GSd77nuxE">2 BHK flat for rent in Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Madhapur-Hyderabad/2BHK-3BHK-4BHK/30000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJBbIB8liRyzsRG0GSd77nuxE">Luxurious flat for rent in Madhapur</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Kondapur-Hyderabad/2BHK-3BHK-4BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJa6NJKMmTyzsR-hJVkDTADd4">Flat for rent in Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Kondapur-Hyderabad/3BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJa6NJKMmTyzsR-hJVkDTADd4">3 BHK flat for rent in Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Kondapur-Hyderabad/2BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJa6NJKMmTyzsR-hJVkDTADd4">2 BHK flat for rent in Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Kondapur-Hyderabad/2BHK-3BHK-4BHK/30000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJa6NJKMmTyzsR-hJVkDTADd4">Luxurious flat for rent in Kondapur</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Manikonda-Hyderabad/2BHK-3BHK-4BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ97MvUyKUyzsR8SouPdD6k8c">Flat for rent in Manikonda</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Manikonda-Hyderabad/3BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ97MvUyKUyzsR8SouPdD6k8c">3 BHK flat for rent in Manikonda</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Manikonda-Hyderabad/2BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ97MvUyKUyzsR8SouPdD6k8c">2 BHK flat for rent in Manikonda</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Manikonda-Hyderabad/2BHK-3BHK-4BHK/30000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJ97MvUyKUyzsR8SouPdD6k8c">Luxurious flat for rent in Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Nanakram%20Guda-Hyderabad/2BHK-3BHK-4BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJxXCMj3iUyzsRGa6DB3_yb6s">Flat for rent in Nanakramguda</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Nanakram%20Guda-Hyderabad/3BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJxXCMj3iUyzsRGa6DB3_yb6s">3 BHK flat for rent in Nanakramguda</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Nanakram%20Guda-Hyderabad/2BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJxXCMj3iUyzsRGa6DB3_yb6s">2 BHK flat for rent in Nanakramguda</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/5-Nanakram%20Guda-Hyderabad/2BHK-3BHK-4BHK/30000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJxXCMj3iUyzsRGa6DB3_yb6s">Luxurious flat for rent in Nanakramguda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/2-Begumpet-Hyderabad/2BHK-3BHK-4BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJT4Uo7aOQyzsRjBsvjJNLCCA">Flat for rent in Begumpet</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/2-Begumpet-Hyderabad/3BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJT4Uo7aOQyzsRjBsvjJNLCCA">3 BHK flat for rent in Begumpet</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/2-Begumpet-Hyderabad/2BHK/18000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJT4Uo7aOQyzsRjBsvjJNLCCA">2 BHK flat for rent in Begumpet</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="/property/search/2-Begumpet-Hyderabad/2BHK-3BHK-4BHK/30000-50000/Furnished-SemiFurnished-NotFurnished/Family-Bachelor/ChIJT4Uo7aOQyzsRjBsvjJNLCCA">Luxurious flat for rent in Begumpet</a>
+        </div>
+    </div>
+</div>
+<h4 align="center" id="as_seen_on_text2" class="as_seen_on_texts"><b>Packers and Movers</b></h4>
+<div class="col-md-12" ng-controller="homemainController" style="margin-bottom:20px;  margin-left:20px;">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('ban','hyd')" href="">Bangalore to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('pun','hyd')" href="">Pune to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','ban')" href="">Hyderabad to Bangalore</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','pun')" href="">Hyderabad to Pune</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('che','hyd')" href="">Chennai to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('del','hyd')" href="">Delhi to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','che')" href="">Hyderabad to Chennai</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','del')" href="">Hyderabad to Delhi</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('vis','hyd')" href="">Vishakapatnaam to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('kol','hyd')" href="">Kolkata to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','vis')" href="">Hyderabad to Vishakapatnaam</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','kol')" href="">Hyderabad to Kolkata</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('com','hyd')" href="">Coimbatore to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('vij','hyd')" href="">Vijayawada to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','com')" ref="">Hyderabad to Coimbatore</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','vij')" href="">Hyderabad to Vijayawada</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('mum','hyd')" href="">Mumbai to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('ahm','hyd')" href="">Ahmedabad to Hyderabad</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','mum')" href="">Hyderabad to Mumbai</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" ng-click="gotopackers('hyd','ahm')" href="">Hyderabad to Ahmedabad</a>
+        </div>
+    </div>
+</div>
+<h4 align="center" id="as_seen_on_text3"  class="as_seen_on_texts"><b>Settling-In Services</b></h4>
+<div class="col-md-12" style="margin-left:20px;">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Telecom Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Telecom Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Telecom Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Telecom Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Internet Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Internet Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Internet Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Internet Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Gas Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Gas Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Gas Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Gas Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Water Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Water Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Water Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Water Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Home Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Home Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Home Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Home Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Plumber Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Plumber Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Plumber Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Plumber Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Electrician Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Electrician Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Electrician Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Electrician Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Painting Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Painting Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Painting Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Painting Services Manikonda</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="seotitles" href="">Carpentry Services Gachibowli</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Carpentry Services Madhapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Carpentry Services Kondapur</a>
+        </div>
+        <div class="col-md-3">
+            <a class="seotitles" href="">Carpentry Services Manikonda</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div ng-include src="'assets/tpl/home/main_footer.html'"></div>
+<div ng-controller="homemainController">
+<div class="modal" id="return_user" align="center">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container" style="">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span id="notification1"></span>
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal" ng-click="newSearch()">Cancel</button>
+                            <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" ng-click="previousSearch();">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal fade" id="return_user1">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        You have already paid the relocation assistance charge for the selected properties. Click OK to complete the confirmation process.
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" ng-click="status5();">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="modal fade" id="return_user2" align="center">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                       <span id="notification2"></span>
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" ng-click="status6();">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="successquery">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        Your query has been submitted successfully
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="modal fade" id="myModalSubmit" role="dialog">
+    <div class="modal-dialog modal-lg" style="margin-top: 40vh;padding-top: 15px;">
+        <div class="modal-content">
+          <div class="modal-body">
+          <p style="text-align: center;font-size: 18px;">We have got your requirements. Our executive will contact you soon.</p>
+          </div>
+        <div class="modal-footer">
+          <center>
+          <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<style type="text/css">
+.pac-item{
+    font-family:'Montserrat',serif !important;
+    font-weight: 400 !important;
+    color: rgb(102, 102, 102) !important;
+    line-height: 30px !important;
+}
+
+.pac-item-query{
+    font-family:'Montserrat',serif !important;
+    font-size: 13px;
+}
+
+.pac-item:hover{
+    background-color: #eeeeee !important;
+    transition: background 0.15s linear;
+}
+
+.pac-container{
+    color: rgb(102, 102, 102) !important;
+    background-color: #fafafa;
+    border-bottom-right-radius: 5px;  
+    border-bottom-left-radius: 5px;
+}
+.pac-item{
+    font-family:'Montserrat',serif !important;
+    font-weight: 400 !important;
+    color: rgb(102, 102, 102) !important;
+    line-height: 30px !important;
+}
+
+.pac-item-query{
+    font-family:'Montserrat',serif !important;
+    font-size: 13px;
+}
+
+.pac-item:hover{
+    background-color: #eeeeee !important;
+    transition: background 0.15s linear;
+}
+
+.pac-container{
+    color: rgb(102, 102, 102) !important;
+    background-color: #fafafa;
+    border-bottom-right-radius: 5px;  
+    border-bottom-left-radius: 5px;
+}
+textarea {
+  min-height: 120px;
+}
+.as_seen_on_texts {
+    /* Base text style */
+    /*width: 70px;*/
+    /*height: 9px;*/
+    color: #fff;
+    font-family: Montserrat;
+   /* font-size: 13px;*/
+    font-weight: 300;/*
+    text-transform: uppercase;*/
+    padding-top: 25px;
+}
+
+#how_it_works_text {
+    /* Base text style */
+    height: 10%;
+    color: #020202;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#main-heading{
+    height: 10%;
+    color: white;
+    padding-top: 6vh;
+    font-family: 'Montserrat';
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#main-heading1{
+    height: 10%;
+    color: white;
+    padding-top: 6vh;
+    font-family: 'Montserrat';
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+.how_it_works_text_in {
+    /* Base text style */
+    padding-top: 22px;
+    color: #020202;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 4px;
+    padding-bottom: 30px;
+}
+
+#recommended_title_text {
+    height: 10%;
+    color: #020202;
+    font-family: Montserrat;
+    font-size: 33px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.owl-lazy {
+    margin: 0 auto;
+}
+
+.owl-carousel .owl-prev,
+.owl-carousel .owl-next {
+    position: absolute;
+    top: 15%;
+}
+
+.owl-carousel .owl-prev {
+    left: 5%;
+    cursor: pointer;
+}
+
+.owl-carousel .owl-next {
+    right: 5%;
+    cursor: pointer;
+}
+
+.light-background > .form-group > .checkbox > label {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+/*.queries{
+    background-color: #F0BB2F;
+}
+.queries:after{
+    height:50%;
+}*/
+.queries{
+    position:relative;
+    z-index:1;
+  /*  width:200px;*/
+    height:580px;
+  /*  margin:50px auto;*/
+   /* border:4px solid rgb(50,50,50);  */
+}
+
+.queries:before{
+    position:absolute;
+    z-index:-1;
+    top:0;
+    left:0;
+    right:0;
+    width:100%;
+    height:100%;
+    content:"";
+    background-color:#F0BB2F; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;
+    background-image: url("assets/img/querygrey.webp");
+    background-size: cover; 
+
+}
+.how{
+    position:relative;
+    z-index:1;
+  /*  width:200px;*/
+    height:580px;
+  /*  margin:50px auto;*/
+   /* border:4px solid rgb(50,50,50);  */
+}
+
+.how:before{
+    position:absolute;
+    z-index:-1;
+    top:0;
+    left:0;
+    width:100%;
+    height:50%;
+    content:"";
+    background-color:#3f54ae;
+}
+
+.select-top.select2-container {
+    background-image: none !important;
+}
+.seenon> * > .owl-prev{
+    display: none;
+}
+.carousel-item {
+  margin-left: 10px;
+}
+</style>
+<script type="text/javascript">
+// var one = $(".owl-carousel");
+// var two = $(".owl-carousel1");
+// one.owlCarousel({
+//     items: 5,
+//     loop: true,
+//     lazyLoad: true,
+//     margin: 10,
+//     nav: true,
+//     center: true,
+//     responsiveClass: true,
+//     navText: ['', ''],
+//     autoWidth: true
+// });
+$(".owl-carousel").owlCarousel({
+    items: 4,
+    loop: true,
+    lazyLoad: true,
+    margin: 20,
+    center: true,
+    responsiveClass: true,
+    navText: ['', ''],
+    autoWidth: true
+});
+$(".owl-prev").html('<img src="/assets/img/index/compresses/left_arrow.png">');
+$(".owl-next").html('<img src="/assets/img/index/compresses/right_arrow.png">');
+</script>

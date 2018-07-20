@@ -1,0 +1,116 @@
+<div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+<h1 style="text-align: center"> Query</h1>
+<div class="main-container" ng-controller="myCtrl">
+    <div class="col-sm-2">
+        <div class="search">
+            <span class="fa fa-search"></span>
+            <input type="search" ng-model="searchQuery" class="form-control" placeholder="Search data" autofocus/>
+        </div>
+    </div>
+    <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+        <section class="tables-data">
+            <div class="page-header">
+            </div>
+            <div class="card">
+                <div>
+                    <div class="datatables">
+                        <table class="table table-full table-full-small" cellspacing="0"
+                               width="100%;">
+                            <thead>
+                            <tr>
+                                <th><strong>Serial No.</strong></th>
+                               <!-- <th><strong>ID</strong></th>-->
+                                <th><strong>Name</strong></th>
+                                <th><strong>Email</strong></th>
+                                <th><strong>Phone</strong></th>
+                                <th><strong>Query</strong></th>
+                                <th><strong>Date Time</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="query in queries | filter:searchQuery | startFrom:currentPage*pageSize | limitTo:pageSize track by $index">
+                                <td>{{$index+1}}.</td>
+
+                               <!-- <td>{{query._id}}</td>-->
+
+                                <td>{{query.name}}</td>
+
+                                <td>{{query.email}}</td>
+
+                                <td>{{query.phone}}</td>
+
+                                <td>{{query.m_info}}</td>
+                                <td>{{query.datetime}}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                         <div class="p-20">
+                             <ul class="pager ng-cloak">
+                                 <li>
+                                     <button type="button" class="btn btn-default pull-left ng-scope"ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">« Previous</button>
+                                     <button type="button"  class="btn btn-default pull-right" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">Next &raquo;</button>
+                                 </li>
+                             </ul>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<style>
+    .glyphicon-spin-jcs {
+        -webkit-animation: spin 1000ms infinite linear;
+        animation: spin 1000ms infinite linear;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    .table-full tbody > tr > td {
+        border: 0.001px solid gainsboro;
+    }
+
+    /*search icon start*/
+    .search {
+        position: relative;
+    }
+
+    .search input {
+        text-indent: 30px;
+    }
+
+    .search .fa-search {
+        position: absolute;
+        top: 12px;
+        font-size: 15px;
+    }
+
+    @media (min-width: 768px){
+        .col-sm-2 {
+            float: inherit;
+        }
+    }
+    /*search icon end*/
+</style>
+

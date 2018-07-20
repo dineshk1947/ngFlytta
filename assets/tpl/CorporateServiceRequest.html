@@ -1,0 +1,537 @@
+<div style="" ng-controller="corporateCtrl" style="overflow-x: hidden;">
+    <div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12" style="">
+        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2" style="">
+            <form class="form-floating" name="req_query" novalidate ng-submit="submit()">
+                <h1 style="font-family:montserrat; color:#666; text-align:center;font-size:24px;">CORPORATE SERVICE
+                    REQUEST FORM</h1>
+                <div class="form-group">
+                    <label class="">Name</label>
+                    <input type="text" style="font-size:13px;" placeholder="Your name" ng-model="rr_name"
+                           class="form-control" required></div>
+                <div class="form-group">
+                    <label class="">Email</label>
+                    <input type="email" class="form-control" ng-model="rr_mail" style="font-size:13px;"
+                           placeholder="Your email" required data-error="This field is required"></div>
+                <div class="form-group">
+                    <label class="">Phone Number</label>
+                    <input type="number" class="form-control" ng-model="rr_contact" style="font-size:13px;"
+                           placeholder="Your phone number" ng-pattern="/[0-9]/" min="0" required
+                           data-error="This field is required" ng-minlength="10" ng-maxlength="10"></div>
+                <div class="form-group">
+                    <label class="">Company Name</label>
+                    <input type="text" style="font-size:13px;" placeholder="Your name" ng-model="rr_cname"
+                           class="form-control" required></div>
+                <div class="form-group">
+                <div class="form-group">
+                    <label class="">Budget </label>
+                    <input type="number" class="form-control" ng-model="budgetModel" style="font-size:13px;"
+                           placeholder="Enter your budget" min="10000" ng-pattern="/[0-9]/" required
+                           data-error="This field is required">
+                </div>
+                <div class="form-group">
+                    <label class="">Date of Occupancy </label>
+                    <input type="text" ng-change="reqdate()" style="font-size:13px;" ng-model="rrdate['req_date']"
+                           class="form-control" placeholder="You relocation date" data-min-date="{{tomorrow}}"
+                           data-autoclose="1" bs-datepicker required>
+                </div>
+                <div class="row" style="padding-top: 13px ;overflow: hidden;">
+                    <div style="margin-bottom: 25px" id="tabs-container">Property required for</div>
+                     <ul class="tabs-menu visible-mobile" style="margin-bottom: 22px;">
+                         <div class="col-xs-6">
+                             <a class="btn btn-default btn-xs" ng-click="plugAndPlayFun();" href="#tab-1">Plug & play</a>
+                         </div>
+                         <div class="col-xs-6">
+                             <a class="btn btn-default btn-xs"  ng-click="resFun();" href="#tab-2">Residential Property for Commercials</a>
+                         </div>
+
+                         <div class="col-xs-6">
+                             <a class="btn btn-default btn-xs"  ng-click="bareShellFun();" href="#tab-3">Bare Shell</a>
+                         </div>
+                         <div class="col-xs-6">
+                             <a class="btn btn-default btn-xs" ng-click="othersFun();" href="#tab-4">Others</a>
+                         </div>
+                     </ul>
+                      <div class="visible-mobile">
+                          <div id="tab-1" class="tab-content tab">
+                              <div>PLUG & PLAY</div>
+                              <div class="form-group">
+                                  <div class=""> No.of Seats</div>
+                                  <input type="number" class="form-control" ng-model="noofSheetsModel" placeholder="Enter the number of seats" style="font-size:13px;" min="0" required data-error="This field is required">
+                              </div>
+                              <div>Conference Room</div>
+                              <div class="form-group">
+                                  <div class="checkbox">
+                                      <label style="color: #666;font-size: 12px;font-weight: 400; padding-right: 25px">
+                                          <input type="checkbox" ng-model="chekOption" ng-change="confYes(chekOption);" ng-true-value="1">Yes</label><label style="color: #666;font-size: 12px;font-weight: 400;">
+                                          <input type="checkbox" ng-model="chekOption" ng-change="confNo(chekOption);" ng-true-value="2">No</label>
+                                  </div>
+                              </div>
+                              <div>Other</div>
+                              <div class="form-group">
+                                  <input type="text" class="form-control" ng-model="pugAndPlayOtherModel" placeholder="Enter other requirements" style="font-size:13px">
+                              </div>
+                          </div>
+                          <div id="tab-2" class="tab-content tab">
+                              <div class="row">
+                                  <div style="margin-top: -10px; font-size: 12px;">RESIDENTIAL PROPERTY FOR COMMERCIAL USE</div><br>
+                                  <div class="checkbox">
+                                      <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                         <input type="checkbox" ng-model="independent" ng-change="independentChek(independent)" style="margin-left:-32px; margin-top: -2px">
+                                        Independent
+                                          House</label>
+                                      <div class="checkbox">
+                                         
+                                          <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                          <input type="checkbox" ng-model="check_1" ng-change="chek1(check_1)" style="margin-left: -32px;margin-top: -2px;">
+                                            1BHK</label>
+                                      </div>
+                                      <div class="checkbox">
+                                          <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                        <input type="checkbox" ng-model="chek_2" ng-change="check2(chek_2)" style="margin-left: -32px;margin-top: -2px;">
+                                            2BHK</label>
+                                      </div>
+                                      <div class="checkbox">
+                                          <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                      <input type="checkbox" ng-model="chek_3" ng-change="check3(chek_3)" style="margin-left: -32px;margin-top: -2px;">
+                                            3BHK</label>
+                                      </div>
+                                      <div class="checkbox">
+                                          <label style="height: 13px;color:#666;font-size: 12px;font-weight: 400;line-height: 18px;">
+
+                                       <input type="checkbox" ng-model="chek_4" ng-change="check4(chek_4)" style="margin-left: -32px;margin-top: -2px;">
+                                            4BHK</label>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="form-group" style="">
+                                  <div class="">Other</div>
+                                  <input type="text" class="form-control" ng-model="resOtherModele"  placeholder="Enter other requirements"
+                                         style="font-size:13px;">
+                              </div>
+
+                          </div>
+                          <div id="tab-3" class="tab-content tab">
+                              <div >BARE SHELL</div>
+                              <div class="form-group">Area(in Sq. Feet) </div>
+                              <input type="number" class="form-control" ng-model="areaModel1" min="0" placeholder="Enter the area in Sq.Feet" style="font-size:13px;" required data-error="This field is required">
+                              <div class="form-group" style="">
+                                  <div class="">Other</div>
+                                  <input type="text" class="form-control" ng-model="barShellModel" placeholder="Enter other requirements"
+                                         style="font-size:13px;">
+                              </div>
+                          </div>
+                          <div id="tab-4" class="tab-content tab">
+                              <label class="">Other </label>
+                              <input type="text" class="form-control" ng-model="othModel" placeholder="Enter other requirements" style="font-size:13px;" required data-error="This field is required">
+                          </div>
+                      </div>
+
+                    <ul class="tabs-menu visible-dextop">
+                        <a class="btn btn-default" ng-click="plugAndPlayFun();" href="#tab_1">Plug Play</a>
+                        <a class="btn btn-default" ng-click="resFun();" href="#tab_2">Residential Property for Commercials</a>
+                        <a class="btn btn-default" ng-click="bareShellFun();"href="#tab_3">Bare Shell</a>
+                        <a class="btn btn-default" ng-click="othersFun();" href="#tab_4">Others</a>
+                    </ul>
+                    <div class="visible-dextop">
+                        <div id="tab_1" class="tab-content tab" ng-show="plugDataShow">
+                            <div>PLUG & PLAY</div>
+                            <div class="form-group">
+                                <div class=""> No.of Seats</div>
+                                <input type="number" class="form-control" ng-model="noofSheetsModel"
+                                       placeholder="Enter the number of seats" style="font-size:13px;" min="0" required
+                                       data-error="This field is required">
+                            </div>
+                            <div>Conference Room</div>
+                            <div class="form-group">
+                                <div class="col-md-1"><input type="checkbox" ng-model="chekOption" ng-change="confYes(chekOption);" ng-true-value="1"
+                                                             style="margin-left: -21px;margin-top: -2px;"></div>
+                                <div class="col-md-3" style="left: -18px;"><label
+                                        style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">Yes</label>
+                                </div>
+                                <div class="col-md-1"><input type="checkbox" ng-model="chekOption" ng-change="confNo(chekOption);" ng-true-value="2"
+                                                             style="margin-left: -21px;margin-top: -2px;"></div>
+                                <div class="col-md-3" style="left: -18px;"><label
+                                        style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">No</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="padding-top: 30px;">Other</div>
+                            <div class="form-group" style="">
+                                <input type="text" class="form-control" ng-model="pugAndPlayOtherModel"
+                                       placeholder="Enter other requirements" style="font-size:13px;">
+                            </div>
+                        </div>
+                        <div id="tab_2" class="tab-content tab">
+                            <div class="row">
+                                <div style="margin-top: -10px;">RESIDENTIAL PROPERTY FOR COMMERCIAL USE</div>
+                                <br>
+                                <div class="col-md-1">
+                                    <input type="checkbox" ng-model="independent" ng-change="independentChek(independent)"
+                                           style="margin-left: -21px;margin-top: -2px;">
+                                </div>
+                                <div class="col-md-3" style="margin-left: -27px;">
+                                    <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">Independent
+                                        House</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="checkbox" ng-model="check_1" ng-change="chek1(check_1)"
+                                           style="margin-left: -21px;margin-top: -2px;">
+                                </div>
+
+                                <div class="col-md-3" style="margin-left: -27px;">
+                                    <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">1BHK</label>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <input type="checkbox" ng-model="chek_2" ng-change="check2(chek_2)"
+                                           style="margin-left: -21px;margin-top: -2px;">
+                                </div>
+                                <div class="col-md-3" style="margin-left: -27px;">
+                                    <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">2BHK</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="checkbox" ng-model="chek_3" ng-change="check3(chek_3)" style="margin-left: -21px;margin-top: -2px;">
+                                </div>
+                                <div class="col-md-3" style="margin-left: -27px;">
+                                    <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">3BHK</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="checkbox" ng-model="chek_4" ng-change="check4(chek_4)" style="margin-left: -21px;margin-top: -2px;">
+                                </div>
+                                <div class="col-md-3" style="margin-left: -27px;">
+                                    <label style="height: 13px;color:#666;font-size: 12px;font-weight: 400;line-height: 18px;">4BHK</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="">
+                                <div class="">Other</div>
+                                <input type="text" class="form-control" ng-model="resOtherModele"  placeholder="Enter other requirements"
+                                       style="font-size:13px;">
+                            </div>
+
+                        </div>
+                        <div id="tab_3" class="tab-content tab">
+                            <div>BARE SHELL</div>
+                            <div class="form-group">Area(in Sq. Feet)</div>
+                            <input type="number" class="form-control" ng-model="areaModel1" min="0"
+                                   placeholder="Enter the area in Sq.Feet" style="font-size:13px;" required
+                                   data-error="This field is required">
+                            <div class="form-group" style="">
+                                <div class="">Other</div>
+                                <input type="text" class="form-control" ng-model="barShellModel" placeholder="Enter other requirements"
+                                       style="font-size:13px;">
+                            </div>
+                        </div>
+                        <div id="tab_4" class="tab-content tab">
+                            <label class="">Other </label>
+                            <input type="text" class="form-control" ng-model="othModel"
+                                   placeholder="Enter other requirements" style="font-size:13px;" required
+                                   data-error="This field is required">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>LOCALITIES</div><p>&nbsp;</p>
+                    <div>Localities</div>
+                    <div class="row">
+                        <div class="col-md-3 xs-12">
+                            <div class="checkbox">
+                                <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                    <input type="checkbox" ng-model="locModel"  ng-true-value="1" ng-change=" madCheck(locModel);" style="margin-top: -2px;">Madhapur</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 xs-12">
+                            <div class="checkbox">
+                                <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                    <input type="checkbox" ng-model="locModel"  ng-true-value="2" ng-change=" kondCheck(locModel);" style="margin-top: -2px;">Kondapur</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 xs-12">
+                            <div class="checkbox">
+                                <label style="height: 13px;color: #666;font-size: 12px;font-weight: 400;line-height: 18px;">
+                                    <input type="checkbox" ng-model="locModel" ng-true-value="3" ng-change="gachCheck(locModel);" style="margin-top: -2px;">Gachibowli</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 xs-12">
+                            <div class="checkbox">
+                                <label style="height: 13px;color: #666; font-size: 12px;font-weight: 400;line-height: 18px;">
+                                    <input type="checkbox" ng-model="locModel" ng-true-value="4" ng-change="kphbCheck(locModel);" style="margin-top: -2px;">KPHB</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="">
+                    <div class="">Sub localities</div>
+                    <input type="text" class="form-control" ng-model="subLocal" placeholder="Enter sub-localities"
+                           style="font-size:13px;" required data-error="This field is required">
+                </div>
+                <div class="form-group" style="">
+                    <div class="">Other</div>
+                    <input type="text" class="form-control" ng-model="otherModel" placeholder="Enter other descriptions"
+                           style="font-size:13px;">
+                </div>
+                <div class="form-group" style="">
+                    <div>NUMBER OF PARKING</div>
+                    <div class="">4 Wheeler</div>
+                    <input type="number" class="form-control" min="0" ng-model="Wheel4"
+                           placeholder="Enter the number of 4 Wheeler parking" style="font-size:13px;" required
+                           data-error="This field is required">
+                </div>
+                <div class="form-group" style="">
+                    <label class="">2 Wheeler</label>
+                    <input type="number" class="form-control" min="0" ng-model="Wheel2"
+                           placeholder="Enter the number of 2 Wheeler parking" style="font-size:13px;" required
+                           data-error="This field is required">
+                </div>
+                <div class="form-group">
+                    <label class="">Any Queries</label>
+                    <textarea style="font-size:13px;" class="form-control" placeholder="If you have any queries..."
+                              ng-model="request_query"></textarea>
+                </div>
+                <div class="">
+                    <span style="font-size: 20px;"><u>Terms of Service</u></span><br/>
+                    1.) We assist you with houses as per the standard housing assistance policy.<br/>
+                    2.) For the First three house visits, you are required to pay an amount of Rs.200/- and schedule the
+                    house visit.<br/>
+                    3.) The information about the ho33%uses you will choose will be shared at least one day before the
+                    visit.<br/>
+                    4.) Beyond three house visits, If you intend to see three more properties, you might have to book
+                    the premium slot of Rs.500 (Subject to the availability of the relocation manager).<br/>
+                    5.) Once you have chosen to rent a particular house, you will have to pay a service charge of 50% of
+                    the monthly rental value of the particular house.<br/>
+                    6.) The amount paid for the house visits (Rs.200/-) will be adjusted in the final bill.<br/>
+                </div>
+                <center>
+                    <div class="form-group" style="margin-bottom:75px;">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button type="submit" ng-click="req_relocation();" class="btn btn-primary"
+                                style="background-color:#f6ca21;">Submit
+                        </button>
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" id="req_rel">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content container">
+                <div class="modal-body" style="font-size: 15px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            Confirm Request ?
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" style="background-color:#f6ca21;"
+                                        ng-click="req_start()">OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="successreqquery">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content container">
+                <div class="modal-body" style="font-size: 15px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            You have successfully submitted your requirements<br/>
+                            We will contact you soon. Thank you!
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" style="background-color:#f6ca21;"
+                                        ng-click="redirect_home()">OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        #666;
+    </div>
+    <div class="modal fade" id="error_request" role="dialog">
+        <div class="modal-dialog" style="margin-top: 7vh;max-width:90%;">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #f0bb2f;">
+                    <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Please enter valid input for below fields</h3>
+                    <span id="error_data">
+                </span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="background-color:#fdd206; color:#666;" class="btn btn-default"
+                            data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".tabs-menu a").click(function (event) {
+            event.preventDefault();
+            $(this).parent().addClass("current");
+            $(this).parent().siblings().removeClass("current");
+            var tab = $(this).attr("href");
+            $(".tab-content").not(tab).css("display", "none");
+            $(tab).fadeIn();
+        });
+    });
+</script>
+<style>
+    .pac-item {
+        font-family: 'Montserrat', serif !important;
+        font-weight: 400 !important;
+        color: rgb(102, 102, 102) !important;
+        line-height: 30px !important;
+    }
+
+    .pac-item-query {
+        font-family: 'Montserrat', serif !important;
+        font-size: 13px;
+    }
+
+    .pac-item:hover {
+        background-color: #eeeeee !important;
+        transition: background 0.15s linear;
+    }
+
+    .pac-container {
+        color: rgb(102, 102, 102) !important;
+        background-color: #fafafa;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .row {
+        margin-left: inherit;
+    }
+
+    @media (min-width: 992px) {
+        .col-md-3 {
+            width: inherit;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-md-1 {
+            width: inherit;
+        }
+    }
+
+    h5 {
+        color: #666;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    .tabs-menu {
+        height: 30px;
+        float: left;
+        clear: both;
+        margin-left: -40px;
+    }
+     .theme-pink a {
+        color: #666;
+    }
+
+    .tabs-menu li {
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        background-color: #ccc;
+        border-top: 1px solid #d4d4d1;
+        border-right: 1px solid #d4d4d1;
+        border-left: 1px solid #d4d4d1;
+    }
+
+    .tabs-menu li.current {
+        position: relative;
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+        z-index: 5;
+    }
+
+    .tabs-menu li a {
+        padding: 10px;
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .tabs-menu .current a {
+        color: #2e7da3;
+    }
+
+    .tab {
+        border: 1px solid #d4d4d1;
+        background-color: #fff;
+        float: left;
+        margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, .15);
+        width: 100%;
+    }
+
+    .tab-content {
+        padding: 20px;
+        display: none;
+    }
+
+    #tab_1 {
+        display: block;
+    }
+
+    ul {
+
+        list-style-type: none;
+    }
+
+    /*for dextop views*/
+    @media only screen and (max-width: 1200px), only screen and (max-device-width: 1500px) {
+        .visible-mobile {
+            display: none !important;
+        }
+        .visible-dextop {
+            display: block !important;
+        }
+    }
+
+    /*for mobile views*/
+    @media only screen and (max-width: 780px), only screen and (max-device-width: 780px) {
+        .visible-mobile {
+            display: block !important;
+        }
+
+        .visible-dextop {
+            display: none !important;
+        }
+
+        a.btn.btn-default.btn-xs {
+            font-size: 53%;
+            padding: 3px 6px;
+        }
+        .tab {
+            width: 95%;
+        }
+
+        .col-xs-6 {
+            width: 34%;
+            padding-left: 0px;
+        }
+
+       /* .visible-mobile {
+            padding-right: 33px;
+            padding-left: 26px;
+            padding-bottom: 40px;
+        }*/
+    }
+</style>

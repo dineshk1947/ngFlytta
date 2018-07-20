@@ -1,0 +1,523 @@
+<div class="row">
+    <div class="col-md-4">
+        <span class="form-group">
+            <span>NAME:&nbsp;&nbsp;</span>
+                <input type="text" id="inputName" placeholder="Name"
+                       style="font-size: 12px ;color: #666; ;font-weight: 100px" ng-model="myName" required>
+        </span><br>
+        <span class="form-group">
+            <span>PHONE:&nbsp;&nbsp;</span>
+            <input type="number" id="inputNumber" placeholder="Phone Number"
+                   style="font-size: 12px ;color: #666;font-weight: 100px" ng-model="myNumber" required>
+        </span><br>
+        <span class="form-group">
+            <span>EMAIL:&nbsp;&nbsp;</span>
+            <input type="email" id="inputEmail" placeholder="Email"searchText
+                   style="font-size: 12px ;color: #666;;font-weight: 100px" ng-model="myEmail " required>
+        </span><br>
+        <span class="form-group">
+            <span>ADDRESS:&nbsp;&nbsp;</span>
+            <input type="text" id="inputAddress" placeholder="Address"
+                   style="font-size: 12px ;color: #666;font-weight: 100px" ng-model="myAddress" required>
+        </span>
+    </div>
+
+    <div class="col-md-3 col-md-offset-5">
+        <span class="form-group">
+            <span>Added On:&nbsp;&nbsp;</span>
+                <input type="text" placeholder="Date"
+                       style="font-size: 12px ;color: #666; ;font-weight: 100px" required ng-model="inputDate">
+        </span><br>
+        <span class="form-group">
+            <span>Added By:&nbsp;&nbsp;</span>
+                <input type="text" placeholder="Email"
+                       style="font-size: 12px ;color: #666; ;font-weight: 100px" required ng-model="addEmail">
+        </span>
+    </div>
+
+</div>
+<div align="center"
+     style="text-transform:uppercase;font-size:25px">
+    Property Details
+</div>
+<div class="row" ng-controller="myCtrl">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <span>Available From:</span>
+            </div>
+            <div class="col-md-9">
+                <input type="text" style="font-size:13px;" required ng-model="dateModel" placeholder="select your date"
+                       bs-datepicker required>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Vendor:</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getVendors" required ng-model="vendorsModel">
+                    <dropdown-item ng-repeat="x in vendors" value="x" title="x"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Property:</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getProperty" required ng-model="propertyModel">
+                    <dropdown-item ng-repeat="x in propty" value="x" title="x"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Propery Type:</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getProptyType" required ng-model="propertyTypeModel">
+                    <dropdown-item ng-repeat="y in proptyType" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Willing To Rent To:</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getWillings" required ng-model = "willingsModel">
+                    <dropdown-item ng-repeat="y in willingToRent" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Preferred Agreement Type:</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getPrefered" required ng-model="preferedModel">
+                    <dropdown-item ng-repeat="y in preferedAgreementType" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>City:</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getCity" ng-model="cityModel">
+                    <dropdown-item ng-repeat="y in cityData" value="y.cvalue" title="y.cname"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Area</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getAreaOptions" required ng-model="areaModel">
+                    <dropdown-item ng-repeat="y in areaData track by $index" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Project Name</span>
+            </div>
+            <div class="col-md-9">
+                <input type="text" style="font-size:13px;" name="Project" placeholder="Project Name" required
+                       ng-model="projectModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Configuration</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getConfigurations" required ng-model="configurationModel">
+                    <dropdown-item ng-repeat="y in configrations" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Built up Area</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getBuiltIn" required ng-model="biiltinModel">
+                    <dropdown-item ng-repeat="y in builtInArea" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Availability</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getReadyToMove" required ng-model="availabilityModel">
+                    <dropdown-item ng-repeat="y in availability" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Age</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getAge" required ng-model="ageModel">
+                    <dropdown-item ng-repeat="y in age" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Facing</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getFacing" required ng-model="facingModel">
+                    <dropdown-item ng-repeat="y in facing" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Ownership</span>searchText
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getOwnership" required ng-model="ownershipModel">
+                    <dropdown-item ng-repeat="y in ownership" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Community</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getGated" required ng-model="gatedModel">
+                    <dropdown-item ng-repeat="y in gated" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Reserved Parking</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getReserveParking" required ng-model="resevervedParkingModel">
+                    <dropdown-item ng-repeat="y in reservedParkings" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <div>Fixed Furniture&nbsp;:</div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="checkbox " style="margin-top: 40px;">
+                            <input type="checkbox" required ng-model="fur_kitchen">
+                            <label style="height: 13px;color: #090909;font-size: 12px;font-weight: 400;line-height: 18px;">Modular
+                                Kitchen </label>
+                            <p>&nbsp;</p>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-top: 40px;">
+                            <input type="checkbox" required ng-model="fur_ward">
+                            <label style="height: 10px;color: #090909;font-size: 12px;font-weight: 400;line-height: 18px;">Wardrobe</label>
+                            <p>&nbsp;</p>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-top: 40px">
+                            <input type="checkbox" required ng-model="fur_others">
+                            <label style="height: 10px;color: #090909;font-size: 12px;font-weight: 400;line-height: 18px;">Others </label>
+                            <p>&nbsp;</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-md-offset-1">
+                <span>Power Backup</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getPowerBackup" required ng-model="backupModel">
+                    <dropdown-item ng-repeat="y in powerBackup" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Total Area</span>
+            </div>
+            <div class="col-md-9">
+                <dropdown options="getTotalArea" required ng-model="totalAreaModel">
+                    <dropdown-item ng-repeat="y in totalArea" value="y" title="y"></dropdown-item>
+                </dropdown>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Bedrooms</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="bedroom" value="0" placeholder="0" required ng-model="bedroomsModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Bathrooms</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="bathroom" value="0" placeholder="0" required
+                       ng-model="bathRoomsgModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Balconies</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" placeholder="0" required ng-model="balconyModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Security Deposit</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="advance" placeholder="Advance" style="font-size: 13px" required
+                       ng-model="securityModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Maintenance</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" placeholder="Maintenance Charge" style="font-size: 13px" id="maintenance"
+                       required ng-model="maintancenceModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Furnishing State&nbsp;:</span>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="checkbox " style="margin-top: 40px;">
+                            <input type="checkbox" required ng-model="furMolel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Furnished </label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-top: 40px;">
+                            <input type="checkbox" required ng-model="semiModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Semi Furnished</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-top: 40px">
+                            <input type="checkbox" required model="nonFurModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Not Frunished </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Ac</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="ac" value="0" placeholder="0" required ng-model="acModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Geyser</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="geyser" value="0" placeholder="0" required ng-model="gyserModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>TV</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="tv" value="0" placeholder="0" required ng-model="tvModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Stove</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="stove" placeholder="0" required ng-model="stoveModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Washing Machine</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="washing" value="0" placeholder="0" required ng-model="washingModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Purifier</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="purifier" value="0" placeholder="0" required ng-model="purifierModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Microwave</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="curtain" value="0" placeholder="0" required ng-model="microwaveModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Curtains</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="curtain" value="0" placeholder="0" required ng-model="curtainsModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Chimney</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="chimney" placeholder="0" required ng-model="chimneyModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Sofa</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="sofa" value="0" placeholder="0" required ng-model="sofaModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Dinetable</span>
+            </div>
+            <div class="col-md-9">
+                <input type="number" min="0" id="sofa" value="0" placeholder="0" required ng-model="dineModel">
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Other Rooms&nbsp;:</span>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="checkbox " style="margin-top: 40px;">
+                            <input type="checkbox" model="poojaModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Poojaroom </label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-top: 40px;">
+                            <input type="checkbox" model="studyModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Studyroom</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-top: 40px">
+                            <input type="checkbox" model="serventModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Servant
+                                    Quarters </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-md-offset-1">
+                <span>Amenities &nbsp;:</span>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="checkbox " style="margin-bottom: -10px;;">
+                            <input type="checkbox" model="gymModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Gym </label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox " style="margin-bottom: -10px;;">
+                            <input type="checkbox" model="eleModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Elevator </label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="parkModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Parking
+                                    </label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="checkbox " style="margin-bottom: -10px;">
+                            <input type="checkbox" model="atmModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Atm </label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="maintainModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Maintainance</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="playModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Play Ground</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="powerModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Power Backup</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="secyModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Security</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="interComModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Intercom</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="SumModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Summing Pool</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="interModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Internet</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="clubModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Club</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="acModel1">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Ac</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="waterSorageModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Water Storage</label>
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                       <span class="checkbox" style="margin-bottom: -10px;">
+                            <input type="checkbox" model="otherModel">
+                            <label style="color: #090909;font-size: 12px;font-weight: 400;">Others</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Other Information</span>
+            </div>
+            <div class="col-md-9">
+                <div class="ui input" align="center">
+                    <textarea rows="2" type="text"  style="width: 40vw" required
+                              ng-model="otherInfoModel"></textarea>
+                </div>
+
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Address</span>
+            </div>
+            <div class="col-md-9">
+                <textarea rows="2" type="text" placeholder="Address" required
+                          ng-model="addressModel"></textarea>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+                <span>Add approx. Address</span>
+            </div>
+            <div class="col-md-9">
+                <textarea rows="2" type="text" placeholder="Edit Address" required
+                          ng-model="addAproxModel"></textarea>
+            </div>
+            <center>
+                <button class="btn btn-default" ng-click="confirumVerification();">Confirm-Verfication<div class="ripple-wrapper"></div></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-default" ng-click="editInfo();">Edit-Info<div class="ripple-wrapper"></div></button>
+            </center>&nbsp;&nbsp;
+            &nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style="height:350px;">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom">
+                <ui-gmap-markers models="markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+            </ui-gmap-google-map>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .col-md-9 {
+        padding-bottom: 28px;
+    }
+
+</style>
+
+

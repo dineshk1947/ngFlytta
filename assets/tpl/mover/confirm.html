@@ -1,0 +1,287 @@
+<div style="overflow: hidden; height: 100vh; max-width: 100%;background-color: #3f51b5" ng-controller="moverController">
+    <div ng-include src="'assets/tpl/search_header_mover.html'"></div>
+    <div class="container confirmitemdiv" style="height: 90vh;width: 100%;">
+        <div class="" style="background-color: #3f51b5;margin-top: 30px;overflow-y:auto;">
+            <div class="">
+                <div class="row totawidthmover" style="" style="overflow-y:auto;">
+             <center><h3 ng-if="m_status > 2" style="color:#fff; background-color:#3f51b5; margin-top:0px; margin-bottom:10px; margin-left: -16px;">Complete Your Payment</h3></center>
+                    <div class="col-md-4 col-sm-4 col-xs-12" style="">
+                        <div class="card" style="margin-top: 20px;padding: 30px; padding-top:15px; height:300px">    
+                            <div style="margin-top: 5px;margin-bottom: 20px;">
+                                <center><h3 style="margin-top: 10px; text-transform:uppercase;  margin-bottom: 15px; font-size:15px"><b>Origin Details</b></h3> </center>
+                                <span class="f-13"> <b>City:</b> {{json['Current_place']['curr_city']}}</span> <br/>
+                                <span class="f-13"> <b>Area:</b> {{json['Current_place']['curr_area']}}</span> <br/>
+                                <span class="f-13"> <b>BHK:</b> {{json['Current_place']['BHK']}}</span> <br/>
+                                <span class="f-13"> <b>Lift:</b> {{json['Current_place']['Lift']}}</span> <br/>
+                                <span class="f-13"> <b>Origin Address:</b><br /> {{json['Current_place']['addr']}}</span>
+                            </div>                         
+                            <div ng-if="item_status == 1 && m_status > 2">
+                                <center><button id="" style="background-color:#f0bb2f;" class="btn btn-sm" ng-click="viewitems();">View Selected Items</button></center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="card" style="margin-top: 20px;padding: 30px; padding-top:15px; height:300px">    
+                            <div style="margin-top: 5px;margin-bottom: 20px;">
+                                <center><h3 style="margin-top: 10px; text-transform:uppercase; margin-bottom: 15px; font-size: 15px"><b>Destination Details</b></h3></center>
+                                <span > <b>City:</b> {{json['Destination_place']['dest_city']}}</span> <br/>
+                                <span > <b>Area:</b> {{json['Destination_place']['dest_area']}}</span> <br/>
+                                <span > <b>BHK:</b> {{json['Destination_place']['BHK']}}</span> <br/>
+                                <span > <b>Lift:</b> {{json['Destination_place']['Lift']}}</span> <br/>
+                                <span ><b>Destination Address:</b><br /> {{json['Destination_place']['addr']}}</span>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div ng-if="m_status < 3">
+                            <div class="card" style="margin-top: 20px;padding: 30px; padding-top:15px; height:300px">    
+                                <div style="font-size: 12px;margin-top: 5px;margin-bottom: 20px;">
+                                <center><h3 style="margin-top: 10px; text-transform:uppercase;  margin-bottom: 5px; font-size: 15px"><b>Estimated charges</b></h3></center>
+                                <center style="margin-top: 5px;font-size: 22px"> <span>Rs. </span><span style="border-bottom:  1px solid black; font-weight:500;">{{json['Estimated_charge']['sub_total']}}</span>&nbsp;</center>
+                                </div> 
+                                <div style="font-size: 13px;margin-top: 5px;">
+                                    <center style="margin-top: 25px;">
+                                         <div>You are moving on <b>{{json["date"]["m_date"]}}</b></div>
+                                    </center>
+                                    <div ng-if="item_status == 0">
+                                        <center>
+                                            <div>You have scheduled vendor-visit on <b>{{json["date"]["s_date"]}}</b></div>
+                                        </center>
+                                    </div>
+                                </div> 
+                                <div ng-if="item_status == 1">
+
+                                    <center><button id="viewitemcompleted" style="background-color:#f0bb2f;" class="btn btn-sm" ng-click="viewitems();">View Selected Items</button></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div ng-if="m_status > 2">                                
+                            <div class="card pmcharge" style="margin-top: 20px;padding-top:15px; padding-bottom: 10px; height:300px">   
+                                <center><h3 style="margin-top: 10px; text-transform:uppercase; margin-bottom: 15px; font-size: 15px"><b>Packing & Moving Charges</b></h3></center>
+                                <div class="pkchrgover" style="">
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> Moving Charges:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['moving']}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> Packing Charges:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['packing']}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> Unpacking Charges:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['unpacking']}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> Loading Charges:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['loading']}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> Unloading Charges:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['unloading']}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> <b>Sub Total: </b></span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span><b>Rs {{json['Original_charge']['sub_total']}}</b></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span>Tax:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['tax']}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="font-size: 12px">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span> Insurance:</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span>Rs {{json['Original_charge']['insurance']}}</span>
+                                        </div>
+                                    </div>
+                                    <div style="border-top: 1px solid #b7b7b7"></div>
+                                    <div class="row" id="bd" style=";font-size: 12px;">
+                                        <div class="col-xs-6 col-sm-6" style="padding-right: 0px;">
+                                            <span><b>Total Packing & Moving Charges </b></span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 ">
+                                            <span><b>Rs {{json['Original_charge']['total']}}</b></span>
+                                        </div>  
+                                    </div>   
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <center>
+                <div class="col-md-12 col-sm-12" style="margin-top:35px;padding-bottom: 20px;">
+                    <div ng-if="m_status < 3" class="card totawidthmover cardres" style=""> 
+                        <center>
+                            <div  style="color: red">You will receive the final quotation post the inspection of items</div>
+                        </center>
+                        <br/>
+                      
+                        <br/>
+                    </div>
+                    <div ng-if="m_status > 2" align="center" class="col-md-12" style="">
+                            <center style="margin-top:-35px;">      
+                                <div ng-show="couapld"  class="form-group" style="display:inline-block">
+                                  <input type="text" style="font-size:13px; color:#fff" placeholder="Coupon code" 
+                                  ng-model="couponcode"  class="form-control" required> 
+                                </div>
+                                <button ng-show="couapld" style="background-color:#f0bb2f;" ng-click="couponapplyMv(json['Original_charge']['total'], couponcode)" class="btn btn-default">Apply Coupon</button>
+                                <button ng-show="!couapld" style="background-color:#f0bb2f;" ng-click="" class="btn btn-default" ng-disabled="!couapld">Coupon Applied</button>
+                              <div ng-show="couponapplied" style="color:#fff; margin-top:10px;">{{Mvdescription}}<br />Amount to be paid: <del style="opacity:0.6">Rs. {{json['Original_charge']['total']}}</del> Rs. {{mvamount}}</div>
+                              <div ng-show="couponnotvalid" style="color:#fff">Coupon is invalid</div>
+                            </center>
+                        <button style="background-color:#f0bb2f; padding:5px 25px;  margin-top:15px; margin-bottom:60px;" class="btn btn-sm" ng-click="gottonext2(json['Original_charge']['total']);">Payment</button>
+                    </div>
+                </div>
+            </center>            
+        </div>
+    </div>
+    <div class="modal fade" id="Modal_list">
+        <div class="modal-dialog modal-md" role="document">
+            <div id="heightmodalcompleted" class="modal-content" style="overflow-y:auto;">
+                <div class="modal-header" style="background-color:#f0bb2f;">
+                   <center>
+                    <h4 class="modal-title"><b>Selected Items</b></h4>
+                    </center>
+                    <i class="md-close pull-right" data-dismiss="modal"  style="margin-top: -24px;cursor:pointer;"></i>
+                </div>
+                <div class="modal-body" style="font-size: 15px;margin-left: 15px; margin-right: 15px;">
+                         <div class="row" style="background-color:#bababa;">
+                            <center><div class="col-md-6 col-sm-6 col-xs-6">
+                                 <b>Item name</b>
+                            </div></center>
+                          <center>  <div id="dismodal" class="col-md-3 col-sm-3 col-xs-3 visible-lg visible-md visible-sm">
+                                 <b>Dismantlable</b>
+                            </div><div id="dismodal" class="col-md-3 col-sm-3 col-xs-3 visible-xs">
+                                 <b>Dism</b>
+                            </div></center>
+                          <center>   <div class="col-md-3 col-sm-3 col-xs-3 visible-lg visible-md visible-sm">
+                                 <b>Quantity</b>
+                            </div> <div class="col-md-3 col-sm-3 col-xs-3 visible-xs">
+                                 <b>Qty</b>
+                            </div></center>
+                        </div>
+             
+                </div>
+                <div ng-repeat="sitem in s_items" class="modal-body" style="padding-top:0px; font-size: 15px;;margin-left: 15px; margin-right: 15px;">
+                    <div class="row" style="border-bottom:1px solid #cccdce">
+                       <center>  <div class="col-md-6 col-sm-6 col-xs-6">
+                            {{sitem['Item']}}
+                        </div></center>
+                      <center><div class="col-md-3 col-sm-3 col-xs-3">
+                            {{sitem['Dismantlable']}}
+                        </div></center>
+                     <center><div class="col-md-3 col-sm-3 col-xs-3">
+                             {{sitem['Quantity']}}
+                        </div></center>
+                    </div> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="margin-bottom: 25px; background-color:#f0bb2f; color:#666" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+<div class="modal fade" id="conpaymodal">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        Your payment has been successful
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-click="gotolink();">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="pricemodal" role="dialog">
+     <div class="modal-dialog modal-md" style="margin-top: 10vh;">
+        <div  class="modal-content" style="padding-left: 15px;padding-right: 15px;padding-top: 10px;padding-bottom: 10px;">
+           <div class="container">
+              <div class="row">
+                 <div class="row" >
+                    <div class="modal-header rowidth" style="background-color:#f0bb2f;margin-top:-2vh;margin-bottom:3vh" id="">
+                        <i class="md-close pull-right" data-dismiss="modal"  style="cursor: pointer;"></i> 
+                       <center> <h3 style="margin-top: 15px; text-transform:uppercase; margin-bottom: 15px; font-size: 17px"><b>Packing & Moving Charges</b></h3></center>                           
+                    </div>
+                 </div>
+                 <div class="row rowidth" style="font-size: 12px" >
+                    <div class="col-xs-1 col-md-1 col-sm-1"></div>
+                    <div class="col-xs-5 col-md-5 col-sm-5 modalpad2" >
+                       <span> Moving Charges:</span> <br/>
+                       <span> Packing Charges:</span> <br/>
+                       <span> Unpacking Charges:</span> <br/> 
+                       <span> Loading Charges:</span> <br/>
+                       <span> Unloading Charges:</span> <br/>
+                       <span> <b>Sub Total: </b></span><br/>
+                       <span>Tax:</span> <br/> 
+                       <span> Insurance:</span> <br/>
+                    </div>
+                    <div class="col-xs-1 col-md-1 col-sm-1"></div>           
+                    <div class="col-xs-5 col-md-5 col-sm-5 modalpad ">
+                       <span>Rs {{json['Estimated_charge']['moving']}}</span> <br/>
+                       <span>Rs {{json['Estimated_charge']['packing']}}</span> <br/> 
+                       <span>Rs {{json['Estimated_charge']['unpacking']}}</span> <br/>
+                       <span>Rs {{json['Estimated_charge']['loading']}}</span> <br/>
+                       <span>Rs {{json['Estimated_charge']['unloading']}}</span> <br/>
+                       <span><b>Rs {{json['Estimated_charge']['sub_total']}}</b></span> <br/>
+                       <span>Rs {{json['Estimated_charge']['tax']}}</span> <br/>
+                       <span>Rs {{json['Estimated_charge']['insurance']}}</span> <br/>
+                    </div>
+                 </div>
+                 <div id="rowidth" style=";border-top: 1px solid #bbb;margin-left:4%;margin-right:5%"></div>
+                 <div class="row rowidth"  style="font-size: 12px">
+                    <div class="col-xs-1 col-md-1 col-sm-1"></div> 
+                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5 modalpad2" style="">
+                       <span ><b>Total Packing & Moving Charges: </b></span> 
+                    </div>
+                    <div class="col-xs-1 col-md-1 col-sm-1"></div> 
+                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5 modalpad" style="">
+                       <span ><b>Rs {{json['Estimated_charge']['total']}}</b></span>
+                    </div>
+                 </div>
+                 <div id="rowidth">
+                    <center><button class="btn" data-dismiss="modal" style="margin-top: 15px">Close</button>
+                    </center>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+</div>

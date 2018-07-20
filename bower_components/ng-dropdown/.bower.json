@@ -1,0 +1,45 @@
+{
+  "name": "ng-dropdown",
+  "version": "1.0.4",
+  "keywords": [
+    "semantic-ui",
+    "dropdown",
+    "sugestion"
+  ],
+  "main": [
+    "dist/ngDropdown.js"
+  ],
+  "ignore": [
+    "bower_components",
+    "node_modules",
+    "spec",
+    "src",
+    "vendor",
+    "Gruntfile.js",
+    "karma.conf.coffee",
+    "package.json",
+    "screenshot.png"
+  ],
+  "authors": [
+    {
+      "name": "Miller Augusto S. Martins",
+      "email": "miller.augusto@gmail.com",
+      "homepage": "http://br.linkedin.com/pub/miller-augusto/2a/38b/832/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:miamarti/Semantic-UI.ngDropdown.git"
+  },
+  "homepage": "https://github.com/miamarti/Semantic-UI.ngDropdown",
+  "_release": "1.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.4",
+    "commit": "4dd52990fa1294aaae0f37a9c0bd6dbf0fa42f76"
+  },
+  "_source": "https://github.com/miamarti/Semantic-UI.ngDropdown.git",
+  "_target": "^1.0.4",
+  "_originalSource": "semanticUI.ngDropdown",
+  "_direct": true
+}

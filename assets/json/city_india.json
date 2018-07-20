@@ -1,0 +1,134 @@
+[
+  {
+    "cname": "Hyderabad",
+    "cvalue": "hyd"
+  },
+  {
+    "cname": "Bangalore",
+    "cvalue": "ban"
+  },
+  {
+    "cname": "Chennai",
+    "cvalue": "che"
+  },
+  {
+    "cname": "Vishakapatnam",
+    "cvalue": "vis"
+  },
+  {
+    "cname": "Coimbatore",
+    "cvalue": "com"
+  },
+  {
+    "cname": "Pune",
+    "cvalue": "pun"
+  },
+  {
+    "cname": "Mumbai",
+    "cvalue": "mum"
+  },
+  {
+    "cname": "Kolkata",
+    "cvalue": "kol"
+  },
+  {
+    "cname": "Delhi",
+    "cvalue": "del"
+  },
+  {
+    "cname": "Vijayawada",
+    "cvalue": "vij"
+  },
+  {
+    "cname": "Kanpur",
+    "cvalue": "kan"
+  },
+  {
+    "cname": "Bhubaneswar",
+    "cvalue": "bhu"
+  },
+  {
+    "cname": "Jaipur",
+    "cvalue": "jai"
+  },
+  {
+    "cname": "Indore",
+    "cvalue": "ind"
+  },
+  {
+    "cname": "Nagpur",
+    "cvalue": "nag"
+  },
+  {
+    "cname": "Surat",
+    "cvalue": "sur"
+  },
+  {
+    "cname": "Vadodara",
+    "cvalue": "vad"
+  },
+  {
+    "cname": "Lucknow",
+    "cvalue": "luc"
+  },
+  {
+    "cname": "Patna",
+    "cvalue": "pat"
+  },
+  {
+    "cname": "Jhansi",
+    "cvalue": "jha"
+  },
+  {
+    "cname": "Nashik",
+    "cvalue": "nas"
+  },
+  {
+    "cname": "Aurangabad",
+    "cvalue": "aur"
+  },
+  {
+    "cname": "Gandhinagar",
+    "cvalue": "gan"
+  },
+  {
+    "cname": "Rajkot",
+    "cvalue": "raj"
+  },
+  {
+    "cname": "Solapur",
+    "cvalue": "sol"
+  },
+  {
+    "cname": "Anand",
+    "cvalue": "ana"
+  },
+  {
+    "cname": "Ludhiana",
+    "cvalue": "lud"
+  },
+  {
+    "cname": "Agra",
+    "cvalue": "agr"
+  },
+  {
+    "cname": "Meerut",
+    "cvalue": "mee"
+  },
+  {
+    "cname": "Ahmedabad",
+    "cvalue": "ahm"
+  },
+  {
+    "cname": "Madurai",
+    "cvalue": "mad"
+  },
+  {
+    "cname": "Aligarh",
+    "cvalue": "ali"
+  },
+  {
+    "cname": "Kochi",
+    "cvalue": "koc"
+  }
+]

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Progress Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="DemoController">
+    <progress ng-model="percent1"></progress>
+    <progress ng-model="percent2" label="Some static label"></progress>
+    <progress ng-model="percent3" options="options3"></progress>
+
+    <div class="ui button" ng-click="increase()">Increase all</div>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/src/progress/index.js"></script>
+    <script src="/src/progress/directive.js"></script>
+    <!-- // <script src="/dist/semanticular.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<style>
+
+</style>
+<div class="propertyarea" style="">
+  <div ng-click="$hide(); openar();" class="container-fluid card-divs overview-div" style="z-index: 0; font-size:18px; margin-top:0px; border:0px solid #e0e0e0; display:inline-block; padding:10px 8px;  position: absolute; top: 0px; max-height:500px;">
+            &lt;
+  </div>
+  <div class="card card-view" style="z-index:1; height:70vh; overflow-y:auto;">
+     <div style="width:100%; line-height:45px; padding:0px 10px; background-color:#e8e7e3">
+        <i class="fa fa-map-marker" aria-hidden="true"></i><b> Nearby Services</b>
+     </div>
+     <div align="center" style="width:100%; line-height:45px; padding:0px 10px;">
+       <!--  <button class="btn btn-circle" style="font-size:15px;" ng-click="increradius()"><b>+</b></button> --><button class="btn btn-sm" ng-click="increradius()">+</button> {{map1.circle.radius/1000}} KM <button class="btn btn-sm" ng-click="decreradius()">-</button> <!-- <button class="btn btn-circle" style="font-size:15px;" >-</button> -->
+     </div>
+      <div style="">
+        <ul class="list-group nearweb" style="line-height:45px; cursor:pointer">
+            <li class="list-group-item" ng-click="nearbyarea('school')" style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/school.png" /> School
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('bus_station')" style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/bus_station.png" /> Bus Stop
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('shopping_mall')"  style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Shopping Mall
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('hospital')"  style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Hospital
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('atm')"  style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/atm.png" /> Atm
+            </li>
+           <!--  <li class="list-group-item" ng-click="nearbyarea('metro')" style="padding:0px 10px;">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Metro/Train
+            </li> -->
+            <li class="list-group-item" ng-click="nearbyarea('church')" style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/church.png" /> Worship
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('grocery_stores')" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Grocery Stores
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('pharmacy')" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Pharmacy
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('food');" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/food.png" /> Restaurants
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('park')" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/park.png" /> Parks
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('gym')" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/gym.png" /> Gyms
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('gas_station')" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/gas_station.png" /> Petrol Pump
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('rail_station')" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/railway_station.png" /> Railway Station
+            </li>
+        </ul>
+        <ul class="list-group nearmobile" style="line-height:45px; cursor:pointer">
+            <li class="list-group-item" ng-click="nearbyarea('school'); $hide(); openar();" style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/school.png" /> School
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('bus_station'); $hide(); openar();" style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/bus_station.png" /> Bus Stop
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('shopping_mall'); $hide(); openar();"  style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Shopping Mall
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('hospital'); $hide(); openar();"  style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Hospital
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('atm'); $hide(); openar();"  style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/atm.png" /> Atm
+            </li>
+           <!--  <li class="list-group-item" ng-click="nearbyarea('metro')" style="padding:0px 10px;">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Metro/Train
+            </li> -->
+            <li class="list-group-item" ng-click="nearbyarea('church'); $hide(); openar();" style="padding:0px 10px;">
+              <img width="11%" src="assets/img/markers/map_service_icons/church.png" /> Worship
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('grocery_stores'); $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Grocery Stores
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('pharmacy'); $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Pharmacy
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('food');; $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/food.png" /> Restaurants
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('park'); $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/park.png" /> Parks
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('gym'); $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/gym.png" /> Gyms
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('gas_station'); $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/gas_station.png" /> Petrol Pump
+            </li>
+            <li class="list-group-item" ng-click="nearbyarea('rail_station'); $hide(); openar();" style="padding:0px 10px;">
+             <img width="11%" src="assets/img/markers/map_service_icons/railway_station.png" /> Railway Station
+            </li>
+        </ul>
+        </div>
+      </div>
+  </div>

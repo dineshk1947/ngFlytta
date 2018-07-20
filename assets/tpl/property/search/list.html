@@ -1,0 +1,503 @@
+<div style="overflow-x:hidden;height: 100vh;overflow-y: hidden;background-color: #3949ab" ng-controller="SearchProperty">
+  <div class="" style="margin:0; max-height: 100vh; background-color: #ffffff; box-shadow: 0px 0px 10px #666666; position:relative; z-index:50">
+       <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="navbar-header">
+                 <span class="dropdown pull-right visible-sm visible-xs" style="padding-right: 10px;display: flex;padding-top: 15px;">
+                
+                   <button type="button" class="pointer btn btn-round-sm btn-link withoutripple ng-scope collapsed" bs-dropdown="dropdown" data-template-url="assets/tpl/home/resp_nav.html" data-animation="mat-grow-top-right"><i class="md-menu"></i>
+                   </button>
+                 </span>                
+                 <div class="pull-right visible-sm visible-xs" style="font-weight: 200;padding-top: 21px;"><a href="tel:9866496464"><i style="padding-top:0px" class="md md-phone"></i>+91-9866496464</a></div>
+                 <a class="navbar-brand" href="/"><img style="width: 120px;padding-left: 15px;cursor: pointer;" src="assets/img/flytta_logo.png"></a>
+            </div>
+            <div class="container">
+              <div class="col-sm-12 col-xs-12">
+                  <div class="row" style="">
+                      <div style="" class="col-xs-6 col-sm-6">
+                          <div class="form-group" style="">
+                            <center>
+                             <dropdown id="chkwidth1" ng-model="searchCity" options="onSelectCallback1" style="">
+                                <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                            </dropdown></center>
+                         </div>
+                       </div> 
+                      <div style="" class="col-xs-6 col-sm-6"> 
+                          
+                          <div class="form-group" style="">
+                            <center>
+                            <!-- <dropdown id="chkwidth2" ng-model="multipleDemo.inputareas" options="onSelectCallback2" style="">
+                                <dropdown-item ng-repeat="item in city_areas3" title="item.value" value="item.value"></dropdown-item>
+                            </dropdown> -->
+                            <input id="local" class="form-control" ng-model="multipleDemo.inputareas" style="font-size:13px; border:1px solid #d9d9db; border-radius:3px; padding:0px 13px; box-shadow: 0 0px #d9d9db; background-color:#fff; width:108%" placeholder="Select Locality (Preference 2)" ng-select="areaalert()" type="text"></input>
+                            </center>
+                          </div>
+                      </div>  
+                  </div>
+               </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right navbar-right-no-collapse nav-main visible-lg">
+               <li class="dropdown pull-right">
+                  <button class="btn btn-default navbar-btn" ng-show="login_text" ng-click="auth0_login()">Login</button>
+                  <button class="btn btn-default navbar-btn" ng-show="!login_text" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#logoutCon">Logout</button>
+               </li>
+            </ul>
+         </div>
+      </nav>  
+  </div>
+<div class="row" style="padding-top: 60px">
+  <div class="col-lg-12 col-sm-12 col-xs-12">
+     <div class="btn-group" style="width: 100%;padding-left: 20px;padding-right: 20px;">
+              <button ng-click="view_all(); select(0)" class="btn btn-smbtn-default4 bkwhite" ng-class="{vawlbtn: isActive(0), bkwhite: isActive(1)}" style="width: 50%">View All <span> ({{ vacount }})</span>
+              </button>
+              <button ng-click="wish_lists(); select(1)" ng-class="{vawlbtn: isActive(1), bkwhite: isActive(0)}" class="btn btn-smbtn-default4 bkwhite" style="width: 50%;"> Wishlist&nbsp; <a class="test" data-container="body" data-toggle="tooltip" id="myTooltip" data-placement="top" title="Your property is added here"><i style="color: #666;" ng-show="favgray" class="md md-favorite"></i> <i ng-show="favyell" class="md md-favorite" style="color: black;"></i></a>
+              <span ng-class="{vawlbtn1: isActive1(0)}"><span style="color: #666;" ng-show="swnum"> {{ wnum }}</span></span>
+              </button>         
+     </div>  
+  </div> 
+  <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px;padding-bottom: 10px;">
+      <div class="container-fluid" style="padding-left: 30px;">
+         <div class="btn btn-xs btn-border btn-success pull-left" style="border-width: 1px;">
+            <span class=" btn-default_4 dropdown-toggle" data-toggle="dropdown" style="color: #fff"> Filter&nbsp;{{list_filter_string}} <span class="caret"></span></span>
+             <ul class="dropdown-menu" style="padding-right: 25px;padding-left: 10px;padding-top: 10px;padding-bottom: 10px;top:62px; left:0px; width:85vw;color: #666">
+               <li>
+                 <span data-toggle="" data-hover="" style=" padding: 1px 10px;"><b>BHK</b><span class="">
+                 </span>
+                 </span>
+                 <i class="md-close pull-right" data-dismiss="modal" style="margin-top: 10px;"></i>
+                   <div class="checkbox" style="padding: 1px 8px;">
+                     <label>
+                       <span><input style="" type="checkbox" ng-model="model_filter['configuration']['1 BHK']" ng-click="filter_bhk($event, '1 BHK','bhk')">  1 BHK </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <span><input type="checkbox" ng-model="model_filter['configuration']['2 BHK']" ng-click="filter_bhk($event, '2 BHK','bhk')"> 2 BHK</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                       <span><input type="checkbox" ng-model="model_filter['configuration']['3 BHK']" ng-click="filter_bhk($event, '3 BHK','bhk')"> 3 BHK</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <span><input type="checkbox" ng-model="model_filter['configuration']['4 BHK']" ng-click="filter_bhk($event, '4 BHK', 'bhk')"> 4 BHK + </span>
+                     </label>
+                   </div>
+                       <span  data-toggle=""  style="padding: 1px 10px;"><b>Home for</b>
+                       <span class=""></span>
+                       </span>
+                   <div class="checkbox" style="padding: 1px 8px;">
+                     <label>
+                       <span><input style="" type="checkbox" ng-model="model_filter['rent_to']['Family']" ng-click="filter_bhk($event, 'Family', 'rent')"> Family</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <span><input type="checkbox" ng-click="filter_bhk($event, 'Single (Men)', 'rent')" ng-disabled="d_value"> Bachelor</span>
+                     </label>
+                   </div>
+                       <span  data-toggle=""  style="padding: 1px 10px;"><b>Furnishing</b>
+                       <span class=""></span>
+                       </span>
+                   <div class="checkbox" style="padding: 1px 8px;">
+                     <label>
+                       <span><input type="checkbox" ng-model="model_filter['fur']['furnished']" ng-click="filter_bhk($event, 'furnished', 'furnishing')"> <span style="color:#666">Furnished</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <span><input type="checkbox" style="color:#666" ng-model="model_filter['fur']['s_furnished']" ng-click="filter_bhk($event, 's_furnished','furnishing')"> <span style="color:#666">Semi Furnished</span></span><br />
+                       <span><input type="checkbox" style="color:#666" ng-model="model_filter['fur']['n_furnished']" ng-click="filter_bhk($event, 'n_furnished','furnishing')"> <span style="color:#666">Not Furnished</span></span>
+                     </label>
+                   </div>
+                     <span  style="padding: 1px 10px;"><b>Budget</b><span class=""></span>
+                     </span>
+                   <div class="form-group" style="width: 255px;padding: 1px 8px">
+                       <label class="control-label"></label>
+                     <div id="slider" noui-slider min="10000" max="50000" start="{{budstart}}" range="50000" bind=".sliderval11" class="sliderrr" ng-model="sliderModel" ng-mouseup="passValueHere()" bind-range=".sliderval22" step="5" indicator="true">
+                     </div>
+                       <span class="help-block ">Amount: Rs. <span class="sliderval11" id="side1">10000</span> - Rs. 
+                       <span class="sliderval22" id="side2">50000</span>
+                       </span>
+                   </div>   
+                   <div class="btn-group" style="padding: 1px 8px">
+                     <span class="" ng-click="refresh_page()"><i class="md md-rotate-right"></i> <b>Refresh</b></span>
+                   </div> 
+               </li>
+                    <br/>
+             </ul>
+         </div>
+         <div class="btn btn-xs btn-border btn-success pull-left" style="margin-left: 5%;border-width: 1px;">
+             <span class=" btn-default_4 dropdown-toggle" data-toggle="dropdown" style="color: #fff"> Sort <span class="caret"></span> 
+             </span>
+             <ul class="dropdown-menu" style="top:62px; left:0px;" >
+                 <li ng-click="low_high('m_rent');"><a href style="font-size:12px;">Low - High</a> </li>
+                 <li ng-click="high_low('m_rent')"><a href style="font-size:12px;">High - Low</a> </li>
+             </ul>
+         </div>
+      </div> 
+  </div>
+</div>
+<div class="container" ng-show="vall" id="vallprop" my-directive ng-mouseover="checkheightdiv()" style="background-color: #3f51b5;overflow-y: auto;height: 65vh;margin-left:4px;">
+  <div id="vallpropin">
+      <br/>
+      <div class="card" ng-repeat="p in p_data | orderBy:orderProperty">
+         <div class="card-content">
+            <div class="row" style="" >
+               <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-left: 0px;
+       padding-right: 0px;margin-top: -15px;"> 
+                  <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+                      <img id="" class=" imgg" style="cursor: -webkit-zoom-in; cursor: -moz-zoom-in;" ng-click="imgmodal(p)" src='assets/img/spinner.gif' lazy-img="{{p['picurl'][0] }}" style="width:100%">
+                  </div>
+               </div>
+               <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 " style="padding-left: 0px;padding-right: 0px;">
+                  <div class="container" style="width:initial;">
+                     <span class="hc4" style="color:#f0bb2f;">Available for {{p['rent_to']}} </span> 
+                     <div ng-click="new_prop2(p['service_id'], $index)" style="" class="pull-right viewsingelprop">View Details <i class="md-launch viewsingelprop"></i>
+                     </div>
+                     <br>
+                     <div style="margin-top: -5px;"> <span>{{p['fur1']}}</span> 
+                     </div>
+                     <div ng-if="p['edit_loca']" style="line-height: 15px;"> <span style="font-size: 12px;font-weight: 300"><i class="md-room"></i> {{p['edit_loca']}} </span>
+                     </div> 
+                     <div>{{p['configuration']}}, {{p['totalArea']}} sq. ft.
+                     </div>
+                     <div style="margin-top: 8px;" style="padding-left: 15px;"> <span style="font-size: 18px;opacity: 0.6">RENT</span><span style="font-size: 18px;"> <i class="inr"></i>Rs. {{p['m_rent']}}/-</span>                      
+                     </div>
+                  </div> 
+               </div>
+               <div class=" col-md-2 col-sm-2 col-xs-12 " style="padding-left: 0px;padding-right: 0px;">
+                  <div class="container" style="width: initial;">
+                     <div class="row" style="margin-top: 10px;"> 
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span style="opacity: 0.6">SECURITY DEPOST</span>
+                            <br/>
+                        <div>Rs. {{p['advance']}} </div>             
+                        </div>
+                        <div class=" col-md-6 col-sm-6 col-xs-6" style="padding-right: 0px;padding-left: 0px;">
+                           <span style="opacity: 0.6">MAINTENANCE CHARGE</span>
+                           <br/>
+                           <div>Rs. <span ng-if="p['maintenance'] != ''">{{p['maintenance']}}</span><span ng-if="p['maintenance'] == ''">{{p['maintain_amount']}}</span></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-top: 2vh;"> 
+                  <center>
+                     <div ng-show="favicon_{{p['service_id']}}" ng-click="wishProp1(p,$index);" class="btn-group" style="">
+                       <button class="btn btn-sm btn-default5" style="font-size:12px;background-color: #f0bb2f;"><i class="md md-favorite">
+                       </i> Add to wishlist</button>
+                     </div>
+                     <div ng-show="!favicon_{{p['service_id']}}" ng-click="wishProp1(p,$index);" class="btn-group" 
+                     style="">
+                        <button class="btn btn-sm btn-default5" style="font-size:12px;"> <i class="md md-favorite"></i> Remove from wishlist</button>
+                          <br/>
+                     </div>
+                  </center>
+               </div>
+            </div>
+          </div>
+      </div>
+ </div>
+</div>
+  <div class="container" ng-show="flags" style="background-color: #3f51b5;margin-bottom: 20px;height: 65vh;overflow-y: auto;">
+      <div style="padding-left:0px;padding-right: 0px;">
+      <br/>
+        <div class="card" ng-repeat="p in wish_list | orderBy:orderProperty" style="margin-left: 5px;">
+        <div ng-if="wish_list.length == 0" class="card-content" style="height: 100px;">No Property has been added to wishlist</div>
+        <div class="card-content">
+          <div class="row" style="">
+              <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-left: 0px;
+    padding-right: 0px;margin-top: -15px;"> 
+                  <div class="container-fluid" style="padding-right: 0px;">
+                      <img id="" class="pull-left imgg" src='assets/img/spinner.gif' lazy-img="{{p['picurl'] [0] }}" style="cursor: -webkit-zoom-in; cursor: -moz-zoom-in;" ng-click="imgmodal(p)" style="width: 100%">
+                  </div>
+              </div>
+              <div id="sv2" class="col-md-3 " style="margin-top: 155px; "> 
+                  <div class="row">
+                      <div class="col-xs-12 checkbox" id="pushvisit" style="margin-top: 17px;">
+                          <label id="pushvisit1" style=" font-size:12px; letter-spacing: 1px;"><input name="selected" ng-click="updateSelection($event, p)" ng-model="vcheck['che_'+p['service_id']]"  type="checkbox" >VISIT THIS PROPERTY</label>
+                      </div>
+                      <div class="col-xs-12" >
+                    <!--     <center> -->
+                        <button style="font-size:12px;" class="btn btn-sm"  ng-click="$event.stopPropagation(); removewish(p['service_id'],$index); showDiv = !showDiv" > 
+                        Remove from wishlist
+                         <i class="md md-favorite favorites2 " ng-class="{favted: !showDiv}"></i>  </button>
+                     <!--    </center> -->
+                      </div>
+                  </div>
+              </div>
+              <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 " style="margin-top:10px;padding-left: 0px;
+            padding-right: 0px;">
+                  <div class="container" style="width:initial;">
+                    <span class="hc4" style="color:#f0bb2f;">Available for {{p['rent_to']}} </span> <div ng-click="new_prop2(p['service_id'])" style="" class="pull-right viewsingelprop">View Details <i class="md-launch viewsingelprop"></i></div>
+                       <div style="margin-top: -5px;"> <span style="font-size: 14px;">{{p['fur1']}}</span> </div>
+                       <div ng-if="p['edit_loca']" style=" margin-top: -22px;line-height: 15px;"> <span style="font-size: 12px;font-weight: 300"><i class="md-room"></i> {{p['edit_loca']}} </span>
+                       </div> 
+                       <div style="font-size: 14px;">{{p['configuration']}}, {{p['totalArea']}} sq. ft.</div>
+                       <div  style=""> <span style="font-size: 18px;opacity: 0.6;">RENT</span><span style="font-size: 18px;"> <i class="inr"></i>Rs. {{p['m_rent']}}/-</span>
+                       </div>
+                  </div> 
+              </div>
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 " style="padding-left: 0px;
+            padding-right: 0px;">
+                       <div class="container" style="width: initial;">
+                           <div class="row" style="margin-top: 10px;"> 
+                               <div class="col-md-6 col-sm-6 col-xs-6">
+                                 <span style="font-size: 12px;opacity: 0.6">SECURITY DEPOST</span>
+                                 <br/>
+                                 <div style="font-size: 14px;">Rs. {{p['advance']}} </div>             
+                               </div>
+                            <div class=" col-md-6 col-sm-6 col-xs-6" style="padding-right: 0px;padding-left: 0px;">
+                               <span style="font-size: 12px;opacity: 0.6">MAINTENANCE CHARGE</span>
+                              <br/>
+                              <div style="font-size: 14px;">Rs. <span ng-if="p['maintenance'] != ''">{{p['maintenance']}}</span><span ng-if="p['maintenance'] == ''">{{p['maintain_amount']}}</span></div>
+                           </div>
+                           </div>
+                        </div>
+                   </div> 
+                  </div>
+                </div>
+        </div>
+      <div ng-if="wish_list.length > 0" class="row" style="">
+          <div class="col-xs-12 col-sm-12 listqhv" style="margin-left:5px; position:fixed; top:92vh">
+          <center>
+           <button ng-click="rhousevisit()" class="btn btn-default_12" style="background-color: #f0bb2f; width: 100%; margin-bottom:8px;"> Request a House Visit
+           </button>
+          </center>
+          </div>
+      </div>
+      </div>
+    <br/>
+  </div>
+<div class="modal fade" id="req_visit" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+          <div class="modal-header" style="background-color:#f0bb2f;margin-left: -15px;margin-right: -15px;">
+                <center><h4 class="modal-title"><b>Alert</b></h4></center>
+            </div>
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{rvisit}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" ng-show="visit_sch">
+    <div style="overflow-y: auto;height: 57vh;background-color: white">
+        <div class="row" style="margin-top: -9px;border-top: 1px solid #A9A9A9;padding-top: 9px; "  ng-repeat="p in visit_list | orderBy:orderProperty" >
+        <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
+            <div class="container">
+                <img id="" class="pull-left imgg" src='assets/img/spinner.gif' 
+                lazy-img="{{p['picurl'] [0] }}" >
+            </div>
+        </div>
+    <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 " style="">
+         <div class="container" style="width:initial;">
+             <span class="hc4">Available for {{p['rent_to']}} </span> <i class="md-launch"></i><br>
+            <div style="margin-top: -5px;"> <span style="font-size: 14px;">Furnished</span> </div>
+             <br/>
+         <div style=" margin-top: -22px;"> <span style="font-size: 12px;font-weight: 300"><i class="md-room"></i> {{p['loca']}} </span>
+         </div> 
+             <br/>
+         <div style="margin-top: -18px;" class="row">
+             <div class="col-md-6 col-sm-6 col-xs-6">
+                 <span style="font-size: 14px;opacity: 0.6">SECURITY DEPOST</span>
+                 <br/><div style="font-size: 16px;">{{p['advance']}} </div>             
+             </div>
+             <div class=" col-md-6 col-sm-6 col-xs-6">
+                  <span style="font-size: 14px;opacity: 0.6">MAINTENANCE CHARGE</span>
+                  <br/>
+                  <div style="font-size: 16px;"><span ng-if="p['maintenance'] != ''">{{p['maintenance']}}</span><span ng-if="p['maintenance'] == ''">{{p['maintain_amount']}}</span></div>
+             </div>
+         </div>
+         </div> 
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 " style="border-right: 1px solid #A9A9A9 ;">
+        <div class="container" style="width: initial;">
+            <div style=" padding-left: 15px">
+                <span style="font-size: 14px;opacity: 0.6;">RENT</span>
+            <div style="margin-top: -10px;"> <span style="font-size: 18px;"><i class="inr">₹</i> {{p['m_rent']}}/-</span></div>
+            </div>
+            <div class="bhk" style="font-size: 16px;margin-top: 32px;">{{p['configuration']}}, {{p['totalArea']}} sq. ft.</div>
+         <!-- <div style="margin-top: 2px;"> <b style="font-size: 12px;"></div> -->
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-top: 27px;" > 
+        <div class="container" style="width: 100%;margin-top: -6px"> 
+            <form class="form-floating placeholder-form ">
+                 <fieldset>
+                 <h4 style="">Schedule your visit</h4>
+            <div class="form-group filled">
+              <label class="control-label">Date</label>
+              <input type="text" class="form-control" ng-model="values['date_'+p['service_id']]" ng-change="showDate(p['service_id'],$index)" data-min-date="{{tomorrow}}"  data-autoclose="1" bs-datepicker>
+            </div>
+            <div class="form-group filled">
+                <label class="control-label">Time</label>
+                <input type="text" class="form-control" ng-model="values['time_'+p['service_id']]" ng-change="showTime(p['service_id'],$index)" data-autoclose="1" bs-timepicker>
+            </div> 
+                 </fieldset>
+            </form>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 2vh">
+        <div class="col-md-10 col-sm-8 col-xs-12">
+        </div>
+        <div class="col-md-1 col-sm-2 col-sm-12 ">
+          <button class="btn btn-default_13" style="width: 90%" ng-click="visit_sch= false;flags=true;"  ><b>Back</b></button>
+        </div>
+        <div class="col-md-1 col-sm-2 col-sm-12">
+          <button  class="btn btn-default_13" style="width: 90%"  ng-click="confirmpay(visit_list);" style="" ><b>Pay</b></button>
+        </div>
+    </div>
+      <br/>
+</div>
+<div id="resfreshModal" ng-controller="SearchProperty" class="modal fade" role="dialog" style="overflow-y: scroll;margin-top: 10vh">
+    <div class="modal-dialog">
+        <button type="button" class="btn btn-lg btn-round btn-default pull-right" style="z-index: 99;margin-right: -10px;margin-top:-10px;" data-dismiss="modal"><i class="md md-clear"></i></button>
+        <div class="modal-content" style="height: 500px;">
+            <h4 style="padding-left: 5%">No property available, please fill the custom form below.</h4>
+            <div class="well white" id="forms-validation-container" style="overflow-y: auto;height:430px;margin-bottom: 0px;">
+                <form name="register" class="form-floating" novalidate="novalidate" ng-submit="register.$valid && register.submit()">
+                    <fieldset>
+                        <div class="form-group">
+                            <!-- <label for="inputEmail" class="control-label">Name</label> -->
+                            <input type="text" ng-disabled="model.q_name == ''" placeholder="Name" name="myName" class="form-control" ng-model="model.q_name" autocomplete="off" required>
+                            <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+                        </div>
+                        <div class="form-group">
+                         <!--    <label for="inputEmail" class="control-label">Email</label> -->
+                            <input type="email" ng-disabled="model.q_email == ''" placeholder="Email" class="form-control" ng-model="model.q_email" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                           <!--  <label for="inputEmail" class="control-label">Phone Number</label> -->
+                            <input type="number" ng-disabled="model.q_phone == ''" class="form-control" placeholder="Phone Number" ng-model="model.q_phone" ng-pattern="/[0-9]/" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- <div class="form-group" style="border-bottom: solid #666;border-width: 1px;">
+                                <ui-select ng-model="model.q_city" theme="select2" on-select="filterareas($select.selected.cvalue);" title="Choose City" search-enabled="true">
+                                    <ui-select-match placeholder="Select city...">{{$select.selected.cname}}</ui-select-match>
+                                    <ui-select-choices style="" repeat="item in cities | limitTo: 100">
+                                        {{item['cname']}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <dropdown ng-model="model.q_city" style="width:100%" options="onSelectCallback_new" >
+                                    <dropdown-item ng-repeat="item in cities1" title="item.cname" value="item.cvalue"></dropdown-item>
+                                </dropdown>
+                            </div> -->
+                            <div class="form-group">
+                               <!--  <ui-select ng-model="model.q_area" theme="select2" on-remove="onRemoveCallback($select.selected.value)" on-select="onSelectCallback($select.selected.value)" title="Choose Your Localities" search-enabled="true" style="">
+                                    <ui-select-match placeholder="Select Localities" style="">{{$select.selected.value}}</ui-select-match>
+                                    <ui-select-choices repeat="area in city_areas3 | filter:{value:$select.search} | limitTo: 100" style="">
+                                        {{area.value}}
+                                    </ui-select-choices>
+                                </ui-select> -->
+                               <!--  <dropdown ng-model="model.q_area" style="width:100%" options="onSelectCallback2_new">
+                                    <dropdown-item ng-repeat="item in city_areas3" title="item.value" value="item.value"></dropdown-item> -->
+                                    <input type="text" ng-disabled="model.q_area == ''" placeholder="Enter Locality" class="form-control" ng-model="model.q_area" autocomplete="off" required>
+                             <!--    </dropdown> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="inputEmail" class="control-label">Your Requirement</label> -->
+                            <input type="text" ng-disabled="model.m_info == ''" placeholder="Your Requirements" name="myName" class="form-control" ng-model="model.m_info" autocomplete="off" required>
+                            <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">Please provide your requirement.</span>
+                        </div>
+                        <div class="form-group">
+                            <div style="text-align: content">
+                                <div class="btn" ng-disabled="register.$invalid" type="submit" style="background-color: #f0bb2f" ng-click="query_sub()">Submit</div>
+                            </div>
+                            <span style="color: red" ng-show="errorfields">Please fill all the fields</span>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="flux" ng-controller="SearchProperty">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+            <div class="modal-header" style="background-color:#f0bb2f;margin-left: -15px;margin-right: -15px;">
+                <center><h4 class="modal-title"><b>Alert</b></h4></center>
+            </div>
+            <div ng-show="!request_stat">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                       If you are not satisfied with the above properties click <b>YES</b> to give us your requirements.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f;" class="btn" data-dismiss="modal">Cancel</button>
+                <button type="button" style="background-color:#f0bb2f;" ng-click="notfindprop()" class="btn">Yes</button>
+            </div>
+            </div>
+            <div ng-show="request_stat">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                       Are you satisfied with the above properties?
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f;" class="btn" data-dismiss="modal">Yes</button>
+                <button type="button" style="background-color:#f0bb2f;" class="btn" ng-click="notfindproprp()">No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="imageModal1" class="modal fade" role="dialog" style="overflow: hidden;margin-top: 10vh">
+        <i class="md md-highlight-remove" data-dismiss="modal"></i>
+        <div class="modal-dialog">
+            <button type="button" class="btn btn-lg btn-round btn-default pull-right" style="z-index: 99;margin-right: -10px;margin-top:-10px;" data-dismiss="modal"><i class="md md-clear"></i></button>
+            <div class="modal-content" style="height: initial;">
+                <flex-slider slider-id="slider" flex-slide="imge in pimgdata['picurl'] track by $index" style="height:459px;width:100%;" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                    <li>
+                        <img ng-src="{{imge}}" alt="{{pimgdata['configuration']}} {{pimgdata['city']}} {{pimgdata['area']}}" title="{{pimgdata['configuration']}} Rent {{pimgdata['city']}} {{pimgdata['area']}}" width="100%" height="450px">
+                    </li>
+                </flex-slider>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="return_user" align="center">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container" style="">
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span id="notification1"></span>
+                        <div class="modal-footer">
+                            <button type="button" style="background-color:#fdd206; color:#666" class="btn btn-primary" data-dismiss="modal"  ng-click="sendPreselectData();" >Cancel</button>
+                            <button type="button" data-dismiss="modal" ng-click="previous_Search1()" style="background-color:#fdd206; color:#666" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+  #Smallchat{
+    display: none;
+  }
+  .pac-item{
+    font-family:'Montserrat',serif !important;
+    font-weight: 400 !important;
+    color: rgb(102, 102, 102) !important;
+    line-height: 30px !important;
+}
+
+.pac-item-query{
+    font-family:'Montserrat',serif !important;
+    font-size: 12px;
+}
+
+.pac-item:hover{
+    background-color: #eeeeee !important;
+    transition: background 0.15s linear;
+}
+
+.pac-container{
+    color: rgb(102, 102, 102) !important;
+    background-color: #fafafa;
+    border-bottom-right-radius: 5px;  
+    border-bottom-left-radius: 5px;
+}
+</style>

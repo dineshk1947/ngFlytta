@@ -1,0 +1,130 @@
+    .container {
+    width: initial;
+    }
+    .btn-default4{
+    font-size: 10px;
+    /*font-weight: 400;*/
+    }
+    .bar3{
+    margin-top: 8px;
+    }
+      #meals{
+            padding-top: 1px;
+        }
+    #bd{
+        padding-left: 0px;
+    }
+    #itemgap{
+        /*margin-top: 25px;*/
+        border:0px;
+    }
+    #dis{
+          /* margin-left: -28px;*/
+          /* width: 158px;*/
+         
+    }
+    .adrs1{
+        font-size: 12px;
+          background-color:#f0bb2f;
+          padding: 3px;
+    }
+    .adrs2{
+            padding: 8px;
+    }
+    #touch{
+        background-color:#f0bb2f;
+        padding: 7px; font-size: 12px;
+        border-radius:2px;
+    }
+    #qty{
+      /*  margin-left: 26px;*/
+      
+    }
+    #forum{
+           font-size: 12px;
+    }
+    #goods{margin-left: -14px;
+
+    }
+    .imgg{
+         width:100%;
+         height:170px;
+    
+        }
+ 
+    #sv1{
+            margin-right: -90px;
+    }
+    /*#sv2{
+            margin-right: -90px;
+    }*/
+    #sv3{
+            margin-right: -90px;
+    }
+    #rhv0{
+            padding-left: 90px;
+    }
+    #line1{
+        border:0px;
+    }
+     #line2{
+        border:0px;
+    }
+    #corpadrs{
+        font-size: 16px;
+    }
+    #corpdetail{
+        font-size: 12px;
+        text-align: justify;
+    }
+     #gintouch{
+      font-size: 14px;
+    }
+    #regadrs{
+       font-size: 16px;
+    }
+    #regdetail{
+        font-size: 12px; 
+        text-align: justify;
+    }
+     #aboutus{
+        font-size: 20px;
+    }
+    #aboutdetail{
+        font-size: 15px; 
+        text-align: justify;
+    }
+    #foundingteam{
+         font-size: 20px;
+    }
+    #flyttateam{
+        font-size: 20px;
+    }
+    #ft_img1{
+        width: 40% 
+    }
+    #corpborder{
+        border-right:0px;
+    }
+    /*.conct{
+        padding-left: 15px;
+    }*/
+
+ #mbllookwidth{
+ /*  
+    max-height: 300px;*/
+  }
+   #mbllookwidth{
+   /* max-height: 300px;*/
+  }
+
+   #rowbarmright{
+    margin-right: 10px;
+  }
+
+  #w22{
+    margin-left: -44px;
+   }
+   #w33{
+    padding-left: 10px;
+   }

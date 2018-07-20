@@ -1,0 +1,40 @@
+{
+  "name": "semantic-ui-loader",
+  "description": "Loader - Semantic UI",
+  "homepage": "http://www.semantic-ui.com",
+  "author": {
+    "name": "Jack Lukic",
+    "web": "http://www.jacklukic.com"
+  },
+  "ignore": [
+    "docs",
+    "node",
+    "server",
+    "spec",
+    "src",
+    "test"
+  ],
+  "keywords": [
+    "semantic",
+    "ui",
+    "css3",
+    "framework"
+  ],
+  "license": [
+    "http://semantic-ui.mit-license.org/"
+  ],
+  "main": [
+    "loader.css"
+  ],
+  "version": "2.2.10",
+  "_release": "2.2.10",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.2.10",
+    "commit": "4ff370f9e3969328c9e931c47a0900d8638c082f"
+  },
+  "_source": "https://github.com/Semantic-Org/UI-Loader.git",
+  "_target": "^2.2.10",
+  "_originalSource": "semantic-ui-loader",
+  "_direct": true
+}

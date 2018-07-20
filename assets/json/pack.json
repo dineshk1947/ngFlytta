@@ -1,0 +1,37 @@
+{
+	"1bhk":{
+		"item":[
+			"Table","Chair","Bed","Cupboard","TV","WashingMachine","Fridge","Sofa"
+		],
+		"Quantity":["1","1","1","1","1","1","1","1"],
+		"Dismantlable":["No","No","No","No","No","No","No","No"]
+	},
+	"2bhk":{
+		"item":[
+			"Table","Chair","Bed","Cupboard","TV","WashingMachine","Fridge","Sofa"
+		],
+		"Quantity":["1","1","1","1","1","1","1","1"],
+		"Dismantlable":["No","No","No","No","No","No","No","No"]
+	},
+	"3bhk":{
+		"item":[
+			"Table","Chair","Bed","Cupboard","TV","WashingMachine","Fridge","Sofa"
+		],
+		"Quantity":["1","1","1","1","1","1","1","1"],
+		"Dismantlable":["No","No","No","No","No","No","No","No"]
+	},
+	"4bhk":{
+		"item":[
+			"Table","Chair","Bed","Cupboard","TV","WashingMachine","Fridge","Sofa"
+		],
+		"Quantity":["1","1","1","1","1","1","1","1"],
+		"Dismantlable":["No","No","No","No","No","No","No","No"]
+	},
+	"5bhk":{
+		"item":[
+			"Table","Chair","Bed","Cupboard","TV","WashingMachine","Fridge","Sofa"
+		],
+		"Quantity":["1","1","1","1","1","1","1","1"],
+		"Dismantlable":["No","No","No","No","No","No","No","No"]
+	}
+}

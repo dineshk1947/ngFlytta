@@ -1,0 +1,44 @@
+{
+  "name": "angular-pico",
+  "version": "0.1.0",
+  "description": "AngularJS directive replaces image for Retina and WebP",
+  "main": "Gruntfile.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avlasof/angular-pico.git"
+  },
+  "keywords": [
+    "webp",
+    "retina",
+    "angular",
+    "directive",
+    "module",
+    "plugin",
+    "replaces",
+    "img",
+    "imgage"
+  ],
+  "author": "Alexander Sofin <avlasof@mail.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/avlasof/angular-pico/issues"
+  },
+  "homepage": "https://github.com/avlasof/angular-pico",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-cwebp": "^0.1.6",
+    "grunt-jscs": "^1.0.0",
+    "grunt-karma": "^0.9.0",
+    "load-grunt-tasks": "^1.0.0"
+  }
+}

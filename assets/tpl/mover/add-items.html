@@ -1,0 +1,171 @@
+<script>
+jQuery('.navtabsli').click(function(){
+  jQuery('.navtabsli').removeClass('navtab');
+  jQuery(this).addClass('navtab');  
+});
+jQuery('.numofitems').click(function(){
+  $(".itemselecting").fadeOut(500);
+  $(".itemselected").css('padding-left', '0px');
+  $(".itemselected").css('border-left', '0px');
+  $(".itemselected").fadeIn(500);
+  $(".numofitems").css('display', 'none');
+  $(".items-text1").css('display', 'none');
+  $(".items-text").css('display', 'block');
+});
+jQuery('.selectmore').click(function(){
+  $(".itemselected").fadeOut(500);
+  $(".itemselecting").fadeIn(500);
+  $(".numofitems").show();
+});
+</script>
+<div ng-controller="moverController">
+<!--  <div class="container-fluid" style="margin: 0; height: 100%; overflow: hidden; background-color: #ffffff;padding-top: 2vh; box-shadow: 0px 0px 10px #666666; position:relative; z-index:100">
+  <div class="row" style="padding-bottom:15px; background-color:#fff; "> 
+    <div style="padding-top:15px; display:inline-block" class="col-md-8">
+         <button class="btn btn-sm" onclick="location.href='#/home/home_property'"><b>House Rental</b></button>
+        <button style="background-color:#f0bb2f; color:#fff" onclick="location.href='#/home/home_settling'" class="btn btn-sm"><b>Packers & Movers</b></button>
+        <button class="btn btn-sm" onclick="location.href='#/home/home_settling'"><b>Settling in Services</b></button>
+    </div>
+    <div class="col-md-4">
+      <ul  class="nav nav-tabs pull-right" style="display: none;">
+        <li class="active"><a href="#">Tab 1</a></li>
+        <li><a href="#">Tab 2</a></li>
+        <li><a href="#">Tab 3</a></li>
+      </ul>
+    </div>
+  </div>
+</div> -->
+<div ng-include src="'assets/tpl/search_header.html'" ng-controller="moverController"></div>
+<div class="container">
+<div align="center" class="col-md-12"><br/>
+    <div style="display:inline-block;" class=""><h4>SELECT ITEMS FROM THE LIST</h4></div>
+</div>
+<div class="col-md-12"><br/>
+  <div class="row">
+    <div class="col-md-2" style="padding-right:5px; padding-left:5px;">
+     <div class="navtabs">
+        <div ng-click="onTabChanges(0)" class="navtabsli navtab" style="cursor: pointer;">Bedroom</div>
+        <div ng-click="onTabChanges(1)" class="navtabsli" style="cursor: pointer;">Living Room</div>
+        <div ng-click="onTabChanges(2)" class="navtabsli" style="cursor: pointer;">Dining Room</div>
+        <div ng-click="onTabChanges(3)" class="navtabsli" style="cursor: pointer;">Storage</div>
+        <div ng-click="onTabChanges(4)" class="navtabsli" style="cursor: pointer;">Kitchen</div>
+        <div ng-click="onTabChanges(5)" class="navtabsli" style="cursor: pointer;">Others</div>
+      </div>
+    <div class="mnavtabs">
+      <select class="form-control one-edge-shadow" style="font-size: 12px">
+        <option onselect="onTabChanges(0)">Bedroom</option>
+        <option onselect="onTabChanges(1)">Living Room</option>
+        <option onselect="onTabChanges(2)">Dining Room</option>
+        <option onselect="onTabChanges(3)">Storage</option>
+        <option onselect="onTabChanges(4)">Kitchen</option>
+        <option onselect="onTabChanges(5)">Others</option>
+      </select>
+    </div>
+    <div class="numofitems">
+        <button style="width:100%; background-color:#f0bb2f;  margin-bottom:0px; color:#fff;" class="btn btn-xs" ng-click="">{{ countitem }} Items</button>
+    </div>
+    </div>    
+    <div style="border-left:1px solid #e0e0e0; font-size: 15px; padding-left:8px; padding-right:5px;" class="col-md-5 itemselecting">
+    <div style="padding:5px;">Select the items that you might be shifting from below</div>
+      <div class="row" style="padding-right:10px;">
+        <div class="col-md-5 col-xs-4" style="padding-right:2px;"><div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" class="">Items</div>
+        </div>
+        <div class="col-md-3 col-xs-3" style="padding-right:2px; padding-left:2px;">
+          <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;">Dismat.</div>
+        </div>        
+        <div class="col-md-4 col-xs-5" style="padding-right:15px; padding-left:2px;">
+          <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" >Qty.</div>
+        </div>
+      </div>
+    <div style="max-height:360px; overflow-y:auto;">
+      <div class="row" style="padding-top:10px;" ng-repeat="Item in MoverData">
+        <div class="col-md-5 col-xs-4">
+          <div style="padding-left:10px;">{{Item}}</div>
+        </div>
+        <div class="col-md-3 col-xs-3" style="padding-right:2px;">  
+          <div class="checkbox" style=" margin-top:0px; margin-bottom:0px; margin-left:20px;" align="center">
+            <label style="padding:0px;"><input ng-model="values['mov'+token[$index]]" type="checkbox" ng-change="movecheck(Item)"></label>
+          </div>
+        </div> 
+        <div class="col-md-4 col-xs-5" style="padding-right:15px; padding-left:2px;">       
+          <div align="center">    
+            <button ng-click="decrement(Item)" class="btn btn-sm">-</button><span>&nbsp;&nbsp;&nbsp;{{countarray[token[$index]]}}&nbsp;&nbsp;</span><button class="btn btn-sm" ng-click="increment(Item)">+</button>
+          </div>
+        </div>
+    </div>   
+    </div>
+    <div ng-show="otherdata" style="max-height:360px; overflow-y:auto;">
+      <div class="row" style="padding-top:10px;" ng-repeat="other_input in otherinputs">
+        <div class="col-md-5 col-xs-4">
+          <div style="padding-left:10px;">  
+              <div class="form-group" style="padding:0px; height:28px;">
+                      <input style="font-size:13px;" ng-model="otherinputs[$index].otheritems" placeholder="Enter Other Items" type="text" class="form-control">
+                    </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-xs-3" style="padding-right:2px;">  
+          <div class="checkbox" style=" margin-top:0px; margin-bottom:0px; margin-left:20px;" align="center">
+            <label style="padding:0px;"><input ng-model="otherinputs[$index].discheck" type="checkbox" ng-change="movecheck1($index)"></label>
+          </div>
+        </div> 
+        <div class="col-md-4 col-xs-5" style="padding-right:15px; padding-left:2px;">       
+          <div align="center">    
+            <button ng-click="decrement1($index)" class="btn btn-sm">-</button><span>&nbsp;&nbsp;&nbsp;{{other_input['countitem']}}&nbsp;&nbsp;</span><button class="btn btn-sm" ng-click="increment1($index)">+</button>
+          </div>
+        </div>
+    </div>   
+    </div>
+    </div>
+    <div style="border-left:1px solid #e0e0e0; font-size: 15px;  max-height:360px; padding-right:0px; "  class="col-md-5 itemselected">
+      <div class="items-text1" style="padding:5px;">The items you select will come below. Click submit below to get Quotation</div> 
+      <div class="items-text" style="padding:5px;">These are the items you have selected. Click next button to get Quotation</div>      
+      <div class="row" style="padding-right:0px;">
+        <div class="col-md-4 col-xs-4" style="padding-right:2px;"><div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" class="">Items</div>
+        </div>
+        <div class="col-md-3 col-xs-2" style="padding-right:2px; padding-left:2px;">
+          <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;">Dism.</div>
+        </div>        
+        <div class="col-md-4 col-xs-4" style="padding-right:2px; padding-left:2px;">
+          <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" >Qty.</div>
+        </div>      
+        <div class="col-md-1 col-xs-1" style="padding-right:5px; padding-left:5px;">
+          <div style="background-color:#cfcfd1; width:100%; text-align:center; display:inline-block;" >&#x2715</div>
+        </div>
+      </div>
+       <div style="max-height:360px; overflow-y:auto">      
+      <div class="row" style="padding-top:10px;" ng-repeat="selitem in s_items">
+        <div class="col-md-4 col-xs-4">
+          <div style="padding-left:10px;">{{ selitem['Item']}}</div>
+        </div>
+        <div class="col-md-3 col-xs-1">  
+          <div style="" align="center">
+            {{ selitem['Dismantlable']}}
+          </div>
+        </div> 
+        <div class="col-md-4 col-xs-5" style="">       
+          <div style="text-align:center;">    
+            <button class="btn btn-sm" ng-click="decrement(selitem['Item'])">-</button>&nbsp;&nbsp;&nbsp;{{ selitem['Quantity']}}&nbsp;&nbsp;<button class="btn btn-sm" ng-click="increment(selitem['Item'])">+</button>
+          </div>
+        </div>
+        <div class="col-md-1 col-xs-1" style="padding-right:15px; padding-left:2px;">       
+          <div style="text-align:center; cursor:pointer"> <button class="btn btn-xs" ng-click="removedmitem(selitem['Item'])">&#x2715</button>
+          </div>
+        </div>
+    </div>  
+          <div align="center" class="col-md-12">
+            <button style="background-color:#f0bb2f; padding:5px 20px;" class="btn btn-sm selectmore">Select more</button>
+        </div>
+    </div>
+    </div>
+  </div>
+  <div align="center" class="col-md-12" style="margin-bottom:20px;">
+    <button style="background-color:#f0bb2f; padding:5px 25px;" ng-click="gotoprevious();" class="btn btn-sm"><b>Back</b></button>
+    <button style="background-color:#f0bb2f; padding:5px 25px; margin-left:15px;" class="btn btn-sm" ng-click="gottonext();" ><b>Next</b></button><!-- onclick="location.href='#/search_mover/packers&movers'" -->
+</div>
+</div>
+
+</div>
+
+</div>
+        
+          

@@ -1,0 +1,55 @@
+{
+  "name": "js-cache-factory",
+  "version": "v1.1.0",
+  "description": "jsCache is a fast and small JavaScript library used for caching at client side. It helps you to decrease your server load and increase your application performance by caching api for the time period you want. Not only api you can case every type of data with desired time you want. It leverage you to organize your caching in different objects with different type of storage and different time for expiry of your caching. Its Awesome, i promise you will love it just check it out",
+  "main": "build/js-cache-min.js",
+  "scripts": {
+    "test": "karma start",
+    "start": "gulp serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funwithjs/jsCache.git"
+  },
+  "keywords": [
+    "cache",
+    "caching",
+    "store",
+    "localStorage",
+    "sessionStorage",
+    "client side caching",
+    "javacsript",
+    "javascript cache",
+    "performance",
+    "server speed",
+    "angular cache factory",
+    "$cacheFactory",
+    "cahing options",
+    "time to live"
+  ],
+  "author": "Jagdeep Singh",
+  "license": "MIT",
+  "dependencies": {
+    "browser-sync": "^2.7.13",
+    "event-stream": "^3.3.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-inject": "^1.3.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.0.5",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.6",
+    "http": "0.0.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.3",
+    "karma-cli": "^0.1.0",
+    "karma-jasmine": "^0.3.6",
+    "lodash": "^3.10.0",
+    "main-bower-files": "^2.9.0",
+    "path": "^0.11.14",
+    "st": "^0.5.4",
+    "wiredep": "^2.2.2"
+  }
+}

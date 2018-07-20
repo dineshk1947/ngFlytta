@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" style="background-color:#3949ab">
+        <div class="container-fluid" style="padding-right: 16px;">
+            <div class="">
+                <span id="flotrgt" class="dropdown visible-lg visible-md visible-sm visible-xs" style="display: flex;padding-top: 10px;float: right;">
+              <button type="button" class="pointer btn btn-round-sm btn-link withoutripple ng-scope collapsed" bs-dropdown="dropdown" data-template-url="assets/tpl/home/resp_nav.html" data-animation="mat-grow-top-right">
+                  <i style="color:#fff" class="md-menu"></i>
+              </button>
+        </span>
+        <a class="pull-left" href="/"><img style="width: 130px;padding-left: 15px;padding-bottom:6px;cursor: pointer;margin-top: 10px;" alt="Flytta" src="assets/img/flytta_logo_dark_half.png"></a>
+        </div>
+        <div class="col-md-offset-4">
+            <ul style="padding-top:10px;" class="nav navbar-nav nav-main visible-lg visible-md">
+                <li class="dropdown" style="margin-left: 10px; ">
+                    <button style="color: #fff;"; class="btn btn-sm  btn-border" onclick="location.href='/home/home_property'">House Rentals</button>
+                </li>
+                <li class="dropdown" style="margin-left: 10px;">
+                    <button style="color: #666; background-color:#f0bb2f"; class="btn btn-sm  btn-border" onclick="location.href='/home/home_mover'" >Packers & Movers</button>
+                </li>
+                <li class="dropdown" style="margin-left: 10px;">
+                    <button style="color: #fff; " class="btn btn-sm btn-border " onclick="location.href='/home/home_settling'">Settling in Services</button>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right navbar-right-no-collapse nav-main visible-lg visible-md" style="">
+                <li class="dropdown" style="margin-left: 10px;">
+                    <a class="pull-left visible-lg" style="color:#fff; padding-top:5px;" href="tel:9866496464"><i style="padding-top:0px;" class="md md-phone"></i>+91-9866496464</a>
+                    <button style="color: #fff;border-color: #fff;"; class="btn btn-sm btn-success btn-border" href="" ng-show="login_text" ng-click="auth0_login('login')">Login</button>
+                    <button style="color: #fff; border-color: #fff;"; class="btn btn-sm btn-success btn-border" href="" ng-show="!login_text" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#logoutCon">Logout</button>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

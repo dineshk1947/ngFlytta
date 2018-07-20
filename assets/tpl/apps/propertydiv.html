@@ -1,0 +1,45 @@
+<div class="container-fluid card-divs" style="width:330px;z-index: 2; margin-top:25px; padding-right:0px; padding-left:15px; background-color: white;position: absolute; top: 0px;margin-left: 310px; max-height:480px;">
+                  
+                  <div class="row">
+                  <ul  class="nav nav-tabs">
+                    <li class="active"><a style="padding:5px 20px" href="#">Overview</a></li>
+                    <li><a style="padding:5px 20px" href="#">House Structure</a></li>
+                    <li><a style="padding:5px 20px" href="#">Amenities</a></li>
+                  </ul>
+                  </div>
+                  <div style="overflow-y: auto; max-height:435px;">
+                  <h5 style="margin-bottom:0px; color:#f0bb2f"><b>{{ s_prop["rent_to"] }}</b></h5>
+                  <p style="margin-top: -1vw"><li class="glyphicon glyphicon-map-marker"></li> <b>{{ s_prop["area"] }}-{{ s_prop["city"] }}</b><br /> Landmark: Barrack Road</p>
+                    <img style="width:300px" src="{{ s_prop['picurl'][0] }}">
+                  <div class="row" style="padding-top:10px;">
+                    <div style="line-height:20px" class="col-xs-6">Rent<br/><span style="font-size:18px;"><b>Rs. {{ s_prop["m_rent"] }}</b></span></div>
+                    <div style="line-height:20px" class="col-xs-6">Security Deposit<br/><span style="font-size:18px;"><b>Rs. {{ s_prop["advance"] }}</b></span></div>
+                    <div style="line-height:20px" class="col-xs-6">Maintenance Charges<br/><span style="font-size:18px;"><b>Rs. {{ s_prop["maintenance"] }}</b></span></div>
+                  </div>
+
+                  <h4 style="border-bottom: 1px solid #f0bb2f; padding-bottom:3px;"><b>House Structure</b></h4> 
+                  <ul style="padding-left:25px;">
+                    <li>{{ s_prop["configuration"] }}</li>
+                    <li>{{ s_prop["totalArea"] }} Sq. feet</li>
+                    <li>Semi furnished</li>
+                    <li>{{ s_prop["facing"] }} facing</li>
+                  </ul>
+
+                  <h4 style="border-bottom: 1px solid #f0bb2f; padding-bottom:3px;"><b>Amenities</b></h4> 
+                  <div >
+                    <div class="row">
+                      <div ng-repeat="a_data in amn" class="col-xs-6">                          
+                            <li class="md-tv"></li>
+                            {{a_data}}
+                      </div>   
+                    </div>
+                  </div><hr />
+                </div>
+                  <div class="btn-group" style="bottom:25px;">
+                    <button class="btn btn-sm" style="background-color: #f6ca21;width:150px;">Book Now</button>
+                    <button class="btn btn-sm" style="width:150px;">Shortlisted</button>
+                  </div>
+                </div>
+                <div class="container-fluid card-divs overview-div" style="z-index: 2; font-size:18px; margin-top:26px; border:0px solid #e0e0e0; display:inline-block; padding:0px 8px;  position: absolute; top: 0px;margin-left: 639px; max-height:500px;">
+                &#x2715
+            </div>

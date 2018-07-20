@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Checkbox Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="DemoController">
+    <checkbox ng-model="checkbox1">Label for checkbox 1</checkbox>
+    <checkbox ng-model="checkbox2" options="options">{{label2}}</checkbox>
+
+    <div>
+        checkbox1: {{checkbox1}} <br>
+        checkbox2: {{checkbox2}}
+    </div>
+
+    <div class="ui button" ng-click="toggle()">Toggle all</div>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/src/checkbox/index.js"></script>
+    <script src="/src/checkbox/directive.js"></script>
+    <!-- // <script src="/dist/semanticular.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>

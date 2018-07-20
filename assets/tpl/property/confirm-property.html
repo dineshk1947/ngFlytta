@@ -1,0 +1,214 @@
+<div class="confirmprop" style="" ng-controller="SearchProperty">
+    <div ng-include src="'assets/tpl/search_header.html'" ng-controller="SearchProperty"></div>
+    <div class="alert-container-top-right-three"></div>
+    <div class="container-fluid" ng-show="cnfpay" style="padding-right:0px;">
+        <div class="container">
+            <div class="row" style="background-color:#3f51b5; padding-bottom: 0px;padding-top: 10px; margin-right: -23px; margin-left: -20px;">
+  <center><h3 style="color:#fff; background-color:#3f51b5; margin-top:10px; margin-bottom:10px; margin-left: 0px;">Confirm Your Property</h3></center>
+                <div class="cardstotalcon" style="">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 visible-lg visible-md visible-sm confcard" style="" ng-repeat="p in visit_list">
+                    <div id="{{'d_'+$index}}" class="card card2"  ng-class="{card1: isActive2(p['service_id'])}" ng-click="propdiv(p, p['service_id']); selectcard(p['service_id'])" style="margin-bottom: -1px;">
+                        <div class="card-content" style="position:relative; padding-top: 0px;padding-left: 0px;padding-right: 0px;font-size:13px;">
+                            <flex-slider slider-id="slider"  flex-slide="s in p['picurl'] track by $index" style="height:150px; width:100%;"  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                              <li>                
+                                  <img src='assets/img/spinner.gif' alt="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" title="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" lazy-img='{{s}}' width="100%" height="120px;">
+                              </li>
+                            </flex-slider>
+                            <div style="margin-bottom:0px; line-height: 16px; text-transform: uppercase; color:#f0bb2f;margin-top: -10px;padding-left: 20px;padding-right: 20px;"><b>{{ p["area"] }}, {{ p["city"] }}</b></div>
+                            <div style="padding-left: 20px;padding-right: 20px;">
+                                <span class="hc4" style="margin-top: 2px;font-size: 15px; color:#666;">Scheduled Visit</span>
+                                <br/>
+                                <span class="f-12">DATE: <span>{{ values['date_'+p['service_id']] }}</span></span>
+                                <br/>
+                                <span class="f-12">TIME: <span>{{ values['time_'+p['service_id']] }}</span></span>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <center class="removearrow"><div ng-show="prosel[p['service_id']]" style="" class="glyphicon glyphicon-triangle-bottom arrowmark"></div>
+                    </center>
+                </div>
+                </div>
+                <div class="visible-xs">
+                <div class="row">
+                    <ul class="nav nav-tabs" du-scroll-container="container">
+                      <li ng-if="visit_list.length < 3" ng-repeat="p in visit_list" class="take-all-space-you-can2" ng-class="{active: $index == acttab}"><a ng-click="propdiv(p, p['service_id']); selecttab($index)" style="font-size: 15px; line-height:15px; margin-bottom:10px; font-weight:400; cursor:pointer" class="">{{$index+1}}</a></li>
+                      <li ng-if="visit_list.length < 2" ng-repeat="p in visit_list" class="take-all-space-you-can1" ng-class="{active: $index == acttab}"><a ng-click="propdiv(p, p['service_id']); selecttab($index)" style="font-size: 15px; line-height:15px; margin-bottom:10px; font-weight:400; cursor:pointer" class="">{{$index+1}}</a></li>
+                      <li ng-if="visit_list.length == 3" ng-repeat="p in visit_list" class="take-all-space-you-can3" ng-class="{active: $index == acttab}"><a ng-click="propdiv(p, p['service_id']); selecttab($index)" style="font-size: 15px; line-height:15px; margin-bottom:10px; font-weight:400; cursor:pointer" class="">{{$index+1}}</a></li>      
+                    </ul>
+                </div>
+                </div>
+                <div class="col-md-1" style="width: 2px;">
+                </div>
+            </div>
+        </div>
+        <div style="height: 1px;background-color:#bdbbbb; width: 100%"></div>
+        <div class="container" style="padding-bottom: 10px;background-color: white;">
+            <div id="confirmprop_ovrflo" class="row" style="">
+                <div class="col-md-4 col-sm-4 col-xs-12 mapconform" style="">
+                    <ui-gmap-google-map center="{latitude:p['lat'],longitude:p['lon']}">
+                        <ui-gmap-marker coords="{latitude:p['lat'],longitude:p['lon']}" idkey="p['service_id']">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12" style="padding-left:25px; padding-right:0px; padding-top: 5px; display:inline-block">
+                    <div style="font-weight: 600;font-size: 16px; margin-bottom:10px;text-align: center; ">Property Details</div>
+                    <h4 style="color: #f0bb2f; font-size: 15px; font-weight: 600; margin-bottom:5px; margin-top:0px; padding-top: 0vh">{{p['city']}}, {{p['area']}}</h4>
+                    <div class="f-12" ng-if="p['edit_loca']" style="font-size: 12px; line-height:17px; margin-bottom:5px;"><i class="md md-room"></i>&nbsp; {{p['edit_loca']}}</div>
+                    <div class="f-12" style=" line-height:21px;"><b>Rent:</b> Rs. {{p['m_rent']}}</div>
+                    <div class="f-12" style="line-height:21px;"><b>Security Deposit:</b> Rs. {{p['advance']}}  </div>
+                    <div class="f-12" style="line-height:21px;"><b>Maintenance Charge:</b> Rs. <span ng-if="p['maintain_amount'] != ''">{{p['maintain_amount']}}</span><span ng-if="p['maintain_amount'] == ''">{{p['maintenance']}}</span></div>
+                    <div class="f-12" style="line-height:21px;"><b>Built Up Area:</b> {{p['configuration']}} | {{p['totalArea']}} Sq. feet </div>
+                    <div style="font-weight: 600;font-size: 16px; margin-bottom:3px;margin-top:20px;text-align: center; ">Amount to be paid</div>
+                    <div class="f-12" style=""><b>Flytta Service Charge:</b> Rs. {{p['m_rent']/2}}</div>
+
+                        <center>
+                          <div class="" style="margin-top:8px">        
+                            <div ng-show="couapld" class="form-group" style="display:inline-block">
+                              <input type="text" style="font-size:13px;" placeholder="Coupon code" ng-model="couponcode"  class="form-control" required> 
+                            </div>
+                            <button ng-show="couapld" style="background-color:#f0bb2f;" ng-click="couponapplyCp(p['m_rent']/2)" class="btn btn-default">Apply Coupon</button>
+                            <button ng-show="!couapld" style="background-color:#f0bb2f;" ng-click="" class="btn btn-default" ng-disabled="!couapld">Coupon Applied</button>
+                          </div>
+                          <div ng-show="couponapplied" style="margin-top:10px;">{{Cpdescription}}<br />Amount to be paid: <del style="opacity:0.6">Rs. {{p['m_rent']/2}}</del> Rs. {{cpamount}}</div>
+                          <div ng-show="couponnotvalid">Coupon is invalid</div>
+                        </center>
+                    <center style="maargin-bottom:35px;"><button type="submit" class="btn btn-sm" ng-click="not_paid=false;payment = true;confirm_pay(p, num)" style="background-color:#f0bb2f; margin:7px; color:#666"><span>CONFIRM & PAY</span></button></center>
+                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top:5px;">
+                    <flex-slider slider-id="slider" flex-slide="s in p['picurl'] track by $index" class="cpflimge" style="" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                        <li>
+                            <img src='assets/img/spinner.gif' alt="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" title="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" lazy-img="{{s}}" width="100%" class="cpflimgevw">
+                        </li>
+                    </flex-slider>
+                    <flex-slider slider-id="carousel" flex-slide="s in p['picurl'] track by $index" class="cpflimges" style="" animation="slide" animation-loop="false" item-width="130" item-margin="5" as-nav-for="#slider" slideshow="false" control-nav="false">
+                        <li>
+                            <img src='assets/img/spinner.gif' alt="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" title="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" lazy-img="{{s}}" class="cpflimgesvw">
+                        </li>
+                    </flex-slider>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding-right:0px;" ng-show="dwninv">
+        <div class="" style="margin-top:5vh;">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" style="height:30vh; margin-bottom:10px; width: 100%">
+                        <ui-gmap-google-map center="{latitude:p['lat'],longitude:p['lon']}" zoom="8">
+                            <ui-gmap-marker coords="{latitude:p['lat'],longitude:p['lon']}" idkey="p['service_id']">
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+                    <div class="col-md-12" style="height: 47vh">
+                        <flex-slider slider-id="slider" flex-slide="s in p['picurl'] track by $index" style="height:25vh" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                            <li>
+                                <img src='assets/img/spinner.gif' alt="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" title="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" lazy-img="{{s}}" width="100%" height="180px;">
+                            </li>
+                        </flex-slider>
+                        <flex-slider class="multisliderimg" slider-id="carousel" flex-slide="s in p['picurl'] track by $index" style="height:5vh;" animation="slide" animation-loop="false" item-width="130" item-margin="5" as-nav-for="#slider" slideshow="false" control-nav="false">
+                            <li>
+                                <img src='assets/img/spinner.gif' alt="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" title="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" lazy-img="{{s}}" height="60px;">
+                            </li>
+                        </flex-slider>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="">
+                <div style="font-size: 18px;color: #f0bb2f;margin-top: 1vh;"><b>{{p['area']}}, {{p['city']}}</b></div>
+                <div style="padding-left: 0px; padding-top: 10px;">
+                    <span><i class="md-room"></i>  {{p['loca']}}  </span>
+                </div>
+                <div >Built Up Area: <b>{{p['configuration']}} | {{p['totalArea']}} Sq. feet</b> </div>
+            </div>
+            <div class="col-md-2 col-xs-12 pull-right">
+                <div class="confirmpayrent" style="padding-top:8px">
+                    <span style="opacity: 0.8">RENT</span>
+                    <div style=""> <span style="font-size: 4vmin;"><i class="inr"></i>Rs. {{p['m_rent']}}/-</span></div>
+                <div>Security Deposit
+                    <br/><b>Rs. {{p['advance']}} </b> </div>
+                <div>Maintenance Charge
+                    <br/><b>Rs. <span ng-if="p['maintain_amount'] != ''">{{p['maintain_amount']}}</span><span ng-if="p['maintain_amount'] == ''">{{p['maintenance']}}</span></b></div>
+                </div>
+            </div>
+            <div class="col-md-4" style="">
+                <div class="" style="padding-top: 10px; padding-left: 0px;">
+                    <h5>Flytta Service Charges</h5>
+                    <span>Payment Details</span>
+                    <br/>
+                    <span>Mode of Payment: </span>
+                </div>
+                <div class="pull-right" style="margin-bottom:70px; margin-top:5vh; padding-right:15px;">
+                    <button type="submit" class="btn btn-default11" style="background-color:#f0bb2f; color:#666; font-weight:400">DOWNLOAD INVOICE</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmpaymodal1">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content container">
+                    <div class="modal-body" style="font-size: 15px">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Your payment has been successful 
+                                <div class="modal-footer">
+                                    <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" ng-click="gotoappntpage();">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+    <div id="imageModal" class="modal fade" role="dialog" style="overflow: hidden;margin-top: 10vh;">
+        <!--  <button class="btn">Close</button> -->
+        <div class="modal-dialog">
+            <button type="button" class="btn btn-lg btn-round btn-default pull-right" style="z-index: 99;margin-right: -10px;margin-top:-10px;" data-dismiss="modal"><i class="md md-clear"></i></button>
+            <div class="modal-content" style="height: initial;">
+                <flex-slider slider-id="slider" flex-slide="s in p['picurl'] track by $index" style="height:459px;width:100%;" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                    <li>
+                        <img src='assets/img/spinner.gif' alt="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" title="{{p['configuration']}} Rent {{p['city']}} {{p['area']}}" lazy-img="{{s}}" width="100%" height="450px">
+                    </li>
+                </flex-slider>
+            </div>
+        </div>
+    </div>
+<style type="text/css">
+  #Smallchat{
+    display: none;
+  }
+  .nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
+}
+.full-width-tabs > ul.nav.nav-tabs {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-tabs > li {
+    float: none;
+    display: table-cell;
+}
+.full-width-tabs > ul.nav.nav-tabs > li > a {
+    text-align: center;
+}
+.take-all-space-you-can2{
+    width:50%;
+}
+.take-all-space-you-can3{
+    width:33%;
+}
+.take-all-space-you-can1{
+    width:100%;
+}
+</style>

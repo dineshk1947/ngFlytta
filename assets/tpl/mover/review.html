@@ -1,0 +1,249 @@
+ 
+<div style="overflow: hidden; background-color: white; max-height: 100vh; max-width: 100%" ng-controller="moverController">
+  <div ng-include src="'assets/tpl/search_header.html'" ng-controller="moverController"></div>
+  <div style="overflow-y: auto; max-height: 95vh;">
+  <div class="container">
+    <center>
+    <h2 style="">YOUR DETAILS</h2>
+    </center>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 main_column"  style="overflow-y: scroll; border-right: 1px solid #c2c3c4; max-height: 40vh;" >
+        <center>
+          <h4 style="padding: 6px;margin-top: 11px; background-color: #dddddd;">Origin Details</h4>
+        </center>
+        <div class="row" style="margin-left: 0px;">
+       <!--    border-right: 1px solid #c2c3c4" -->
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">City</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >           
+              <div class="form-group col-md-10" style="padding:0px; border-bottom:1px solid #e0e1e2; padding-top:5px; margin-bottom:8px;">
+                <ui-select ng-model="mover.city1" theme="select2" on-select="getareas($select.selected.cname,$select.selected.cvalue);" title="Choose City" search-enabled="false">
+                  <ui-select-match style="font-size:13px;" placeholder="Select your city...">{{$select.selected.cname}}</ui-select-match>
+                  <ui-select-choices style="font-size:13px;" repeat="item in cities | filter: $select.search">
+                      {{item['cname']}}
+                  </ui-select-choices>
+                </ui-select>
+              </div> 
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Area</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >          
+               <div class="form-group col-md-10" style="padding:0px; border-bottom:1px solid #e0e1e2; margin-bottom:8px;">
+                      <ui-select ng-model="mover_areas['Current_place']['curr_area']" theme="select2" on-select="getar1($select.selected.value);" title="Choose City" search-enabled="false">
+                        <ui-select-match style="font-size:13px;" placeholder="Select your area...">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices style="font-size:13px;" repeat="area_data in mover.area1 | filter: $select.search">
+                            {{area_data.value}}
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>  
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Address</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >   
+              <div class="form-group col-md-10" style="padding:0px; height:28px;">
+                      <input style="font-size:13px;" ng-model="mover_areas['Current_place']['addr']" placeholder="Your current address" type="text" class="form-control">
+                    </div>
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">BHK</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >   
+              <div class="form-group col-md-10" style="padding:0px; margin-bottom:5px; border-bottom:1px solid #e0e1e2; ">
+                        <ui-select ng-model="mover_areas['Current_place']['BHK']" theme="select2" on-select="getbhk1($select.selected)" title="Choose BHK" search-enabled="false">
+                          <ui-select-match style="font-size:13px;" placeholder="Select your BHK...">{{$select.selected}}</ui-select-match>
+                          <ui-select-choices style="font-size:13px;" repeat="bhk_data in bhks | filter: $select.search">
+                              {{bhk_data}}
+                          </ui-select-choices>
+                        </ui-select>
+                    </div>  
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Floor No</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >   
+               <div class="form-group col-md-10" style="padding:0px; height:28px;">
+                      <input style="font-size:13px;" ng-model="mover_areas['Current_place']['Floor']" type="number" min="0" class="form-control">
+                    </div> 
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Lift</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >   
+                <div class="form-group col-md-10" style="padding:0px; border-bottom:1px solid #e0e1e2;">
+                        <ui-select ng-model="mover_areas['Current_place']['Lift']" theme="select2" on-select="getbhk1($select.selected)" title="Choose BHK" search-enabled="false" style="z-index: 99">
+                          <ui-select-match style="font-size:13px;" placeholder="Yes or no...">{{$select.selected}}</ui-select-match>
+                          <ui-select-choices style="font-size:13px;" repeat="lift_data in Liftstatus | filter: $select.search">
+                              {{lift_data}}  
+                          </ui-select-choices>
+                        </ui-select>
+                    </div>
+            </div> 
+            </div>
+        <center>
+          <h4 style="padding: 6px;margin-top: 11px; background-color: #dddddd;">Destination Details </h4>
+        </center> 
+        <div class="row" style="margin-left: 0px;">
+       <!--    border-right: 1px solid #c2c3c4" -->
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">City</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >           
+              <div class="form-group col-md-10" style="padding:0px; padding-top:5px; border-bottom:1px solid #e0e1e2; margin-bottom:8px;">
+                  <ui-select ng-model="mover.city2" theme="select2" on-select="getareas1($select.selected.cname,$select.selected.cvalue);" title="Choose City" search-enabled="false">
+                    <ui-select-match style="font-size:13px;" placeholder="Select your city...">{{$select.selected.cname}}</ui-select-match>
+                    <ui-select-choices style="font-size:13px;" repeat="item in cities1 | filter: $select.search">
+                        {{item['cname']}}
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Area</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >     
+              <div class="form-group col-md-10" style="padding:0px; border-bottom:1px solid #e0e1e2; margin-bottom:8px;">
+                  <ui-select ng-model="mover_areas['Destination_place']['dest_area']" theme="select2" on-select="getar1($select.selected.value);" title="Choose City" search-enabled="false">
+                    <ui-select-match style="font-size:13px;" placeholder="Select your area">{{$select.selected.value}}</ui-select-match>
+                    <ui-select-choices style="font-size:13px;" repeat="area_data in mover.area2 | filter: $select.search">
+                        {{area_data.value}}
+                    </ui-select-choices>
+                  </ui-select>
+              </div>    
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Address</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >        
+                <div class="form-group col-md-10" style="padding:0px; height:28px;">
+                  <input style="font-size:12px;" ng-model="mover_areas['Destination_place']['addr']" type="text" class="form-control">
+                </div>
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">BHK</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >   
+                <div class="form-group col-md-10" style="padding:0px; border-bottom:1px solid #e0e1e2; margin-bottom:8px;">
+                  <ui-select ng-model="mover_areas['Destination_place']['BHK']" theme="select2" title="Choose BHK" on-select="getbhk2($select.selected)" search-enabled="false">
+                    <ui-select-match style="font-size:13px;" placeholder="Select your destination BHK...">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices style="font-size:13px;" repeat="lift_data in bhks | filter: $select.search">
+                        {{lift_data}}
+                    </ui-select-choices>
+                  </ui-select>
+                </div> 
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Floor No</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >           
+                <div class="form-group col-md-10" style="padding:0px; height:28px;">
+                  <input style="font-size:12px;" ng-model="mover_areas['Destination_place']['Floor']" type="number" min class="form-control">
+                </div> 
+            </div> 
+            </div>
+        <div class="row" style="margin-left: 0px;">
+          <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="line-height:45px;">Lift</div>
+            <div class=" col-lg-8 col-md-8 col-xs-8 col-sm-8" id="details_pad1" >                                          
+                <div class="form-group col-md-10" style="padding:0px; border-bottom:1px solid #e0e1e2;">
+                  <ui-select ng-model="mover_areas['Destination_place']['Lift']" theme="select2" title="Choose Lift Status" on-select="getbhk2($select.selected)" search-enabled="false" style="z-index: 99">
+                    <ui-select-match style="font-size:13px;" placeholder="Yes or no">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices style="font-size:13px;" repeat="bhk_data in Liftstatus | filter: $select.search">
+                        {{bhk_data}}
+                    </ui-select-choices>
+                  </ui-select>
+              </div> 
+            </div> 
+            </div>
+
+
+        <center>
+          <h4 style="padding: 6px;margin-top: 11px; background-color: #dddddd;">Moving On</h4>
+        </center> 
+        <div  class="row" style="margin-left: 0px; margin-bottom: 10px;">
+            <div class="col-md-12 col-xs-12" style="">
+                <div class="form-group" style="width: 100%">
+                <label class="col-lg-4 col-md-4 control-label">Date: </label>
+                <div style="" class="col-lg-8 col-md-8">
+                <input type="text" style="font-size:13px;" class="form-control" data-min-date="{{tomorrow}}" ng-model="move_date" data-autoclose="1" bs-datepicker>
+              </div>
+              </div> <br />
+              <div class="form-group" style="width: 100%">
+                <label class="col-lg-4 col-md-4 control-label">Time:</label>
+                <div style="" class="col-lg-8 col-md-8">
+                <input type="text" style="font-size:13px;" class="form-control" ng-model="move_time" data-autoclose="1" bs-timepicker>
+              </div>
+              </div>
+            </div>
+        </div>
+        </div>      
+      <div class="col-md-4 col-sm-4 col-xs-12 main_column" style="border-right: 1px solid #c2c3c4" id=""  >
+        <div class="row">
+          <div class="col-md-12 col-sm-12  col-xs-12">
+            <center>
+            <h4 style="padding: 6px;margin-top: 11px;background-color: #dddddd;">
+            <div class="col-md-3 col-sm-3 col-xs-3" style="display:inline">Items</div>
+            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline">Dismantlable</div>&nbsp;
+            <div class="col-md-2 col-sm-2 col-xs-2" style="display:inline">Qty</div></h4>
+            </center>
+          </div>
+        </div>
+
+        <div class="" style="overflow-y: auto; max-height: 40vh;">
+        <div class="row itemline" style="border-bottom: 1px solid #c2c3c4" id="" ng-repeat="p_mdata in s_items">
+          <div id="goods" class="col-md-6 col-sm-6 col-xs-6">
+           <span>{{$index+1}}) {{p_mdata['Item']}}</span>
+          </div>
+          <div class="col-md-3 col-xs-3"> 
+           <span>{{ p_mdata['Dismantlable'] }}</span>
+          </div>
+          <div  style="text-align: center;" class="col-md-3 col-sm-3 col-xs-3"> 
+           <span>{{p_mdata['Quantity']}}</span> 
+          </div>
+        </div>      
+        </div>
+        
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12 "  style="">
+          <div class="row" >
+            <div class="col-md-12 col-sm-12 col-xs-12">
+           <center>
+           <h4 style="padding: 6px;margin-top: 11px; margin-bottom: 0px; background-color: #dddddd;">Estimated Charges</h4>
+            </center>
+            </div>
+          </div>
+          <div class="row" style=" margin-left: 0px;margin-right: 0px;padding-top: 10px;">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-8 col-xs-8 col-sm-8">Moving Charges</div>
+              <div class="col-md-4 col-xs-4 col-sm-4">{{json['Estimated_charge']['moving_charge']}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-xs-8 col-sm-8">Packing, Loading & Unpacking</div>
+              <div class="col-md-4 col-xs-4 col-sm-4">{{ json["Estimated_charge"]["pack_load_unpack"] }}</div>
+            </div>
+            <div class="row" >
+              <div class="col-md-8 col-xs-8 col-sm-8">Tax</div>
+              <div class="col-md-4 col-xs-4 col-sm-4">{{ json["Estimated_charge"]["tax"] }}</div>
+            </div>
+            <div class="row" style="border-bottom: 1px solid #c2c3c4" >
+              <div class="col-md-8 col-xs-8 col-sm-8">Insurance</div>
+              <div class="col-md-4 col-xs-4 col-sm-4">{{ json["Estimated_charge"]["insurance"] }}</div>
+            </div>
+            <div class="row" >
+              <div class="col-md-8 col-xs-8 col-sm-8"><b>Total Packing & Moving Charges </b></div>
+              <div class="col-md-4 col-xs-4 col-sm-4">{{ json["Estimated_charge"]["total"]}}</div>
+            </div>
+              
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  <div class="row">
+    <div align="center" class="col-md-12" style="margin-bottom:65px; margin-top:0px;">
+      <button style="background-color:#f0bb2f; padding:5px 25px;" class="btn btn-sm" ng-click="gottoprev();"><b>Back</b></button>
+      <button style="background-color:#f0bb2f; padding:5px 25px; margin-left:15px;" class="btn btn-sm" ng-click="gottonext1();" ><b>Confirm</b></button><!-- onclick="location.href='#/search_mover/packers&movers'" -->
+    </div>
+  </div>
+  </div>
+  </div>
+
+

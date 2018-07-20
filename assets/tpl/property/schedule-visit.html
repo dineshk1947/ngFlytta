@@ -1,0 +1,472 @@
+
+<div ng-controller="SearchProperty" style=" overflow-x: hidden;  max-height: 100%; max-width: 100%; overflow-y:hidden">
+<!-- <div class="row" style="padding-bottom:15px; background-color:#fff; border:1px solid #cccccc; box-shadow: 2px 2px 1px #cccccc;"> 
+<div style="padding-top:15px; display:inline-block" class="col-md-8">
+ <button class="btn btn-sm" style="background-color:#f0bb2f; color:#fff" onclick="location.href='#/home/home_property'"><b>House Rental</b></button>
+    <button  onclick="location.href='#/home/home_settling'" class="btn btn-sm"><b>Packers & Movers</b></button>
+    <button class="btn btn-sm" onclick="location.href='#/home/home_settling'"><b>Settling in Services</b></button>
+</div>
+<div class="col-md-4">
+<ul  class="nav nav-tabs pull-right" style="display: none;">
+  <li class="active"><a href="#">Tab 1</a></li>
+  <li><a href="#">Tab 2</a></li>
+  <li><a href="#">Tab 3</a></li>
+</ul>
+</div>
+</div> -->
+<div ng-include src="'assets/tpl/search_header.html'"></div>
+<div class="alert-container-top-right-two"></div>
+<div style="font-size:15px;" class="">
+  <span ng-show="!request_stat" style="position: absolute;font-size: 12px; font-weight:300; right: 5px; color:#fff">
+    <i class="md-arrow-back" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(-90deg);"></i> Scroll below and schedule a visit</span>
+  <div style="padding-top:20px; padding-bottom:15px;background-color:#3949ab; border-bottom:1px solid #cccccc" class="row">
+  <!-- <div class="col-lg-12 col-md-offset-1"> -->
+    <div class="container" style="padding-top:20px;padding-bottom:5px;background-color:#3949ab;">
+
+  <center><h3 style="color:#fff; background-color:#3949ab; margin-top:-25px; margin-bottom:15px; margin-left: -16px;">Schedule House Visit</h3></center>
+      <div class="cardstotal">
+        <div ng-if="visit_list.length == 3">
+          <div  class="col-md-3 col-sm-4 col-xs-12 shcvisit" style="margin-bottom:15px; cursor:pointer;"  ng-repeat="v_list in visit_list">
+            <div class="card cardsch">
+            <button class="btn btn-xs" ng-click="removevisit(v_list['service_id'],$index);" style="width:100%;margin-top: -10px">Remove from Visit</button>
+              <div class="card-content" style="padding-top: 0px; padding-right: 15px;margin-top: -5px;">
+                  <div style="height:140px; overflow-y:hidden;" class="row imagewidth" style="margin-bottom:0px; " id="card-map-basic">
+                    <div style="padding-top: 0px; z-index: -1; height:130px; margin-left:-4px;">
+                      <flex-slider slider-id="slider"  flex-slide="s in v_list['picurl'] track by $index" style="height:150px; width:100%;"  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                        <li>                
+                          <img src='assets/img/spinner.gif' alt="{{v_list['configuration']}} Rent {{v_list['city']}} {{v_list['area']}}" title="{{v_list['configuration']}} Rent {{v_list['city']}} {{v_list['area']}}" lazy-img='{{s}}' width="100%" height="120px;">
+                        </li>
+                      </flex-slider>
+                    </div>
+                  </div>
+                  <h5 style="margin-bottom:0px; color:#f0bb2f;margin-top: -1vh;"><b>{{ v_list["area"] }}, {{ v_list["city"] }}</b></h5>
+                  <p style="font-size: 12px; padding-top:10px; margin-top: -2vh;">Rent: <b>Rs. {{v_list['m_rent']}}</b><br/>Advance: <b>Rs. {{v_list['advance']}}</b><br/>BHK: <b>{{v_list['configuration']}}</b><br/>Area: <b>{{v_list['totalArea']}} Sq.feet</b></p>
+                  <span class="hc4" style="font-weight: 500;margin-top: 2px;font-size: 15px;color:#f0bb2f">Schedule Visit</span>
+                  <br/>
+                  <div class="row">
+                    <div class="form-group form_date" style="height:10px;">
+                      <label style="font-size: 12px;" class="col-lg-4 col-sm-4 col-xs-2 control-label">DATE: </label>
+                      <div style="padding-left:5px;" class="col-lg-7 col-sm-7 col-xs-8">
+                        <input  type="text" style="font-size: 12px; border-bottom:1px solid #e8e8e8; height:23px" placeholder="Select Date" ng-change="showDate(v_list['service_id'],$index)" ng-model="values['date_'+v_list['service_id']]" class="form-control" data-min-date="{{tomorrow}}" data-autoclose="1" bs-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group filled">
+                      <label style="font-size: 12px;" class="col-lg-4 col-sm-4 col-xs-2 control-label">TIME:</label>
+                      <div style="padding-left:5px;" class="col-lg-7 col-sm-7 col-xs-8">
+                        <input type="text" style="font-size:12px; border-bottom:1px solid #e8e8e8;height:27px" placeholder="Select Time" class="form-control" ng-change="showTime(v_list['service_id'],$index)" ng-model="values['time_'+v_list['service_id']]" min="10" data-autoclose="1" bs-timepicker>
+                      </div>
+                    </div>
+               <!--      <span style="" class="pull-right"><button style="background-color:#f0bb2f" ng-click="removevisi(v_list['_id'],$index);" class="btn btn-xs viisitremove">&#10006;</button></span> -->
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="visit_list.length == 2">
+          <div class="col-md-3 col-sm-4 col-xs-12 shcvisit" style="margin-bottom:15px; cursor:pointer;"  ng-repeat="v_list in visit_list">
+            <div class="card cardsch">
+            <button class="btn btn-xs" ng-click="removevisit(v_list['service_id'],$index);" style="width:100%;margin-top: -10px">Remove from Visit</button>
+              <div class="card-content" style="padding-top: 0px; padding-right: 15px;margin-top: -5px;">
+                  <div style="height:140px; overflow-y:hidden;" class="row imagewidth" style="margin-bottom:0px; " id="card-map-basic">
+                    <div style="padding-top: 0px; z-index: -1; height:130px; margin-left:-4px;">
+                      <flex-slider slider-id="slider"  flex-slide="s in v_list['picurl'] track by $index" style="height:150px; width:100%;"  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                        <li>                
+                          <img src='assets/img/spinner.gif' alt="{{v_list['configuration']}} Rent {{v_list['city']}} {{v_list['area']}}" title="{{v_list['configuration']}} Rent {{v_list['city']}} {{v_list['area']}}" lazy-img='{{s}}' width="100%" height="120px;">
+                        </li>
+                      </flex-slider>
+                    </div>
+                  </div>
+                  <h5 style="margin-bottom:0px; color:#f0bb2f;margin-top: -1vh;"><b>{{ v_list["area"] }}, {{ v_list["city"] }}</b></h5>
+                  <p style="font-size: 12px; padding-top:10px; margin-top: -2vh;">Rent: <b>Rs. {{v_list['m_rent']}}</b><br/>Advance: <b>Rs. {{v_list['advance']}}</b><br/>BHK: <b>{{v_list['configuration']}}</b><br/>Area: <b>{{v_list['totalArea']}} Sq.feet</b></p>
+                  <span class="hc4" style="font-weight: 500;margin-top: 2px;font-size: 15px;color:#f0bb2f">Schedule Visit</span>
+                  <br/>
+                  <div class="row">
+                    <div class="form-group form_date" style="height:10px;">
+                      <label style="font-size: 12px;" class="col-lg-4 col-sm-4 col-xs-2 control-label">DATE: </label>
+                      <div style="padding-left:5px;" class="col-lg-7 col-sm-7 col-xs-8">
+                        <input  type="text" style="font-size: 12px; border-bottom:1px solid #e8e8e8; height:23px" placeholder="Select Date" ng-change="showDate(v_list['service_id'],$index)" ng-model="values['date_'+v_list['service_id']]" class="form-control" data-min-date="{{tomorrow}}" data-autoclose="1" bs-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group filled">
+                      <label style="font-size: 12px;" class="col-lg-4 col-sm-4 col-xs-2 control-label">TIME:</label>
+                      <div style="padding-left:5px;" class="col-lg-7 col-sm-7 col-xs-8">
+                        <input type="text" style="font-size:12px; border-bottom:1px solid #e8e8e8;height:27px" placeholder="Select Time" class="form-control" ng-change="showTime(v_list['service_id'],$index)" ng-model="values['time_'+v_list['service_id']]" min="10" data-autoclose="1" bs-timepicker>
+                      </div>
+                    </div>
+               <!--      <span style="" class="pull-right"><button style="background-color:#f0bb2f" ng-click="removevisi(v_list['_id'],$index);" class="btn btn-xs viisitremove">&#10006;</button></span> -->
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-12 shcvisit" ng-click="backfrmsch()" style="margin-bottom:15px; cursor:pointer;">
+              <div class="card">
+                <div class="timeline-wrapper">
+                  <div class="timeline-item cardsch" style="padding:0px;">
+                    <div class="animated-background" style="height:20px;">
+                        </div>
+                    <div class="animated-background" style="margin:5px; height:120px;">
+                        </div>
+                    <div class="animated-background" style="margin:15px 15px; margin-bottom:0px; height:18px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:100px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:65px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:120px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:45px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:85px; height:18px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:25px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:25px; height:10px;">
+                        </div>
+                      <center><div style="font-size:120px; margin-top:-90%; position:relative; z-index:500; line-height:120px; font-weight:200">+</div></center>
+                      </div>
+                  </div>
+                </div>
+          </div> 
+        </div>
+        <div ng-if="visit_list.length == 1">
+          <div class="col-md-3 col-sm-4 col-xs-12 shcvisit" style="margin-bottom:15px; cursor:pointer;"  ng-repeat="v_list in visit_list">
+            <div class="card cardsch">
+            <button class="btn btn-xs" ng-click="removevisit(v_list['service_id'],$index);" style="width:100%;margin-top: -10px">Remove from Visit</button>
+              <div class="card-content" style="padding-top: 0px; padding-right: 15px;margin-top: -5px;">
+                  <div style="height:140px; overflow-y:hidden;" class="row imagewidth" style="margin-bottom:0px; " id="card-map-basic">
+                    <div style="padding-top: 0px; z-index: -1; height:130px; margin-left:-4px;">
+                      <flex-slider slider-id="slider"  flex-slide="s in v_list['picurl'] track by $index" style="height:150px; width:100%;"  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                        <li>                
+                          <img src='assets/img/spinner.gif' alt="{{v_list['configuration']}} Rent {{v_list['city']}} {{v_list['area']}}" title="{{v_list['configuration']}} Rent {{v_list['city']}} {{v_list['area']}}" lazy-img='{{s}}' width="100%" height="120px;">
+                        </li>
+                      </flex-slider>
+                    </div>
+                  </div>
+                  <h5 style="margin-bottom:0px; color:#f0bb2f;margin-top: -1vh;"><b>{{ v_list["area"] }}, {{ v_list["city"] }}</b></h5>
+                  <p style="font-size: 12px; padding-top:10px; margin-top: -2vh;">Rent: <b>Rs. {{v_list['m_rent']}}</b><br/>Advance: <b>Rs. {{v_list['advance']}}</b><br/>BHK: <b>{{v_list['configuration']}}</b><br/>Area: <b>{{v_list['totalArea']}} Sq.feet</b></p>
+                  <span class="hc4" style="font-weight: 500;margin-top: 2px;font-size: 15px;color:#f0bb2f">Schedule Visit</span>
+                  <br/>
+                  <div class="row">
+                    <div class="form-group form_date" style="height:10px;">
+                      <label style="font-size: 12px;" class="col-lg-4 col-sm-4 col-xs-2 control-label">DATE: </label>
+                      <div style="padding-left:5px;" class="col-lg-7 col-sm-7 col-xs-8">
+                        <input  type="text" style="font-size: 12px; border-bottom:1px solid #e8e8e8; height:23px" placeholder="Select Date" ng-change="showDate(v_list['service_id'],$index)" ng-model="values['date_'+v_list['service_id']]" class="form-control" data-min-date="{{tomorrow}}" data-autoclose="1" bs-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group filled">
+                      <label style="font-size: 12px;" class="col-lg-4 col-sm-4 col-xs-2 control-label">TIME:</label>
+                      <div style="padding-left:5px;" class="col-lg-7 col-sm-7 col-xs-8">
+                        <input type="text" style="font-size:12px; border-bottom:1px solid #e8e8e8;height:27px" placeholder="Select Time" class="form-control" ng-change="showTime(v_list['service_id'],$index)" ng-model="values['time_'+v_list['service_id']]" min="10" data-autoclose="1" bs-timepicker>
+                      </div>
+                    </div>
+               <!--      <span style="" class="pull-right"><button style="background-color:#f0bb2f" ng-click="removevisi(v_list['_id'],$index);" class="btn btn-xs viisitremove">&#10006;</button></span> -->
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-12 shcvisit" ng-click="backfrmsch()" style="margin-bottom:15px; cursor:pointer;">
+              <div class="card">
+                <div class="timeline-wrapper">
+                  <div class="timeline-item cardsch" style="padding:0px;">
+                    <div class="animated-background" style="height:20px;">
+                        </div>
+                    <div class="animated-background" style="margin:5px; height:120px;">
+                        </div>
+                    <div class="animated-background" style="margin:15px 15px; margin-bottom:0px; height:18px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:100px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:65px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:120px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:45px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:85px; height:18px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:25px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:25px; height:10px;">
+                        </div>
+                      <center><div style="font-size:120px; margin-top:-90%; position:relative; z-index:500; line-height:120px; font-weight:200">+</div></center>
+                      </div>
+                  </div>
+                </div>
+          </div> 
+          <div class="col-md-3 col-sm-4 col-xs-12 shcvisit" ng-click="backfrmsch()" style="margin-bottom:15px; cursor:pointer;">
+              <div class="card">
+                <div class="timeline-wrapper">
+                  <div class="timeline-item cardsch" style="padding:0px;">
+                    <div class="animated-background" style="height:20px;">
+                        </div>
+                    <div class="animated-background" style="margin:5px; height:120px;">
+                        </div>
+                    <div class="animated-background" style="margin:15px 15px; margin-bottom:0px; height:18px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:100px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:65px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:120px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:45px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:85px; height:18px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:25px; height:10px;">
+                        </div>
+                    <div class="animated-background" style="margin:10px 15px; margin-right:25px; height:10px;">
+                        </div>
+                      <center><div style="font-size:120px; margin-top:-90%; position:relative; z-index:500; line-height:120px; font-weight:200">+</div></center>
+                      </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" ng-show="!request_stat">
+    <h2 style="font-size: 20px; margin-top:5px; margin-bottom:5px; color:#666"><u>Terms of Service</u></h2>
+    <div style="padding-top: 5px; font-weight:300">1. We assist you with houses as per the standard housing assistance policy.<br/>
+    2. For the first three house visits, you are required to pay an amount of Rs.200/- and schedule the house visit.<br/>
+    3. The information about the houses you choose will be shared at least one day before the visit.<br/>
+    4. Beyond three house visits, If you intend to see three more properties, you might have to book the premium slot of Rs.500 (Subject to the availability of the relocation manager)<br/>
+    5. Once you have chosen to rent a particular house, you will have to pay a service charge of 50% of the monthly rental value of the particular house.<br/> 
+    6. The amount paid for the house visits (Rs.200/-) will be adjusted in the final bill.<br/></div>
+  </div>
+  <!-- <div class="container">
+    <center>
+      <div class="col-md-12" style="margin-top:15px">        
+        <div ng-show="couapld" class="form-group" style="display:inline-block">
+          <input type="text" style="font-size:13px;" placeholder="Coupon code" ng-model="couponcode"  class="form-control" required> 
+        </div>
+        <button ng-show="couapld" style="background-color:#f0bb2f;" ng-click="couponapply()" class="btn btn-default">Apply Coupon</button>
+        <button ng-show="!couapld" style="background-color:#f0bb2f;" ng-click="" class="btn btn-default" ng-disabled="!couapld">Coupon Applied</button>
+      </div>
+      <div ng-show="couponapplied" style="margin-top:10px;">Amount to be paid: <del style="opacity:0.6">Rs. 200</del> Rs. {{rvamount}}</div>
+      <div ng-show="couponnotvalid">Coupon is invalid</div>
+    </center>
+  </div> -->
+  <div ng-show="request_stat" align="center" style="padding:15px 0px; " class="col-md-12">
+    <button style="" class="btn btn-default" ng-click="backfrmsch();">Back</button>
+    <button style="background-color:#f0bb2f; margin-left:10px;" ng-click="confirmpay(visit_list);" class="btn btn-default">Pay Now</button> <span>(or)</span> 
+    <button style="background-color:#f0bb2f;" ng-click="confirmpayonsite(visit_list);" class="btn btn-default mblvermarg">Pay On-site</button>
+  <br/><br/><br/><br/>
+  </div>
+  <div ng-show="!request_stat" align="center" style="padding:15px 0px;" class="col-md-12">
+    <button style="" class="btn btn-default" ng-click="backfrmsch();">Back</button>
+    <button style="background-color:#f0bb2f; margin-left:10px;" ng-click="confirmpay(visit_list);" class="btn btn-default">Pay Now</button> <span>(or)</span> 
+    <button style="background-color:#f0bb2f;" ng-click="confirmpayonsite(visit_list);" class="btn btn-default mblvermarg">Pay On-site</button>
+
+  <br/><br/><br/><br/>
+  </div>
+</div>
+<div class="modal fade" id="req_visit">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+          <div class="modal-header" style="background-color:#f0bb2f;margin-left: -15px;margin-right: -15px;">
+                <center><h4 class="modal-title"><b>Alert</b></h4></center>
+            </div>
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{rvisit}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="payonsite">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content container">
+          <div class="modal-header" style="background-color:#f0bb2f;margin-left: -15px;margin-right: -15px;">
+                <center><h4 class="modal-title"><b>Pay On-site</b></h4></center>
+            </div>
+            <div class="modal-body" style="font-size: 15px">
+                <div class="row">
+                    <div class="col-md-12">
+                       Amount to be paid Rs. {{rvamount}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" onclick="location.href='property/confirm-property'">Yes</button>
+                <button type="button" style="background-color:#f0bb2f; color:#666" class="btn btn-primary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmpaymodal">
+   <div class="modal-dialog modal-md" role="document">
+       <div class="modal-content container">
+           <div class="modal-body" style="font-size: 15px">
+               <div class="row">
+                   <div class="col-md-12">
+                       You have successfully paid the Relocation Assistance Charge. You can check invoice in your mail. Our executive will contact you shortly.
+                       <div class="modal-footer">
+                           <button type="button" style="background-color:#fdd206 ; color:#666" class="btn btn-primary" ng-click="gotoappntpage();">Cancel</button>                            
+                           <button type="button" style="background-color:#fdd206 ; color:#666" class="btn btn-primary" ng-click="gotodipage();">Download Invoice</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+<!-- <div id="imageModal" class="modal fade" role="dialog" style="overflow: hidden;margin-top: 10vh">
+    <i class="md md-highlight-remove" data-dismiss="modal"></i>
+    <div class="modal-dialog">
+        <button type="button" class="btn btn-lg btn-round btn-default pull-right" style="z-index: 99;margin-right: -10px;margin-top:-10px;" data-dismiss="modal"><i class="md md-clear"></i></button>
+        <div class="modal-content" style="height: initial;">
+            <flex-slider slider-id="slider" flex-slide="s in visit_list[0]['picurl'] track by $index" style="height:459px;width:100%;" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                <li>
+                    <img src='assets/img/spinner.gif' lazy-img='{{s}}'  width="100%" height="450px">
+                </li>
+            </flex-slider>
+        </div>
+    </div>
+</div> -->
+</div>
+<style>
+.timeline-item {
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    padding: 12px;
+
+    margin: 0 auto;
+    max-width: 472px;
+    min-height: 200px;
+}
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 96px;
+    position: relative;
+}
+.background-masker {
+    background: #fff;
+    position: absolute;
+}
+
+/* Every thing below this is just positioning */
+
+.background-masker.header-top,
+.background-masker.header-bottom,
+.background-masker.subheader-bottom {
+    top: 0;
+    left: 40px;
+    right: 0;
+    height: 10px;
+}
+
+.background-masker.header-left,
+.background-masker.subheader-left,
+.background-masker.header-right,
+.background-masker.subheader-right {
+    top: 10px;
+    left: 40px;
+    height: 8px;
+    width: 10px;
+}
+
+.background-masker.header-bottom {
+    top: 18px;
+    height: 6px;
+}
+
+.background-masker.subheader-left,
+.background-masker.subheader-right {
+    top: 24px;
+    height: 6px;
+}
+
+
+.background-masker.header-right,
+.background-masker.subheader-right {
+    width: auto;
+    left: 300px;
+    right: 0;
+}
+
+.background-masker.subheader-right {
+    left: 230px;
+}
+
+.background-masker.subheader-bottom {
+    top: 30px;
+    height: 10px;
+}
+
+.background-masker.content-top,
+.background-masker.content-second-line,
+.background-masker.content-third-line,
+.background-masker.content-second-end,
+.background-masker.content-third-end,
+.background-masker.content-first-end {
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 6px;
+}
+
+.background-masker.content-top {
+    height:20px;
+}
+
+.background-masker.content-first-end,
+.background-masker.content-second-end,
+.background-masker.content-third-end{
+    width: auto;
+    left: 380px;
+    right: 0;
+    top: 60px;
+    height: 8px;
+}
+
+.background-masker.content-second-line  {
+    top: 68px;
+}
+
+.background-masker.content-second-end {
+    left: 420px;
+    top: 74px;
+}
+
+.background-masker.content-third-line {
+    top: 82px;
+}
+
+.background-masker.content-third-end {
+    left: 300px;
+    top: 88px;
+}
+</style>

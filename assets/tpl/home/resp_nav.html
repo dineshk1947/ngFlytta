@@ -1,0 +1,41 @@
+<div class="dropdown-menu dropdown-menu-right mat-grow-top-right" style="padding-left: 10px;width:300px; position:fixed; z-index:1000">
+    <div class="container-fluid m-v-15" ng-click="$event.stopPropagation()">
+        <div class="pull-right m-r-10">
+            <button type="button" class="close" ng-click="$hide()">&times;</button>
+        </div>
+       <!--  <h4 class="no-margin p-t-5"><i class="md md-more-vert"></i> MENU </h4> -->
+        <div class="row m-t-20">
+            <div class="col-md-6">
+            <label style="font-size:15px;text-transform: uppercase;">Services</label> 
+                <div >
+                   <!--  <a menu-link href="http://web.goflytta.com/home?type=service">List Your house</a><br/> -->
+                    <a menu-link href="/home/home_property" >House Rentals</a>
+                    <a menu-link href="/home/home_mover" >Packers & Movers</a>
+                    <a menu-link href="/home/home_settling" >Settling-in Services</a>
+                </div><br/>
+                <label style="font-size:15px;text-transform: uppercase;">Flytta</label> 
+                <div>
+                    <a menu-link href="http://corporate.goflytta.com">Corporate</a>
+                    <a menu-link href="http://web.goflytta.com/home?type=service">Vendors</a>
+                    <a menu-link href="http://web.goflytta.com/hello-world">Careers</a>
+                </div><br/>
+                <label style="font-size:15px;text-transform: uppercase;">Explore</label> 
+                <div>
+                    <a menu-link href="/about">About Us</a>
+                    <a menu-link href="http://blog.goflytta.com">Blog</a>
+                    <a menu-link href="http://community.goflytta.com" >Community</a>
+                    <a menu-link href="/contact" >Contact</a>
+                </div>
+
+                <a menu-link href="/how">How it works</a><br/>
+
+                <div class="theme-item theme-template-light visible-xs visible-sm" style="font-size: 15px;">
+                    <div class="icon" ng-show="theme.template=='theme-template-light'"><i class="md md-check"></i></div>
+                    <a href="" ng-show="login_text" ng-click="auth0_login()">Login</a>
+                    <a href="" ng-show="!login_text" ng-click="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

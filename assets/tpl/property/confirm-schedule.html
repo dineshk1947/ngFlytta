@@ -1,0 +1,115 @@
+<div ng-controller="cofirmSchedule" style=" overflow-x: hidden;  max-height: 100%; max-width: 100%; overflow-y:hidden">  
+  <div class="row">
+   <nav class="navbar navbar-default">
+      <div ng-include src="'assets/tpl/home/main_sidebar.html'"></div>
+  </nav>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-xs-12"> &nbsp; </div> 
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <div class="container">
+        <center><h4 >Verify and Confirm visit</h4></center>
+          <div class="row rowborderbtmc">
+            <div style="font-weight:300" class="col-md-6 col-sm-6 col-xs-12">
+                <div style="text-transform: uppercase"><b>Name:</b> {{cus_data[0]['name']}}</div>
+                <div><b>EMAIL:</b> {{cus_data[0]['email']}}</div>
+                <div><b>PHONE:</b> {{cus_data[0]['phone']}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-xs-12 visible-lg visible-md"> &nbsp; </div> 
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <div class="card cardcs" style="margin-right:10px; margin-left:10px;" ng-repeat="cspdata in p_details track by $index">
+        <div class="card-content">
+          <div class="row">
+           <div class="col-md-4 col-sm-4 col-xs-12" style="padding-bottom:10px;">
+              <flex-slider slider-id="slider"  flex-slide="s in cspdata['picurl'] track by $index" style="height:140px;"  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+            <li>                
+               <!--  <img lazy-img="{{s[0]}}" width="100%" height="180px;"> -->
+                <img class='imgg' src='assets/img/spinner.gif' lazy-img='{{s}}' >
+            </li>
+        </flex-slider>
+              <!-- <img id="" class="pull-left imgg" src='assets/img/spinner.gif' lazy-img="{{cspdata['picurl'][0] }}" style=""> -->
+           </div>
+           <div class="col-md-4 col-sm-4 col-xs-12">
+              <span style="text-transform: uppercase">{{cspdata['area']}}, {{cspdata['city']}}</span><!-- <br /> {{cspdata['area']}}, {{cspdata['city']}}<br /> -->   <br />
+              <b>Address:</b><br /> {{cspdata['loca']}}<br />           
+              <b>BHK:</b> {{cspdata['configuration']}}<br />               
+              <b>Size:</b> {{cspdata['totalArea']}} <span ng-if="cspdata['totalArea'].indexOf('Feet') < 0">Sq Feet</span> {{cspdata['fur']}}<br />               
+              <b>Rent:</b> Rs. {{cspdata['m_rent']}} 
+           </div>
+           <div style="font-size:15px;" class="col-md-4 col-sm-4 col-xs-12">            
+           <div style="border-top:1px solid #93969b" class="visible-xs"></div>
+              <span style="font-weight:400">Scheduled date and time:</span><br /><span style="font-weight:200">{{cspdata['sch_date']}} at {{cspdata['sch_time']}}</span><br />              
+             <!--  <div class="checkbox" style="">
+                  <label><input name="selected" ng-click="confirmedsch(cspdata['_id'])" ng-model="consch['che_'+cspdata['_id']]"  type="checkbox" >Confirm Visit</label><br />
+
+                  <label><input name="selected" ng-click="notconfirmedsch(cspdata['_id'])" ng-model="notconsch['che_'+cspdata['_id']]"  type="checkbox" >Not Confirm</label>
+              </div> -->
+           </div>
+        </div>
+        </div>
+      </div>
+
+     <center> <div class="btn-group" id="" style="">
+          <button ng-show="accepted" id="" class="btn btn-sm" ng-click="confirschsub();" style="margin:25px 0px; background-color:#f0bb2f;">I Accept</button>
+          <button ng-show="!accepted" id="" class="btn btn-sm" ng-click="" style="margin:25px 0px; background-color:#f0bb2f;">Accepted</button>
+      </div></center>
+      <!-- <div class="card cardcs">
+        <div class="card-content">
+          <div class="row">
+           <div class="col-md-5">
+              <b>Address:</b><br /> Advant building, Madhapur, Hyderabad, 500081.<br />              
+              <b>Configuration:</b><br /> 3 BHK, 2500 Sq-Feet, Semi Furnished<br />
+              <b>Rent:</b> Rs. 25000 
+           </div>
+           <div class="col-md-4">
+              <b>Schedule date and time:</b><br /> 15-08-2017 at 11.30 AM<br />              
+              <div class="checkbox" style="">
+                  <label><input name="selected" ng-click="" ng-model="test1"  type="checkbox" >Confirm Visit</label>
+              </div>
+           </div>
+           <div class="col-md-3">
+              <img id="" class="pull-left imgg" src='assets/img/HkTSyi4IZ.jpg' lazy-img="{{p['picurl'] [0] }}" style="width: 100%; height:100px">
+           </div>
+        </div>
+        </div>
+      </div>
+      <div class="card cardcs">
+        <div class="card-content">
+          <div class="row">
+           <div class="col-md-5">
+              <b>Address:</b><br /> Advant building, Madhapur, Hyderabad, 500081.<br />              
+              <b>Configuration:</b><br /> 3 BHK, 2500 Sq-Feet, Semi Furnished<br />
+              <b>Rent:</b> Rs. 25000 
+           </div>
+           <div class="col-md-4">
+              <b>Schedule date and time:</b><br /> 15-08-2017 at 11.30 AM<br />              
+              <div class="checkbox" style="">
+                  <label><input name="selected" ng-click="" ng-model="test1"  type="checkbox" >Confirm Visit</label>
+              </div>
+           </div>
+           <div class="col-md-3">
+              <img id="" class="pull-left imgg" src='assets/img/HkTSyi4IZ.jpg' lazy-img="{{p['picurl'] [0] }}" style="width: 100%; height:100px">
+           </div>
+        </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+<style>
+.imgg{
+  width: 100%; 
+  height:130px
+}
+@media (max-width: 768px){  
+  .imgg{
+    width: 100%; 
+    height:150px
+  }
+}
+</style>

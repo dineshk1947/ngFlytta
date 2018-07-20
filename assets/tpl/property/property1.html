@@ -1,0 +1,246 @@
+<!--   <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true&key=AIzaSyBUuXndrnnJWLi85sQGI4BmGAsZliRDDcY"></script> -->
+<div ng-controller="ViewProperty" style="background-color: #3f51b5">
+
+<div ng-include src="'assets/tpl/search_header.html'"></div>
+    <div class="card" style="margin-left:30px; margin-right:30px; margin-bottom:0px">
+        <div class="card-content">        
+            <div class="container visible-lg visible-md visible-sm" style="background-color: white; width:100%; height: 20px;">
+                <div class="col-md-9 col-sm-6 col-xs-6">
+                    <h3 id="advant" style="color: #fdd835;margin-bottom:0px; margin-top:0px; font-size:16px;">{{new_data['property']['city']}}, {{new_data['property']['area']}}</h3>
+                    <div class="lead">
+                        <div ng-if="new_data['property']['edit_loca']" id="advantaddrs" style="font-size:13px; padding-left: 0vw"><i class="md md-room"></i>&nbsp; {{new_data['property']['edit_loca']}}</div>
+                    </div>
+                </div>
+                <div id="avail" class="col-md-3 col-sm-6 col-xs-6" >
+                    <div style="border-left: 2px solid #949494; margin-top:2px; height: 20px; margin-top:-15px;">
+                      <h5 style="font-size:14px; padding-left: 1vw; padding-top:0px; margin-bottom:15px;"><span style="opacity: 0.4;">Available For</span> <span style="font-size:14px;  margin-top: -1vh; margin-bottom:0; text-transform: uppercase; color: black;">{{new_data['property']['rent_to']}}</span></h5>
+                      <!-- <h4 style="font-size:14px;  margin-top: -1vh; margin-bottom:0; text-transform: uppercase;padding-left: 1vw;color: black;">{{new_data['property']['rent_to']}}</h4> -->
+                    </div>
+                </div>
+            </div>
+            <div class="container visible-xs" style="background-color: white;">
+                <div class="col-md-6 col-sm-6 col-xs-12" style="height:100%; padding-left:0px; padding-right:0px;">
+                    <div id="advant" style="color: #fdd835;margin-bottom:0px; font-size:15px;  padding-top: 0vh">{{new_data['property']['city']}}, {{new_data['property']['area']}}</div>
+                    <div class="lead">
+                        <div ng-if="new_data['property']['edit_loca']" id="advantaddrs" style="font-size:11px;"><i class="md md-room"></i>&nbsp; {{new_data['property']['edit_loca']}}</div>
+                    </div>
+                </div>
+                <div id="avail" class="col-md-6 col-sm-6 col-xs-12" style="padding-left:0px; padding-right:0px;">
+                    <div style="border-left: 0px solid #949494; margin-top:2px; height:100%;">
+                    <h5 style="opacity: 0.4; font-size:13px; margin-top:3px; margin-bottom:0px;">Available For</h5>
+                    <h4 style="margin-top: -1vh; margin-bottom:0; padding-bottom:9px; font-size:11px;  text-transform: uppercase;color: black;">{{new_data['property']['rent_to']}}</h4>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding-left: 30px; padding-right: 30px;background-color: #3f51b5">
+    <div class="row" style="">
+        <div class="col-md-8 col-sm-12 col-xs-12" style="margin-top:4vh;">
+          <flex-slider slider-id="" id="fslide" flex-slide="s in new_data['property']['picurl'] track by $index" style=""  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+              <li >
+                  <img id="simg" src='assets/img/spinner.gif' alt="{{new_data['property']['configuration']}} Rent {{new_data['property']['city']}} {{new_data['property']['area']}}" title="{{new_data['property']['configuration']}} Rent {{new_data['property']['city']}} {{new_data['property']['area']}}" lazy-img="{{s}}" style="" >
+              </li>
+          </flex-slider>
+        </div>
+        <div id="divwhite" class="col-md-4 col-sm-12 col-xs-12" style="margin-top:4vh;">
+            <div id="fluidd" class="" style="background-color: white; padding-left: 0px;padding-right: 0px;">
+              <div class="card">
+                <div class="card-content">
+                <div id="rsdm" class="" style="width: initial;margin-right: 0px;">
+                    <h4 style="padding-left: 5px; margin-bottom:0px; padding-bottom: 10px; padding-top: 5px; border-bottom:1px solid #fdd835">Property details</h4>
+                </div>
+                <div id="aboutprop" class="" style="padding-right: 5px; margin-top:5px;">
+                    <div><span style="opacity: 0.5; font-weight: 400;">Built Up Area:</span> {{new_data['property']['totalArea']}} <span ng-if="new_data['property']['totalArea'].indexOf('Feet')<0">Sq Feet</span></div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Configuration:</span> {{new_data['property']['configuration']}}</div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Age of Property:</span> {{new_data['property']['age']}}</div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Property type:</span> {{new_data['property']['proptype']}}</div>
+                    <div ng-if="new_data['property']['fur']"><span style="opacity: 0.5; font-weight: 400;">Furnishing:</span><span><furnished-state></furnished-state></span></div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Facing:</span> {{new_data['property']['facing']}}</div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Availability:</span> {{new_data['property']['availability']}}</div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Community:</span> {{new_data['property']['community']}}</div>
+                    <div><span style="opacity: 0.5; font-weight: 400;">Property floor:</span> {{new_data['property']['p_floor']}}</div>
+                   <!--  <div><span style="opacity: 0.5; font-weight: 400;">Location:</span><span ng-if="new_data['property']['edit_loca']">{{new_data['property']['edit_loca']}}</span> <span ng-if="!new_data['property']['edit_loca']">{{new_data['property']['area']}}, {{new_data['property']['city']}}</span> </div> -->
+                    <div id="rsdm" class="row" style="width: initial; margin-right: 0px; margin-top:0px;">
+                        <div class="col-md-5 col-sm-4 col-xs-5">
+                            <h5 id="rentid" style="opacity: 0.5;font-weight: 400;">RENT</h5>
+                            <h3 id="rentcost" style=" margin-top: 0vh;"><i class="inr"></i> Rs. {{new_data['property']['m_rent']}}</h3>
+                        </div>
+                        <div id="secmain" class="col-md-7 col-sm-8 col-xs-7" style="margin-top: 1vh;">
+                            <span id="security"  style="opacity: 0.5;font-weight: 400;float: right;">Security Deposit</span><br/>
+                             <span id="seccost" style="float: right;margin-top: -1vh; ">Rs. {{new_data['property']['advance']}}</span><br/>
+                              <span id="Maintenance"  style="opacity: 0.5;font-weight: 400;margin-top: -2vh;float: right;">Maintenance  </span><br/>
+                              <span id="maincost"  style="margin-top: -3vh;float: right;">Rs. <span ng-if="new_data['property']['maintenance'] != ''">{{new_data['property']['maintenance']}}</span><span ng-if="new_data['property']['maintenance'] == ''">{{new_data['property']['maintain_amount']}}</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="" style="" class="paddremove">
+                    <center>
+                        <button ng-show='new_data["property"]["shortgray"]' ng-click="wishProp1(new_data['property'], new_data['index_no']);" style="font-size: 14px; margin-top:0px;" class="btn btn-sm btn-default20 dropdown-toggle" ><i class="md md-favorite"></i> Add to Wishlist</button>
+                        <button ng-show='!new_data["property"]["shortgray"]' ng-click="wishProp1(new_data['property'], new_data['index_no']);"  style="font-size: 14px; background-color: #fdd206; margin-top:0px;" class="btn btn-sm btn-default20 dropdown-toggle" ><i class="md md-favorite"></i> Remove from Wishlist</button>
+                    </center>
+                </div>
+            </div>
+            </div>  
+         
+            </div> 
+        </div>
+  </div>   
+    <div class="container-fluid" style="padding-right:0px;margin-top: 5vh;">  
+    <div class="card" style="background-color: white;">         
+    <div class="card-content"> 
+        <h4 style="padding-left: 5px; padding-bottom: 10px; padding-top: 2px; border-bottom:1px solid #fdd835">Amenities</h4>
+        <div class="row" style="">
+            <div ng-repeat="ameni in ammenities" ng-class="{amiblur: alpha_{{ameni['id']}}}"  class="col-md-2 col-sm-3 col-xs-6 " align="center"><img style="padding-top:10px;width: 15%;" alt="{{ameni['name']}}" title="{{ameni['name']}}" src="{{ameni['icn']}}"><br/>{{ameni['name']}}</div>
+        </div>
+        <br/>       
+    </div>
+    </div>
+    </div>
+  <div class="container-fluid" style="position:relative; height: 550px;padding-left: -15px; margin-top: 0vh;padding-right: 0px" > 
+    <div class="mapad" style="margin-top: 15px; height: 500px; margin-bottom: 15px;width: 100%;">
+            <ui-gmap-google-map  center="map1.center" zoom="map1.zoom">
+            <ui-gmap-window show="map1.window.show" models="markers"  coords="map1.window.model" options="map1.window.options" click="map1.window.closeClick();" templateParameter="map1.window">
+                    </ui-gmap-window>
+                    <ui-gmap-circle center='map1.circle.center'
+                        radius='map1.circle.radius'
+                          fill='map1.circle.fill'
+                          stroke='map1.circle.stroke'
+                          clickable='map1.circle.clickable'
+                          draggable='map1.circle.draggable'
+                          editable='map1.circle.editable'
+                          visible='map1.circle.visible'
+                          events='map1.circle.events'
+                      >
+                    </ui-gmap-circle>
+                   <ui-gmap-marker models="markers" ng-repeat="m in mark"
+                                   coords="m['coords']"
+                                   events="map1.markersEvents"
+                                   idkey="m['id']"
+                                   icon="{url: m['icon']}">
+                  </ui-gmap-marker>
+            </ui-gmap-google-map>
+    <div style="position: absolute; top:53px; left:1px;">
+    <div ng-show="openarrow" id="one" ng-click="openar1()" class="container-fluid card-divs overview-div" style="z-index: 0; font-size:18px; margin-top:0px; border:0px solid #e0e0e0; display:inline-block; padding:10px 8px;  position: absolute; top: 0px;margin-left: 0px; max-height:500px;">
+            &gt;
+  </div>
+  <div class="" ng-show="openmapdiv" style="">
+  <div ng-click="openar();" class="container-fluid card-divs overview-div" style="z-index: 0; font-size:18px; margin-top:0px; border:0px solid #e0e0e0; display:inline-block; padding:10px 8px;  position: absolute; top: 0px; max-height:500px;">
+            &lt;
+  </div>
+  <div class="card card-view" style="z-index:1; height:68vh; overflow-y:auto;">
+     <div style="width:100%; line-height:45px; padding:0px 10px; background-color:#e8e7e3">
+        <i class="fa fa-map-marker" aria-hidden="true"></i><b> Nearby Services</b>
+     </div>
+     <div align="center" style="width:100%; line-height:45px; padding:0px 10px;">
+       <!--  <button class="btn btn-circle" style="font-size:15px;" ng-click="increradius()"><b>+</b></button> --><button class="btn btn-sm" ng-click="increradius()">+</button>&nbsp;&nbsp;{{map1.circle.radius/1000}} KM&nbsp;&nbsp;<button class="btn btn-sm" ng-click="decreradius()">-</button> <!-- <button class="btn btn-circle" style="font-size:15px;" >-</button> -->
+     </div>
+      <div style="padding:0px; margin:3px" class="card-content">
+        <ul class="list-group nearweb" style="line-height:45px; cursor:pointer">
+            <li class="list-group-item" ng-class="{cardli1: isActive3(0)}" ng-click="nearbyarea('school', new_data); selectcardli(0)" style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/school.png" /> School
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(1)}" ng-click="nearbyarea('bus_station', new_data); selectcardli(1)" style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/bus_station.png" /> Bus Stop
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(2)}" ng-click="nearbyarea('shopping_mall', new_data); selectcardli(2)"  style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Shopping Mall
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(3)}" ng-click="nearbyarea('hospital', new_data); selectcardli(3)"  style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Hospital
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(4)}" ng-click="nearbyarea('atm', new_data); selectcardli(4)"  style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/atm.png" /> ATM
+            </li>
+           <!--  <li class="list-group-item" ng-click="nearbyarea('metro')" style="padding:0px 10px; margin:5px 0px">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Metro/Train
+            </li> -->
+            <li class="list-group-item" ng-class="{cardli1: isActive3(5)}" ng-click="nearbyarea('church', new_data); selectcardli(5)" style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/church.png" /> Worship
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(6)}" ng-click="nearbyarea('grocery_stores', new_data); selectcardli(6)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Grocery Stores
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(7)}" ng-click="nearbyarea('pharmacy', new_data); selectcardli(7)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Pharmacy
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(8)}" ng-click="nearbyarea('food', new_data); selectcardli(8)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/food.png" /> Restaurants
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(9)}" ng-click="nearbyarea('park', new_data); selectcardli(9)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/park.png" /> Parks
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(10)}" ng-click="nearbyarea('gym', new_data); selectcardli(10)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/gym.png" /> Gyms
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(11)}" ng-click="nearbyarea('gas_station', new_data); selectcardli(11)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/gas_station.png" /> Petrol Pump
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(12)}" ng-click="nearbyarea('rail_station', new_data); selectcardli(12)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/railway_station.png" /> Railway Station
+            </li>
+        </ul>
+        <ul class="list-group nearmobile" style="line-height:45px; cursor:pointer">
+            <li class="list-group-item" ng-class="{cardli1: isActive3(0)}" ng-click="nearbyarea('school', new_data); $hide(); openar(); selectcardli(0)" style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/school.png" /> School
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(1)}" ng-click="nearbyarea('bus_station', new_data); $hide(); openar();  selectcardli(1)" style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/bus_station.png" /> Bus Stop
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(2)}" ng-click="nearbyarea('shopping_mall', new_data); $hide(); openar();  selectcardli(2)"  style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Shopping Mall
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(3)}" ng-click="nearbyarea('hospital', new_data); $hide(); openar();  selectcardli(3)"  style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Hospital
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(4)}" ng-click="nearbyarea('atm', new_data); $hide(); openar();  selectcardli(4)"  style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/atm.png" /> Atm
+            </li>
+           <!--  <li class="list-group-item" ng-click="nearbyarea('metro')" style="padding:0px 10px; margin:5px 0px">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Metro/Train
+            </li> -->
+            <li class="list-group-item" ng-class="{cardli1: isActive3(5)}" ng-click="nearbyarea('church', new_data); $hide(); openar();  selectcardli(5)" style="padding:0px 10px; margin:5px 0px">
+              <img width="11%" src="assets/img/markers/map_service_icons/church.png" /> Worship
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(6)}" ng-click="nearbyarea('grocery_stores', new_data); $hide(); openar();  selectcardli(6)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/shopping_mall.png" /> Grocery Stores
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(7)}" ng-click="nearbyarea('pharmacy', new_data); $hide(); openar();  selectcardli(7)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/hospital.png" /> Pharmacy
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(8)}" ng-click="nearbyarea('food', new_data);; $hide(); openar();  selectcardli(8)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/food.png" /> Restaurants
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(9)}" ng-click="nearbyarea('park', new_data); $hide(); openar();  selectcardli(9)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/park.png" /> Parks
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(10)}" ng-click="nearbyarea('gym', new_data); $hide(); openar();  selectcardli(10)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/gym.png" /> Gyms
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(11)}" ng-click="nearbyarea('gas_station', new_data); $hide(); openar();  selectcardli(11)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/gas_station.png" /> Petrol Pump
+            </li>
+            <li class="list-group-item" ng-class="{cardli1: isActive3(12)}" ng-click="nearbyarea('rail_station', new_data); $hide(); openar();  selectcardli(12)" style="padding:0px 10px; margin:5px 0px">
+             <img width="11%" src="assets/img/markers/map_service_icons/railway_station.png" /> Railway Station
+            </li>
+        </ul>
+        </div>
+      </div>
+  </div>  
+  </div>
+    </div>
+  </div>
+  </div> 
+   
+<script type="text/javascript">
+        $('btn-default20').on('click', function(){
+    $('btn-default20').removeClass('selected');
+    $(this).addClass('selected');
+          });
+</script>
+</div>
+<style>
+.cardli{
+  box-shadow: 0px 5px 10px #7a7b7c;  
+}
+</style>

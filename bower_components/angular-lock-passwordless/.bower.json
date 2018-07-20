@@ -1,0 +1,19 @@
+{
+  "name": "angular-lock-passwordless",
+  "main": "angular-lock-passwordless.js",
+  "dependencies": {
+    "angular": "~1.5.8",
+    "auth0-lock-passwordless": "~2.2.3"
+  },
+  "homepage": "https://github.com/auth0/angular-passwordless",
+  "_release": "756ff79172",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "756ff79172669323ca24be999ce9dc23dcfcef04"
+  },
+  "_source": "https://github.com/auth0/angular-passwordless.git",
+  "_target": "*",
+  "_originalSource": "angular-lock-passwordless",
+  "_direct": true
+}

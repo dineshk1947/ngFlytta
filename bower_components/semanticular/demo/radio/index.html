@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Checkbox Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.min.css">
+</head>
+<body ng-controller="DemoController">
+    <div class="ui form">
+        <div class="inline fields">
+            <label>How often do you use checkboxes?</label>
+            <div class="field">
+                <radio ng-model="radio1" value="value1">Label for radio 1</radio>
+            </div>
+            <div class="field">
+                <radio ng-model="radio1" value="value2">Label for radio 2</radio>
+            </div>
+            <div class="field">
+                <radio ng-model="radio1" value="value3">Label for radio 3</radio>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui form">
+        <div class="grouped fields">
+            <label>How often do you use checkboxes?</label>
+            <div class="field" ng-repeat="color in colors">
+                <!-- Caution: ng-model value is by reference, not value! -->
+                <!-- Because ng-repeat is creating new scope for every item -->
+                <radio ng-model="radio2.value" options="options" value="color">{{color}}</radio>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        radio1: {{radio1}} <br>
+        radio2: {{radio2.value}}
+    </div>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/src/radio/index.js"></script>
+    <script src="/src/radio/directive.js"></script>
+    <!-- // <script src="/dist/semanticular.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>

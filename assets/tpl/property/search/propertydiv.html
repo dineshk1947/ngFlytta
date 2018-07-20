@@ -1,0 +1,59 @@
+<div id="propdiv" class="container-fluid card-divs" style="width:330px; margin-top:150px; padding-right:0px; padding-left:15px; background-color: white;position: absolute; top: 0px;margin-left: 280px; max-height:480px;z-index: 270;">
+  <div ng-click="$hide(); selectedcardclose();" class="container-fluid card-divs overview-div" style="z-index: 0; font-size:18px; margin-top:0px; border:0px solid #e0e0e0; display:inline-block; padding:0px 8px;  position: absolute; top: 0px;margin-left: 314px; max-height:500px;">
+            &#x2715
+  </div>
+  <div class="aside-dialog">
+    <div class="row" style="width:330px">
+    <ul  class="nav nav-tabs" du-scroll-container="container">
+      <li><a style="padding:5px 9px;color:#666; font-weight:400" href="#overview" du-smooth-scroll du-scrollspy>Overview</a></li>
+      <li><a style="padding:5px 12px;color:#666; font-weight:400" href="#housing" du-smooth-scroll du-scrollspy>House Structure</a></li>
+      <li><a style="padding:5px 18px;color:#666; font-weight:400" href="#amenities" du-smooth-scroll du-scrollspy>Amenities</a></li>
+    </ul>
+    </div>
+    <div style="overflow-y: auto; max-height:435px;padding-right: 10px;" id="container" du-scroll-container>
+    <div id="overview" style="border-bottom: 1px solid #f0bb2f; padding-bottom:10px;">
+      <span style="float: right;cursor: pointer;" ng-click="new_prop(s_prop)" class="pull-right viewsingelprop"><span ng-if="s_prop['property']['service_id']">{{s_prop['property']['service_id']}}</span><span ng-if="!s_prop['property']['service_id']">View Details</span><i class="md-launch viewsingelprop"></i></span>
+      <h5 style="margin-bottom:0px; color:#f0bb2f"><b>{{ s_prop['property']["area"] }}-{{ s_prop['property']["city"] }}</b></h5>
+      <!-- <p style="margin-top: -1vw"><li class="glyphicon glyphicon-map-marker"></li> Landmark: Barrack Road</p> -->
+      <!-- <div data-toggle="modal" data-target="#imageModal"> -->
+        <flex-slider slider-id="slider"  flex-slide="s in s_prop['property']['picurl'] track by $index" style="height:190px;width:300px;"  animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+            <li>                
+               <!--  <img lazy-img="{{s[0]}}" width="100%" height="180px;"> -->
+                <img src='assets/img/spinner.gif' alt="{{s_prop['property']['configuration']}} Rent {{s_prop['property']['city']}} {{s_prop['property']['area']}}" title="{{s_prop['property']['configuration']}} Rent {{s_prop['property']['city']}} {{s_prop['property']['area']}}" lazy-img='{{s}}' width="100%" height="180px;">
+            </li>
+        </flex-slider>
+      <!-- </div> -->
+      <!-- <img style="width:300px" src="{{ s_prop['picurl'][0] }}"> -->
+      <div class="row" style="padding-top:10px;">
+        <div style="line-height:30px; font-size:16px;" class="col-md-6 col-xs-6">Rent<br/><span style="font-size:24px;padding-top: 50px;">Rs. {{ s_prop['property']["m_rent"] }}</span></div>
+        <div style="line-height:15px;font-size: 12px" class="col-md-6 col-xs-6">Security Deposit<br/><span style=""><b>Rs. {{ s_prop['property']["advance"] }}</b></span></div>
+        <div style="line-height:15px;font-size: 12px" class="col-md-6 col-xs-6">Maintenance Charges<br/><span style=""><b>Rs. <span ng-if="s_prop['property']['maintain_amount'] != ''">{{s_prop['property']['maintain_amount']}}</span><span ng-if="s_prop['property']['maintain_amount'] == ''">{{s_prop['property']['maintenance']}}</span></b></span></div>
+      </div>
+    </div>
+    <div id="housing" style="border-bottom: 1px solid #f0bb2f; padding-bottom:3px;">
+      <h4><b>House Structure</b></h4> 
+      <ul style="padding-left:25px;margin-top: -2vh">
+        <li>{{ s_prop['property']["configuration"] }}</li>
+        <li>{{ s_prop['property']["totalArea"] }} <span ng-if="s_prop['property']['totalArea'].indexOf('Feet')<0">Sq Feet</span></li>
+        <li ng-if="s_prop['property']['fur']"><span><furnished-state></furnished-state></span></li>
+        <li>{{ s_prop['property']["facing"] }} facing</li>
+      </ul>
+    </div>
+    <div id="amenities" style="padding-bottom:3px;">
+      <h4 style="margin-bottom:0px; padding-bottom:3px;"><b>Amenities</b></h4>
+      <div class="row" style="padding-bottom:100px;">
+        <div align="center" style="" ng-repeat="a_data in amn" class="col-xs-4">                          
+            <img width="50%" alt="{{a_data['name']}}" title="{{a_data['name']}}" src="{{ a_data['icn']}}" /><br /> {{a_data["name"]}}
+        </div>   
+      </div>
+    </div>
+</div>
+<div ng-show="s_prop['property']['shortgray']"  ng-click="wishProp(s_prop['property'],s_prop['index_no']);" class="btn-group" style="bottom:25px; width:105%;margin-left: -15px;">
+ <button class="btn btn-sm" style="width:100%">Shortlist</button>
+</div>
+<div ng-show="!s_prop['property']['shortgray']"  ng-click="wishProp(s_prop['property'],s_prop['index_no']);" class="btn-group" style="bottom:25px;width:105%;margin-left: -15px;">
+ <button class="btn btn-sm" style="background-color:#f0bb2f; width:100% ">Remove from Wishlist</button>
+</div>
+  </div>
+ 
+</div>
